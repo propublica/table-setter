@@ -1,0 +1,22 @@
+table:
+  title:  "Lunches I've eaten: recorded and rated on their BLT content"
+  url:    "http://spreadsheets.google.com/pub?key=rZLQXHo1XbuRHOoe5Rsb8aw&output=csv"
+  deck:
+    "The most delicious developments since sliced bread:
+    <ul>
+      <li>Bacon</li>
+      <li>Lettuce</li>
+      <li>Tomato</li>
+    </ul>
+    Mmm, tasty."
+  footer:
+    "To improve sandwich quality, include mayonnaise."
+  column_styles:
+    - ''
+    - 'color:brown;'
+    - 'color:green;'
+    - 'color:red;'
+    - 'text-align:left;'
+  dead_columns: [5]
+  dead_rows:    [4, 5, 6, 7]
+  per_page: 2
