@@ -12,6 +12,8 @@ begin
     gem.authors = ["Jeff Larson"]
     gem.rubyforge_project = "table-setter"
     gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_dependency "table-fu", ">= 0.0.1"
+    gem.add_dependency "sinatra", ">= 0.0.1"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
