@@ -1,0 +1,33 @@
+
+  <h2><%= title @table.title %></h2>
+  <div id="deck"><%= @table.deck %></div>
+    <table id="data" class="tabular">
+      <thead>
+        <tr>
+        <% @data.headers.each do |header| -%>
+					<% unless header.ignored? -%>
+          	<th<%= " style=\"#{header.style}\"" %>><%= header %></th>
+					<% end -%>
+        <% end -%>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rows.each do |row| -%>
+          <tr>
+            <% row.columns.each do |column| -%>
+							<% unless column.ignored? -%>
+            		<td<%= " style=\"#{column.style}\"" %>><%= column %></td>
+							<% end -%>
+            <% end -%>
+          </tr>
+        <% end %>
+      </tbody>
+       <tfoot>
+       </tfoot>
+    </table>
+		<% if true %>
+      <%= will_paginate @rows %>
+    <% end %>
+  <div><%= @footer %></div>
+</div>
+
