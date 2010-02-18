@@ -1,6 +1,6 @@
 table:
   title:  "Lunches I've eaten: recorded and rated on their BLT content"
-  url:    "http://spreadsheets.google.com/pub?key=rZLQXHo1XbuRHOoe5Rsb8aw&output=csv"
+  key:    "rZLQXHo1XbuRHOoe5Rsb8aw"
   deck:
     "The most delicious developments since sliced bread:
     <ul>

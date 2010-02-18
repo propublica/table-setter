@@ -5,11 +5,14 @@ require 'rubygems'
 gem 'sinatra'
 gem 'thin'
 gem 'table-fu'
+gem 'sinatra-static-assets'
+gem 'emk-sinatra-url-for'
 
 require 'table-fu'
 require 'yaml'
 
-autoload :Sinatra,  'sinatra'
+
+autoload :Sinatra,  'sinatra/base'
 autoload :Thin,     'thin'
 autoload :ERB,      'erb'
 

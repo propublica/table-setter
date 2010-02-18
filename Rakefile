@@ -14,7 +14,9 @@ begin
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_dependency "table-fu", ">= 0.0.1"
     gem.add_dependency "mislav-will_paginate", ">= 2.3.11"
-    gem.add_dependency "sinatra", ">= 0.0.1"
+    gem.add_dependency "sinatra", ">= 0.9.4"
+    gem.add_dependency "sinatra-static-assets", ">= 0.5.0"
+    
     gem.executables << "table-setter"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
