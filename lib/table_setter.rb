@@ -1,13 +1,5 @@
 $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__))
 
-# Gems
-require 'rubygems'
-gem 'sinatra'
-gem 'thin'
-gem 'table-fu'
-gem 'sinatra-static-assets'
-gem 'emk-sinatra-url-for'
-
 require 'table-fu'
 require 'yaml'
 

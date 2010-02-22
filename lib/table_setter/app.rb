@@ -1,3 +1,4 @@
+
 require 'sinatra/static_assets'
 require 'sinatra/url_for'
 
