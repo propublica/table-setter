@@ -6,7 +6,7 @@ class TableController < ApplicationController
   end
   
   def index
-    @tables = Table.
+    @tables = Table.all
   end
   
   def expire

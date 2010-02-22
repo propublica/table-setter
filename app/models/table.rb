@@ -43,16 +43,14 @@ class Table < TableFu
   class << self
     def all(dir="config/tables/")
       tables=[] 
-      Dir.glob("#{dir}*.{yaml,yml}").each { |file|
+      Dir.glob("#{dir}*.{yaml,yml}").each do |file|
         begin
           t = PropublicaTableFu.new(file, :defer => true) 
           tables << t if t.live
         rescue ArgumentError => boom
           RAILS_DEFAULT_LOGGER.error("Error parsing configuration file. #{file}" + boom)
-        rescue Exception => boom
-          RAILS_DEFAULT_LOGGER.error("Error parsing configuration file. #{file}" + boom)
         end
-      }
+      end
       tables
     end
     
