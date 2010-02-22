@@ -7,22 +7,18 @@ module TableSetter
     helpers Sinatra::UrlForHelper
     register Sinatra::StaticAssets
     
-    set :root, ROOT
+    set :root, TableSetter.config_path
     # serve static files from the public directory
     enable :static
     
     
     get "/" do
-      last_modified :
-      TableSetter.table_files.map do |yml|
-        
-      end
-      
+      Tables.all(TableSetter.table_path)
     end
     
     
-    get "/:slug/:page" do
-            
+    get "/:slug" do
+      Table.new(TableSetter.table_path + slug + yaml)
     end
    
   end
