@@ -4,9 +4,9 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "table-setter"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.name = "table_setter"
+    gem.summary = %Q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
+    gem.description = %Q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
     gem.email = "thejefflarson@gmail.com"
     gem.homepage = "http://github.com/thejefflarson/table-setter"
     gem.authors = ["Jeff Larson"]
@@ -15,7 +15,8 @@ begin
     gem.add_dependency "table_fu", ">= 0.1.0"
     gem.add_dependency "mislav-will_paginate", ">= 2.3.11"
     gem.add_dependency "sinatra", ">= 0.9.4"
-    gem.add_dependency "sinatra-static-assets", ">= 0.5.0"    
+    gem.add_dependency "sinatra-static-assets", ">= 0.5.0"
+    gem.add_dependency "emk-sinatra-url-for", ">= 0.2.1"
     gem.executables << "table-setter"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
