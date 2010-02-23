@@ -7,11 +7,13 @@ module TableSetter
 table-setter is a Sinatra application for rendering and processing CSVs from google docs into HTML.
 
 Usage:
-  table-setter COMMAND path/to/table-setter/assets
+  table-setter COMMAND path/to/table-setter/assets OPTIONS
   
 commands:
   start    run the development server, for deployment use config.ru
   install  copy the table-setter assets into the the directory
+
+options:
     EOB
     
     
@@ -27,8 +29,7 @@ commands:
     
     def start_server
       TableSetter.configure @directory
-      puts "Starting TableSetter"
-      TableSetter::App.run!
+      TableSetter::App.run! :environment => :development, :dump_errors => true
     end
     
     def install_assets
@@ -43,6 +44,12 @@ commands:
     private
     # Option parsing
     def parse_options
+      @options = {}
+      @option_parser = OptionParser.new do |opts|
+
+      end
+      @option_parser.banner = BANNER
+      @option_parser.parse! ARGV
     end
     
     def base_files

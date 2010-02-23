@@ -1,4 +1,3 @@
-
 require 'sinatra/static_assets'
 require 'sinatra/url_for'
 
@@ -13,13 +12,19 @@ module TableSetter
     
     
     get "/" do
-      Tables.all(TableSetter.table_path)
+      show :index, :tables => Table.all
     end
     
     
     get "/:slug" do
-      Table.new(TableSetter.table_path + slug + yaml)
+      show :table, :table => Table.new(params[:slug])
     end
    
+
+    private
+    
+    def show(page, locals)
+      erb page, {:layout => true}, locals
+    end
   end
 end

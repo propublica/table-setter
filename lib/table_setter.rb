@@ -12,6 +12,7 @@ module TableSetter
   # autoload internals
   autoload :App,     'table_setter/app'
   autoload :Command, 'table_setter/command'
+  autoload :Table,   'table_setter/table'
   
   ROOT = File.expand_path(File.dirname(__FILE__) + "/..")
   
@@ -22,8 +23,8 @@ module TableSetter
       @config_path = File.expand_path(path)
     end
     
-    def table_files
-      Dir[@config_path + "/tables/**"]
+    def table_path
+      @config_path + "/tables/"
     end
     
   end
