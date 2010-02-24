@@ -9,10 +9,25 @@
     <script type="text/javascript">
       google.load("jquery", "1")
     </script>
-    <%= stylesheet_link_tag "/stylesheets/stylesheet.css", :media=>"screen" %>
+    <%= javascript_script_tag "/javascripts/jquery.tablesorter.min.js" %>
+    <%= javascript_script_tag "/javascripts/jquery.uitablefilter.js" %>
     <%= javascript_script_tag "/javascripts/application.js" %>
+    <%= stylesheet_link_tag "/stylesheets/stylesheet.css", :media=>"screen" %>
+    
+    <script>
+      <% if !table.nil?%>
+      var sortPlease = "<%= table.sortable? %>";
+      var sortByIndex = <%= table.sort_by %>;
+      var sortOrderBit = <%= table.sort_order %>;
+      <% else %>
+      var sortPlease = false;
+      <% end %>
+    </script>
+    
   </head>
   <body>
-    <%= yield %>
+    <div id="table_fu">
+      <%= yield %>
+    </div>
   </body>
 </html>

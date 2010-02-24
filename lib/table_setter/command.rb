@@ -29,7 +29,17 @@ options:
     
     def start_server
       TableSetter.configure @directory
-      TableSetter::App.run! :environment => :development, :dump_errors => true
+      require 'rack'
+      require 'rack/showexceptions'
+      require 'rack/commonlogger'
+      require 'rack/lint'
+      app = Rack::Builder.new {
+        use Rack::CommonLogger, STDERR
+        use Rack::ShowExceptions
+        use Rack::Lint
+        run TableSetter::App
+      }.to_app
+      Rack::Handler::Thin.run app, :Port => "3000"
     end
     
     def install_assets

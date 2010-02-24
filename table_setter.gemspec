@@ -35,6 +35,11 @@ Gem::Specification.new do |s|
      "spec/spec_helper.rb",
      "spec/table-setter_spec.rb",
      "spec/tables/test.yml",
+     "table_setter.gemspec",
+     "template/config.ru",
+     "template/public/favicon.ico",
+     "template/public/javascripts/application.js",
+     "template/public/stylesheets/stylesheet.css",
      "template/tables/example.yml",
      "template/views/index.erb",
      "template/views/layout.erb",
@@ -57,6 +62,8 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_development_dependency(%q<rack>, [">= 1.1.0"])
+      s.add_development_dependency(%q<thin>, [">= 1.2.5"])
       s.add_runtime_dependency(%q<table_fu>, [">= 0.1.0"])
       s.add_runtime_dependency(%q<mislav-will_paginate>, [">= 2.3.11"])
       s.add_runtime_dependency(%q<sinatra>, [">= 0.9.4"])
@@ -64,6 +71,8 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_dependency(%q<rack>, [">= 1.1.0"])
+      s.add_dependency(%q<thin>, [">= 1.2.5"])
       s.add_dependency(%q<table_fu>, [">= 0.1.0"])
       s.add_dependency(%q<mislav-will_paginate>, [">= 2.3.11"])
       s.add_dependency(%q<sinatra>, [">= 0.9.4"])
@@ -72,6 +81,8 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
+    s.add_dependency(%q<rack>, [">= 1.1.0"])
+    s.add_dependency(%q<thin>, [">= 1.2.5"])
     s.add_dependency(%q<table_fu>, [">= 0.1.0"])
     s.add_dependency(%q<mislav-will_paginate>, [">= 2.3.11"])
     s.add_dependency(%q<sinatra>, [">= 0.9.4"])

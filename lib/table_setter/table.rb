@@ -10,7 +10,6 @@ module TableSetter
     def initialize(slug, opts={:defer => false})
       options = indifferent_access YAML.load_file(Table.table_path(slug))
       @table_opts = options[:table]
-      
       @table_opts[:slug] = slug
       @deferred = opts[:defer]
       if !@deferred
@@ -37,22 +36,27 @@ module TableSetter
       File.expand_path(file)
     end
     
-    def last_modified
-      if !google_key.nil?
-        url = URI.parse "http://spreadsheets.google.com/feeds/list/#{google_key}/od6/public/basic"
-        resp = nil
-        Net::HTTP.start(url.host, 80) do |http|
-          resp = http.head(url.path)
-        end
-        return Time.parse resp['Last-Modified']
-      end
-      File.new(uri).mtime
+    def updated_at
+      csv_time = google_key.nil? ? file_modification_time(uri) : google_modification_time
+      (csv_time > yaml_time ? csv_time : yaml_time).to_s
     end
   
     def faceted?
       !@facets.nil?
     end
-  
+    
+    def sortable?
+      !faceted?
+    end
+    
+    def sort_by
+      @table_opts[:sort_by] ? @data.columns.index(@table_opts[:sort_by]) : 0
+    end
+    
+    def sort_order
+      @table_opts[:sort_order] == 'descending' ? 0 : 1
+    end
+    
     def method_missing(method)
       if @table_opts[method]
         @table_opts[method]
@@ -61,6 +65,23 @@ module TableSetter
     
   private
     
+    def google_modification_time
+      url = URI.parse "http://spreadsheets.google.com/feeds/list/#{google_key}/od6/public/basic"
+      resp = nil
+      Net::HTTP.start(url.host, 80) do |http|
+        resp = http.head(url.path)
+      end
+      Time.parse resp['Last-Modified']
+    end
+    
+    def file_modification_time(path)
+      File.new(path).mtime
+    end
+    
+    def yaml_time
+      file_modification_time(Table.table_path(slug))
+    end
+
     # Enable string or symbol key access to col_opts
     # from sinatra
     def indifferent_access(params)
@@ -90,7 +111,10 @@ module TableSetter
       def table_path(slug)
         "#{TableSetter.table_path}#{slug}.yml"
       end
-
+      
+      def exists?(slug)
+        File.exists? table_path(slug)
+      end
     end
 
   end
