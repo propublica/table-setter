@@ -18,10 +18,20 @@
   #table_fu div{
     margin-bottom: 14px;
   }
+  #table_fu div#pager{
+    float:right;
+    width: 30%;
+  }
+  #table_fu div#filter{
+    float:left;
+    width:30%;
+  }
+  
     #table_fu #data{
       border: 1px solid #ababab;
       border-collapse: collapse;
       margin-bottom:14px;
+      width: 100%;
     }
       #table_fu td, #table_fu th{
         padding: 7px;

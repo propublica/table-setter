@@ -19,8 +19,8 @@ require 'table_setter'
 # You should probably enable Rack::Cache if you're not behind a caching proxy, by uncommenting the
 # lines below:
 #
-# require 'rack/cache'
-# use Rack::Cache,
+#require 'rack/cache'
+#use Rack::Cache,
 #  :verbose     => true,
 #  :metastore   => "file:#{::File.expand_path ::File.dirname(__FILE__)}/meta",
 #  :entitystore => "file:#{::File.expand_path ::File.dirname(__FILE__)}/body"
@@ -31,7 +31,7 @@ require 'table_setter'
 # TableSetter::App.cache_timeout = 60 * 15 # 15 minutes
 #
 # Don't edit these lines
-TableSetter.configure ::File.dirname(__FILE__)
+TableSetter.configure(File.dirname(__FILE__))
 map '/' do
   run TableSetter::App
 end

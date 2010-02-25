@@ -5,11 +5,10 @@ module TableSetter
   class App < Sinatra::Base
     helpers Sinatra::UrlForHelper
     register Sinatra::StaticAssets
-    
     set :root, TableSetter.config_path
     # serve static files from the public directory
     enable :static
-    set :app_file, __FILE__
+    # set :app_file, __FILE__
 
     not_found do
       show :"404"
@@ -21,12 +20,7 @@ module TableSetter
     
     get "/" do
       headers['Cache-Control'] = "public, max-age=#{TableSetter::App.cache_timeout}"
-      last_modified Dir[TableSetter.table_path + "/*.yml"].inject do |memo, obj|
-        memo_time = File.new(File.expand_path memo).mtime
-        obj_time = File.new(File.expand_path obj).mtime
-        return memo_time if memo_time > obj_time 
-        obj_time
-      end
+      last_modified Table.fresh_yaml_time
       show :index, :tables => Table.all
     end
     

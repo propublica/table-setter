@@ -7,16 +7,17 @@
     <script type="text/javascript"
             src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
-      google.load("jquery", "1")
+      google.load("jquery", "1", {uncompressed:true})
     </script>
-    <%= javascript_script_tag "/javascripts/jquery.tablesorter.min.js" %>
-    <%= javascript_script_tag "/javascripts/jquery.uitablefilter.js" %>
+    <%= javascript_script_tag "/javascripts/jquery.tablesorter.js" %>
+    <%= javascript_script_tag "/javascripts/jquery.tablesorter.pager.js" %>
+    <%= javascript_script_tag "/javascripts/jquery.tablesorter.multipagefilter.js" %>
     <%= javascript_script_tag "/javascripts/application.js" %>
     <%= stylesheet_link_tag "/stylesheets/stylesheet.css", :media=>"screen" %>
     
     <script>
       <% if !table.nil?%>
-      var sortPlease = "<%= table.sortable? %>";
+      var sortPlease = <%= table.sortable? %>;
       var sortByIndex = <%= table.sort_by %>;
       var sortOrderBit = <%= table.sort_order %>;
       <% else %>

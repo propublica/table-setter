@@ -25,7 +25,7 @@ module TableSetter
       csv_data = open(uri).read
       @data = TableFu.new(csv_data, @table_opts[:column_options] || {})
       if @table_opts[:faceting]
-        @table_opts[:faceting][:facet_by]
+        @data.col_opts[:ignored] = [@table_opts[:faceting][:facet_by]]
         @facets = @data.faceted_by @table_opts[:faceting][:facet_by]
       end
     end
@@ -33,7 +33,7 @@ module TableSetter
     def uri
       !google_key.nil? ?
       "http://spreadsheets.google.com/pub?key=#{google_key}&output=csv" : 
-      File.expand_path(file)
+      File.expand_path("#{TableSetter.table_path}#{file}")
     end
     
     def updated_at
@@ -46,7 +46,11 @@ module TableSetter
     end
     
     def sortable?
-      !faceted?
+      !faceted? || !hard_paginate
+    end
+    
+    def hard_paginate
+      !(@table_opts[:hard_paginate] == false)
     end
     
     def sort_by
@@ -107,7 +111,16 @@ module TableSetter
         end
         tables
       end
-    
+      
+      def fresh_yaml_time
+        Dir["#{TableSetter.table_path}/*.yml"].inject do |memo, obj|
+          memo_time = File.new(File.expand_path memo).mtime
+          obj_time = File.new(File.expand_path obj).mtime
+          return memo_time if memo_time > obj_time 
+          obj_time
+        end
+      end
+      
       def table_path(slug)
         "#{TableSetter.table_path}#{slug}.yml"
       end
@@ -117,13 +130,5 @@ module TableSetter
       end
     end
 
-  end
-end
-
-class TableFu::Formatting  
-  class << self
-    def currency(num)
-      number_to_currency(num)
-    end
   end
 end

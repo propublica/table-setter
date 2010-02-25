@@ -1,32 +1,75 @@
 <div id="table_title"><%= table.title %></div>
 <div id="deck"><%= table.deck %></div>
-<div id="filter">Filter: <input type="text"></div>
+<% if !table.faceted? %>
+  <div id="filter">Filter: <input type="text"></div>
+  <div id="pager" class="pager">
+    <form>
+      <a href="#" class="prev">prev</a>
+      <input type="text" class="pagedisplay"/>
+      <a href="#" class="next">next</a>
+      <select class="pagesize">
+        <option selected="selected"  value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option  value="40">40</option>
+      </select>
+    </form>
+  </div>
+<% end %>
   <table id="data" class="tabular">
     <thead>
       <tr>
+      <% if table.faceted? %>
+        <th></th>
+      <% end %>
       <% table.data.headers.each do |header| %>
+      
         <% unless header.ignored? %>
           <th<%= " style=\"#{header.style}\"" %>><%= header %></th>
         <% end %>
       <% end %>
+
       </tr>
     </thead>
     <tbody>
-      <% table.data.rows.each do |row| %>
-        <tr>
-          <% row.columns.each do |column| %>
-            <% unless column.ignored? %>
-              <td<%= " style=\"#{column.style}\"" %>><%= column %></td>
+      <% if table.faceted? %>
+        <% table.facets.each do |facet| %>
+          <tr>
+            <th style='text-align:left; '><%= facet.faceted_on %></th>
+            <% facet.headers.each_with_index do |header, i| %>
+              <% unless i==0%>
+                <th style='<%= header.style %>'>
+                  <%= facet.sum_totals_for(header.to_s).to_s if header.total? %>
+                  <%= header.format? %>
+                </th>
+              <% end %>
             <% end %>
+          </tr>
+          <% facet.rows.each do |row| %>
+            <tr>
+              <td></td>
+              <% row.columns.each do |column| %>
+                <% unless column.ignored? %>
+                  <td <%= "style=\"#{column.style}\"" %> ><%= column %></td>
+                <% end %>
+              <% end %>
+            </tr>
           <% end %>
-        </tr>
+        <% end %>
+      <% else %>
+        <% table.data.rows.each do |row| %>
+          <tr>
+            <% row.columns.each do |column| %>
+              <% unless column.ignored? %>
+                <td<%= " style=\"#{column.style}\"" %>><%= column %></td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
      <tfoot>
      </tfoot>
   </table>
-  <%# if true %>
-    <%#= will_paginate @rows %>
-  <%# end %>
   <div><%= table.footer %></div>
 </div>

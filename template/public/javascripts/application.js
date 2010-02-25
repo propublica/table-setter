@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+  if(!sortPlease) return;
   $.tablesorter.addWidget({
     id: "columnHighlight",
     format: function(table) {
@@ -22,16 +22,12 @@ $(document).ready(function(){
   }); 
 
   //initialize the table
-
-  var table = $('#data');
-  table.tablesorter({
+  var table = window.table = $('#data').tablesorter({
     widgets: ['columnHighlight'],
-    sortList: [[sortByIndex || 0, sortOrderBit || 0]]
-  });
-  function filter(){
-    $.uiTableFilter( table, this.value );
-    return false;
-  }
-  $("#filter input").keyup(filter);
-  $("#filter input").submit(filter)
+    sortList: [[sortByIndex || 0, sortOrderBit || 0]]//,
+    //debug: true
+  })
+  .tablesorterPager({container: $("#pager"), positionFixed: false})
+  .tablesorterMultiPageFilter({filterSelector: $("#filter input")});
+
 });
