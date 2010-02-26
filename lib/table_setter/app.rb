@@ -24,15 +24,17 @@ module TableSetter
       show :index, :tables => Table.all
     end
     
-    get "/:slug" do
-      headers['Cache-Control'] = "public, max-age=#{TableSetter::App.cache_timeout}"
-      not_found unless Table.exists? params[:slug]
-      table = Table.new(params[:slug], :defer => true)
-      last_modified table.updated_at
-      table.load
-      page = params[:page] || 1
-      table.paginate! page
-      show :table, :table => table, :page => page
+    ["/:slug/:page/", "/:slug/"].each do |path|
+      get path do
+        headers['Cache-Control'] = "public, max-age=#{TableSetter::App.cache_timeout}"
+        not_found unless Table.exists? params[:slug]
+        table = Table.new(params[:slug], :defer => true)
+        last_modified table.updated_at
+        table.load
+        page = params[:page] || 1
+        table.paginate! page
+        show :table, :table => table, :page => page
+      end
     end
     
     private
