@@ -1,5 +1,14 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
+
+describe TableSetter::Table do
+  it 'should return the latest yaml modification time' do
+    `touch #{TableSetter::Table.table_path('test')}`
+    TableSetter::Table.fresh_yaml_time.should eql(
+        File.new(TableSetter::Table.table_path('test')).mtime)
+  end
+end
+
 describe TableSetter::Table do
   before :all do
     @table = TableSetter::Table.new("table")

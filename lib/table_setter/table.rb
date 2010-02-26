@@ -133,10 +133,13 @@ module TableSetter
         newest_file = Dir["#{TableSetter.table_path}/*.yml"].inject do |memo, obj|
           memo_time = File.new(File.expand_path memo).mtime
           obj_time = File.new(File.expand_path obj).mtime
-          return memo if memo_time > obj_time 
-          obj
+          if memo_time > obj_time
+            memo
+          else 
+            obj
+          end
         end
-        File.new(File.expand_path newest_file).mtime
+        File.new(newest_file).mtime
       end
       
       def table_path(slug)
