@@ -17,7 +17,7 @@ table:
       - ARRA Funds Obligated 
     style:
       Bank: 'text-align:left;'
-  sort_by:    State
-  sort_order: descending
+    sorted_by:
+      State: ascending
   hard_paginate: true
   live: true

@@ -16,12 +16,11 @@
     <%= stylesheet_link_tag "/stylesheets/stylesheet.css", :media=>"screen" %>
     
     <script>
-      <% if !table.nil?%>
-      var sortPlease = <%= table.sortable? %>;
-      var sortByIndex = <%= table.sort_by %>;
-      var sortOrderBit = <%= table.sort_order %>;
+      <% if !table.nil? %>
+        var sortPlease = <%= table.sortable? %>;
+        var sortOrder = <%= table.sort_array.inspect || "null"%>;
       <% else %>
-      var sortPlease = false;
+        var sortPlease = false;
       <% end %>
     </script>
     

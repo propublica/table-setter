@@ -30,7 +30,9 @@ module TableSetter
       table = Table.new(params[:slug], :defer => true)
       last_modified table.updated_at
       table.load
-      show :table, :table => table
+      page = params[:page] || 1
+      table.paginate! page
+      show :table, :table => table, :page => page
     end
     
     private

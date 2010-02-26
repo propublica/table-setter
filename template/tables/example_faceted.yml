@@ -19,5 +19,9 @@ table:
     formatting:
       Total Appropriation: :currency
     total: ['Total Appropriation', 'Projects']
+    sorted_by:
+      Cong. District: descending
   faceting: 
     facet_by: State
+  live: true
+  

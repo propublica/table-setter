@@ -10,7 +10,6 @@ $(document).ready(function(){
       this.tds.removeClass("sorted");
       var ascSort = $("th." + table.config.cssAsc);
       var descSort = $("th." + table.config.cssDesc);
-      var index = sortByIndex;
       if (ascSort.length)
         index = this.headers.index(ascSort[0]);
       if (descSort.length)
@@ -24,7 +23,7 @@ $(document).ready(function(){
   //initialize the table
   var table = window.table = $('#data').tablesorter({
     widgets: ['columnHighlight'],
-    sortList: [[sortByIndex || 0, sortOrderBit || 0]]//,
+    sortList: sortOrder//,
     //debug: true
   })
   .tablesorterPager({container: $("#pager"), positionFixed: false})

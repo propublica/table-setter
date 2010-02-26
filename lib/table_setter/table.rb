@@ -5,7 +5,7 @@ require 'net/http'
 
 module TableSetter
   class Table
-    attr_reader :data, :table_opts, :facets
+    attr_reader :data, :table_opts, :facets, :prev_page, :next_page, :total_pages, :page
 
     def initialize(slug, opts={:defer => false})
       options = indifferent_access YAML.load_file(Table.table_path(slug))
@@ -17,9 +17,7 @@ module TableSetter
       end
     end
     
-    def per_page
-      @table_opts[:per_page] || 250
-    end 
+
   
     def load
       csv_data = open(uri).read
@@ -46,19 +44,32 @@ module TableSetter
     end
     
     def sortable?
-      !faceted? || !hard_paginate
+      !faceted? && !hard_paginate?
     end
     
-    def hard_paginate
-      !(@table_opts[:hard_paginate] == false)
+    def hard_paginate?
+      @table_opts[:hard_paginate] == true
     end
     
-    def sort_by
-      @table_opts[:sort_by] ? @data.columns.index(@table_opts[:sort_by]) : 0
+    def per_page
+      @table_opts[:per_page] || 20
     end
     
-    def sort_order
-      @table_opts[:sort_order] == 'descending' ? 0 : 1
+    def paginate!(curr_page)
+      return if !hard_paginate?
+      @page = curr_page.to_i
+      @total_pages = (@data.rows.length / per_page.to_f).ceil
+      raise ArgumentError if @page < 1 || @page > total_pages
+      adj_page = @page - 1 > 0 ? @page - 1 : 0 
+      @prev_page = adj_page > 0 ? adj_page : nil
+      @next_page = page < @total_pages ? (@page + 1) : nil
+      @data.only!(adj_page * per_page..@page * per_page)
+    end
+    
+    def sort_array
+      @data.sorted_by.inject([]) do |memo, (key, value)|
+        memo << [@data.columns.index(key), value == 'descending' ? 0 : 1]
+      end
     end
     
     def method_missing(method)
@@ -113,12 +124,13 @@ module TableSetter
       end
       
       def fresh_yaml_time
-        Dir["#{TableSetter.table_path}/*.yml"].inject do |memo, obj|
+        newest_file = Dir["#{TableSetter.table_path}/*.yml"].inject do |memo, obj|
           memo_time = File.new(File.expand_path memo).mtime
           obj_time = File.new(File.expand_path obj).mtime
-          return memo_time if memo_time > obj_time 
-          obj_time
+          return memo if memo_time > obj_time 
+          obj
         end
+        File.new(File.expand_path newest_file).mtime
       end
       
       def table_path(slug)

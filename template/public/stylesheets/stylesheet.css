@@ -20,8 +20,11 @@
   }
   #table_fu div#pager{
     float:right;
-    width: 30%;
+    width: 15%;
   }
+    #table_fu div#pager div.pagedisplay{
+      display: inline;
+    }
   #table_fu div#filter{
     float:left;
     width:30%;

@@ -23,11 +23,6 @@
         if(newString.length > 1){
           if(table.config.container){
             table.config.container.hide();
-            table.config.oldAppender = table.config.appender;
-            table.config.appender = function(table, rows){
-              // fix this
-              //replaceRows(table);
-            };
           }
           
           var toShow = [];
@@ -66,8 +61,6 @@
           table.config.string     = "";
           table.config.collection = table.config.rowsCopy.slice(0);
           if(table.config.container){
-            table.config.appender = table.config.oldAppender;
-            $.tablesorterPager.appender(table, table.config.rowsCopy);
             table.config.container.show();
           } else {
             replaceRows(table);
