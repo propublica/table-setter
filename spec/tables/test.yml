@@ -1,6 +1,6 @@
 table:
-  title:      Failed Banks List
-  google_key: thJa_BvqQuNdaFfFJMMII0Q
+  title:  Failed Banks List
+  file:   test.csv
   deck:
     <p>The financial crisis has contributed to the failure of scores of banks this year. We’ve put together a handy chart of the fallen banks, the federal agency that provided oversight to each one, and the major public enforcement that occurred against the bank prior to its collapse. It’s all sortable state, date, or even regulatory agency.</p>
   footer:
@@ -9,3 +9,4 @@ table:
     style:
       Bank: 'text-align:left;'
   live: true
+  hard_paginate: true

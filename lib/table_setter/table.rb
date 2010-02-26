@@ -5,7 +5,7 @@ require 'net/http'
 
 module TableSetter
   class Table
-    attr_reader :data, :table_opts, :facets, :prev_page, :next_page, :total_pages, :page
+    attr_reader :data, :table_opts, :facets, :prev_page, :next_page, :page
 
     def initialize(slug, opts={:defer => false})
       options = indifferent_access YAML.load_file(Table.table_path(slug))
@@ -25,6 +25,9 @@ module TableSetter
       if @table_opts[:faceting]
         @data.col_opts[:ignored] = [@table_opts[:faceting][:facet_by]]
         @facets = @data.faceted_by @table_opts[:faceting][:facet_by]
+      end
+      if @table_opts[:dead_rows]
+        @data.delete_rows! @table_opts[:dead_rows]
       end
     end
   
@@ -58,12 +61,15 @@ module TableSetter
     def paginate!(curr_page)
       return if !hard_paginate?
       @page = curr_page.to_i
-      @total_pages = (@data.rows.length / per_page.to_f).ceil
       raise ArgumentError if @page < 1 || @page > total_pages
       adj_page = @page - 1 > 0 ? @page - 1 : 0 
       @prev_page = adj_page > 0 ? adj_page : nil
-      @next_page = page < @total_pages ? (@page + 1) : nil
-      @data.only!(adj_page * per_page..@page * per_page)
+      @next_page = page < total_pages ? (@page + 1) : nil
+      @data.only!(adj_page * per_page..(@page * per_page - 1))
+    end
+    
+    def total_pages
+      @total_pages ||= (@data.rows.length / per_page.to_f).ceil
     end
     
     def sort_array
