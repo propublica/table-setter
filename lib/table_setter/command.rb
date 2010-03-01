@@ -31,6 +31,7 @@ options:
       when 'start' then start_server
       when 'install' then install_assets
       when 'build' then build_out
+      else puts BANNER
       end
     end
     

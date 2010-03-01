@@ -17,7 +17,6 @@ module TableSetter
       end
     end
     
-
   
     def load
       csv_data = open(uri).read
@@ -93,7 +92,6 @@ module TableSetter
     end
     
     def file_modification_time(path)
-      
       File.new(path).mtime
     end
     
