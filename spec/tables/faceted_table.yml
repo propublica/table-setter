@@ -1,0 +1,33 @@
+table:
+  title:        Appropriations by District
+  google_key:   tv5hwksnQaHC9tb_KDjr-tw
+  deck:
+    <p><strong>by <a href="http://www.propublica.org/site/author/christopher_flavelle/">Christopher Flavelle</a>, ProPublica - July 7, 2009 4:00 pm EST</strong></p>
+  footer:
+    <p>This chart and other stories are part of <a href="http://www.propublica.org/ion/stimulus/">Eye on the Stimulus</a>, our blog dedicated to tracking the stimulus from bill to building.</p>
+
+  columns: [State, 'Cong. District', 'Representative', 'Total Appropriation', URL]
+    
+  column_options:
+    style:
+      State: 'text-align:left;'
+      Cong. District: 'text-align:center;'
+      Representative: 'text-align:center;'
+      
+    formatting:
+      Total Appropriation: currency
+      URL:
+        method: link
+        arguments: [LinkName, Link]
+      
+    sorted_by:
+      Representative:
+        order: ascending
+        format: last_name
+        
+  faceting: 
+    facet_by: State
+    total: ['Total Appropriation', 'Projects']
+
+  dead_rows: [442, 322]
+  
