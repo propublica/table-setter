@@ -17,7 +17,6 @@ describe TableSetter::App, "in the application" do
   
   it "should render a table" do
     get '/example_local/'
-    p last_response.body
     last_response.body.include?("Failed Banks List").should be_true
   end
   
