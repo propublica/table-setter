@@ -1,5 +1,4 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-TableSetter.configure(File.join(File.dirname(__FILE__), "..", "template"))
 
 
 describe TableSetter::App, "in the application" do
@@ -15,9 +14,6 @@ describe TableSetter::App, "in the application" do
     last_response.body.include?("All Tables").should be_true
   end
   
-  it "should render a table" do
-    get '/example_local/'
-    last_response.body.include?("Failed Banks List").should be_true
-  end
   
+
 end
