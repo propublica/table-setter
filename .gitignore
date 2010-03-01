@@ -14,5 +14,6 @@ coverage
 rdoc
 pkg
 tester
+template/out/
 
 ## PROJECT::SPECIFIC

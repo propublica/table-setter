@@ -32,6 +32,4 @@ require 'table_setter'
 #
 # Don't edit these lines
 TableSetter.configure(File.dirname(__FILE__))
-map '/' do
-  run TableSetter::App
-end
+run TableSetter::App
