@@ -1,0 +1,27 @@
+table:
+  title:      Appropriations by District
+  google_key: tcSL0eqrj3yb5d6ljak4Dcw
+  deck:
+    <p><strong>by <a href="http://www.propublica.org/site/author/christopher_flavelle/">Christopher Flavelle</a>, ProPublica - July 7, 2009 4:00 pm EST</strong></p>
+  footer:
+    <p>This chart and other stories are part of <a href="http://www.propublica.org/ion/stimulus/">Eye on the Stimulus</a>, our blog dedicated to tracking the stimulus from bill to building.</p>
+  column_options:
+    columns: 
+      - State
+      - Cong. District
+      - Representative
+      - Party
+      - Leadership
+      - Projects
+      - Total Appropriation
+    style:
+      State: "text-align:left"
+    formatting:
+      Total Appropriation: :currency
+    total: ['Total Appropriation', 'Projects']
+    sorted_by:
+      Cong. District: descending
+  faceting: 
+    facet_by: State
+  live: true
+  
