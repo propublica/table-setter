@@ -16,8 +16,13 @@ table:
       - Improvement Type
       - ARRA Funds Obligated 
     style:
-      Bank: 'text-align:left;'
+      State: 'text-align:left;'
+      Project Description: 'text-align:right;'
+      
     sorted_by:
       State: ascending
+    formatting:
+      ARRA Funds Obligated: currency
   hard_paginate: true
+  per_page: 250
   live: true

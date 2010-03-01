@@ -153,3 +153,17 @@ module TableSetter
 
   end
 end
+
+class TableFu::Formatting
+  class << self
+    def bar(percent)
+      if percent.to_f < 1
+        percent = percent.to_f * 100
+      end
+      "<div class=\"bar\" style=\"width:#{percent}%\">#{percent}%</div>"
+    end
+  end
+end
+
+
+

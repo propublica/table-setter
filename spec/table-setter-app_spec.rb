@@ -15,5 +15,10 @@ describe TableSetter::App, "in the application" do
   end
   
   
-
+  it "should render a table" do
+    get '/example/'
+    last_response.ok?.should be_true
+    last_response.body.include?("Failed Banks List").should be_true
+  end
+  
 end

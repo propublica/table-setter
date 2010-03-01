@@ -1,22 +1,21 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-TableSetter.configure(File.dirname(__FILE__))
 
 
 describe TableSetter::Table do
   it 'should return the latest yaml modification time' do
-    `touch #{TableSetter::Table.table_path('test')}`
+    `touch #{TableSetter::Table.table_path('example')}`
     TableSetter::Table.fresh_yaml_time.should eql(
-        File.new(TableSetter::Table.table_path('test')).mtime)
+        File.new(TableSetter::Table.table_path('example')).mtime)
   end
 end
 
 describe TableSetter::Table do
   before :all do
-    @table = TableSetter::Table.new("table")
+    @table = TableSetter::Table.new("example_local")
   end
   
   it "should load from a google key, and defer loading when asked" do
-    table = TableSetter::Table.new("table", :defer => true)
+    table = TableSetter::Table.new("example", :defer => true)
     table.data.should be_nil
     table.load
     table.data.should_not be_nil
@@ -25,11 +24,11 @@ describe TableSetter::Table do
   
   it 'should be able to find out if a given table exists' do
     TableSetter::Table.exists?("non_existent_table").should be_false
-    TableSetter::Table.exists?("table").should be_true
+    TableSetter::Table.exists?("example").should be_true
   end
   
   it "should have a slug" do
-    @table.slug.should eql "table"
+    @table.slug.should eql "example_local"
   end
   
   it "should have a deck" do
@@ -41,7 +40,7 @@ describe TableSetter::Table do
   end
   
   it "should be sortable" do
-    @table.sortable?.should be_true
+    @table.sortable?.should be_false
   end
   
   it "should have a footer" do
@@ -59,7 +58,6 @@ describe TableSetter::Table do
   it "should be stylish" do
     @table.data.rows[1].column_for('State').style.should eql 'text-align:left;'
     @table.data.rows[1].column_for('Project Description').style.should eql 'text-align:right;'
-    @table.data.rows[1].column_for('URL').style.should eql 'text-align:center;'
   end
   
   it "should have stylish headers" do
@@ -77,7 +75,7 @@ end
 describe TableSetter::Table, "with hard pagination" do
   
   before :each do
-    @data = TableSetter::Table.new("test")
+    @data = TableSetter::Table.new("example_local")
   end
   
   it "should not be sortable" do
@@ -94,7 +92,7 @@ describe TableSetter::Table, "with hard pagination" do
     @data.prev_page.should eql 2
     @data.next_page.should eql 4
     @data.data.rows.length.should eql @data.per_page
-    @data.data.rows[0].column_for('Bank').to_s.should eql 'Community Bank of West Georgia'    
+    @data.data.rows[0].column_for('State').to_s.should eql 'CALIFORNIA'
   end
   
   it 'should not paginate when given a bad value' do
@@ -120,12 +118,12 @@ end
 describe TableSetter::Table, "with faceting and macros" do
   
   before :all do
-    @data = TableSetter::Table.new("faceted_table")
+    @data = TableSetter::Table.new("example_faceted")
     @tables = @data.facets
   end
   
   it 'should load a faceted_table' do
-    data = TableSetter::Table.new("faceted_table", :defer=> true)
+    data = TableSetter::Table.new("example_faceted", :defer=> true)
     data.facets.should be_nil
     data.load
     tables = data.facets
@@ -153,14 +151,29 @@ describe TableSetter::Table, "with faceting and macros" do
     @tables[35].total_for('Total Appropriation').to_s.should eql '$423,318,645'
   end
   
-  it "should have a macro formatted link row" do
-    @tables[0].rows[1].column_for('URL').to_s.should eql "<a href='http://example.com/1234' title='Sample Link'>Sample Link</a>"
-  end
+
   
 end
 
 describe TableSetter::Table, "group fetchers" do
   it "should return live tables" do
-    TableSetter::Table.all.length.should eql 1
+    TableSetter::Table.all.length.should eql 4
   end
 end
+
+describe TableSetter::Table, "with urls and google bars" do
+  before :each do
+    @table = TableSetter::Table.new("example_formatted")
+  end
+  
+  it "should have a link row" do
+    @table.data.rows[1].column_for('Agency Webpage').to_s.should eql "<a href='http://www.hhs.gov/recovery/' title='Health and Human Services'>Health and Human Services</a>"
+  end
+  
+  it 'should show a bar' do
+    @table.data.rows[1].column_for('Spent (%)').to_s.should eql "<div class=\"bar\" style=\"width:42.0%\">42.0%</div>"
+  end
+end
+
+
+
