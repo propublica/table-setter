@@ -17,8 +17,7 @@ table:
       - ARRA Funds Obligated 
     style:
       State: 'text-align:left;'
-      Project Description: 'text-align:right;'
-      
+      Project Description: 'text-align:right;'      
     sorted_by:
       State: ascending
     formatting:

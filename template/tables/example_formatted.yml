@@ -16,13 +16,12 @@ table:
       - Spent (%)
     style:
       Agency: 'text-align:left;'
+      Spent (%): 'width: 200px;'
     sorted_by:
-      Spent: ascending
+      Spent (%): ascending
     formatting:
       Spent (%): bar
       Agency Webpage:
         method: link
         arguments: [Agency, Source]
-  hard_paginate: true
-  per_page: 250
   live: true
