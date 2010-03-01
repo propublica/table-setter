@@ -26,14 +26,11 @@ module TableSetter
         @data.col_opts[:ignored] = [@table_opts[:faceting][:facet_by]]
         @facets = @data.faceted_by @table_opts[:faceting][:facet_by]
       end
-      if @table_opts[:dead_rows]
-        @data.delete_rows! @table_opts[:dead_rows]
-      end
+      @data.delete_rows! @table_opts[:dead_rows] if @table_opts[:dead_rows]
     end
   
     def uri
-      !google_key.nil? ?
-      "http://spreadsheets.google.com/pub?key=#{google_key}&output=csv" : 
+      return "http://spreadsheets.google.com/pub?key=#{google_key}&output=csv" if !google_key.nil?
       File.expand_path("#{TableSetter.table_path}#{file}")
     end
     
@@ -96,6 +93,7 @@ module TableSetter
     end
     
     def file_modification_time(path)
+      
       File.new(path).mtime
     end
     
@@ -123,8 +121,8 @@ module TableSetter
       def all
         tables=[] 
         Dir.glob("#{TableSetter.table_path}/*.yml").each do |file|
-          t = new(File.basename(file, ".yml"), :defer => true)
-          tables << t if t.live
+          table = new(File.basename(file, ".yml"), :defer => true)
+          tables << table if table.live
         end
         tables
       end
@@ -157,8 +155,9 @@ end
 class TableFu::Formatting
   class << self
     def bar(percent)
-      if percent.to_f < 1
-        percent = percent.to_f * 100
+      percent = percent.to_f
+      if percent < 1
+        percent = percent * 100
       end
       "<div class=\"bar\" style=\"width:#{percent}%\">#{percent}%</div>"
     end

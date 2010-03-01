@@ -1,5 +1,8 @@
 require 'optparse'
-
+require 'rack'
+require 'rack/showexceptions'
+require 'rack/commonlogger'
+require 'rack/lint'
 
 module TableSetter
   class Command
@@ -23,6 +26,7 @@ options:
       parse_options
       command = ARGV.shift
       @directory = ARGV.shift || '.'
+      TableSetter.configure @directory
       case command
       when 'start' then start_server
       when 'install' then install_assets
@@ -31,65 +35,28 @@ options:
     end
     
     def start_server
-      TableSetter.configure @directory
-      require 'rack'
-      require 'rack/showexceptions'
-      require 'rack/commonlogger'
-      require 'rack/lint'
-      prefix = @prefix
-      app = Rack::Builder.app do
-        map "/#{prefix}" do
-          use Rack::CommonLogger, STDERR
-          use Rack::ShowExceptions
-          use Rack::Lint
-          run TableSetter::App
-        end
-      end
+      app = build_rack
       Rack::Handler::Thin.run app, :Port => "3000"
     end
     
     def install_assets
       FileUtils.mkdir_p @directory unless File.exists? @directory
-      TableSetter.configure @directory
       puts "\nInstalling TableSetter files...\n\n"
       base_files.each do |path|
         copy_file path, File.join(TableSetter.config_path, path.gsub(ROOT + "/template/", "/"))
       end
     end
     
+
     
     def build_out
-      require 'rack'      
-      TableSetter.configure @directory
-      out_dir = File.join(TableSetter.config_path, 'out', @prefix)
+      @out_dir = File.join(TableSetter.config_path, 'out', @prefix)
       puts "\nBuilding your TableSetter files...\n\n"
-      prefix = @prefix
-      app = Rack::Builder.app do
-        map "/#{prefix}" do
-          run TableSetter::App
-        end
-      end
-      
+      app = build_rack
       request = Rack::MockRequest.new(app)
-      install_file(request.request("GET", "/#{@prefix}/").body,
-                      File.join(out_dir, "index.html"))
-      Dir[ROOT + "/template/public/**/*"].each do |path|
-        copy_file path, File.join(path.gsub(ROOT + "/template/public/", "#{out_dir}/"))
-      end
-      
-      TableSetter::Table.all.each do |table|
-        puts "Building #{table.slug}"
-        install_file(request.request("GET", "/#{@prefix}/#{table.slug}/").body,
-                    File.join(out_dir, table.slug, "index.html"))
-        if table.hard_paginate?
-          table.load
-          (1..table.total_pages).each do |page|
-            puts "Building #{table.slug} #{page} of #{table.total_pages}"
-            install_file(request.request("GET", "/#{@prefix}/#{table.slug}/#{page}/").body,
-                File.join(out_dir, table.slug, page.to_s, "index.html"))
-          end
-        end
-      end
+      build_index request
+      install_assets
+      build_tables request
     end
     
     private
@@ -105,21 +72,65 @@ options:
       @option_parser.parse! ARGV
     end
     
+    def build_rack
+      prefix = @prefix
+      Rack::Builder.app do
+        map "/#{prefix}" do
+          use Rack::CommonLogger, STDERR
+          use Rack::ShowExceptions
+          use Rack::Lint
+          run TableSetter::App
+        end
+      end
+    end
+    
+    def build_index(request)
+      install_file(request.request("GET", "/#{@prefix}/").body,
+                      File.join(@out_dir, "index.html"))
+    end
+    
+    def install_assets
+      Dir[ROOT + "/template/public/**/*"].each do |path|
+        copy_file path, File.join(path.gsub(ROOT + "/template/public/", "#{@out_dir}/"))
+      end
+    end
+    
+    def build_tables(request)
+      TableSetter::Table.all.each do |table|
+        puts "Building #{table.slug}"
+        install_file(request.request("GET", "/#{@prefix}/#{table.slug}/").body,
+                    File.join(@out_dir, table.slug, "index.html"))
+        if table.hard_paginate?
+          table.load
+          (1..table.total_pages).each do |page|
+            puts "Building #{table.slug} #{page} of #{table.total_pages}"
+            install_file(request.request("GET", "/#{@prefix}/#{table.slug}/#{page}/").body,
+                File.join(@out_dir, table.slug, page.to_s, "index.html"))
+          end
+        end
+      end
+    end
+    
     def base_files
       Dir[ROOT + "/template/**/*"]
     end
     
     def copy_file(source, dest)
-      FileUtils.mkdir_p(File.dirname dest) unless File.exists?(File.dirname dest)
+      ensure_directory dest
       exists = File.exists? dest
       FileUtils.cp_r(source, dest) unless exists
       puts "#{exists ? "exists" : "created"}\t#{dest}"
     end
     
+    def ensure_directory(dest)
+      expanded_path = File.dirname dest
+      FileUtils.mkdir_p(expanded_path) unless File.exists?(expanded_path)
+    end
+    
     def install_file(body, dest)
-      FileUtils.mkdir_p(File.dirname dest) unless File.exists?(File.dirname dest)
-      File.open(dest, "w") do |f|
-        f.write(body)
+      ensure_directory dest
+      File.open(dest, "w") do |file|
+        file.write(body)
       end
     end
     
