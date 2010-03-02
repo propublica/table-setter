@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{table_setter}
-  s.version = "0.1.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeff Larson"]
@@ -14,17 +14,24 @@ Gem::Specification.new do |s|
   s.email = %q{thejefflarson@gmail.com}
   s.executables = ["table-setter", "table-setter"]
   s.extra_rdoc_files = [
-    "README",
+    "LICENSE",
+     "README",
      "TODO"
   ]
   s.files = [
     ".document",
      ".gitignore",
+     "LICENSE",
      "README",
      "Rakefile",
      "TODO",
-     "VERSION",
+     "VERSION.yml",
      "bin/table-setter",
+     "documentation/css/dawn.css",
+     "documentation/css/styles.css",
+     "documentation/images/proplogo.png",
+     "documentation/index.html.erb",
+     "index.html",
      "lib/table_setter.rb",
      "lib/table_setter/app.rb",
      "lib/table_setter/command.rb",
@@ -60,7 +67,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{table-setter}
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
+  s.summary = %q{A sinatra based app for rendering CSVs in custom HTML}
   s.test_files = [
     "spec/spec_helper.rb",
      "spec/table-setter-app_spec.rb",
