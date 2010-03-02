@@ -12,9 +12,10 @@
 #
 # http://www.modrails.com/documentation/Users%20guide.html#_deploying_a_rack_based_ruby_application
 
-
 require 'rubygems'
 require 'table_setter'
+TableSetter.configure(File.dirname(__FILE__))
+
 
 # You should probably enable Rack::Cache if you're not behind a caching proxy, by uncommenting the
 # lines below:
@@ -28,8 +29,6 @@ require 'table_setter'
 # You can tweak the cache timeout for TableSetter by setting the timeout variable on
 # TableSetter::App: 
 #
-# TableSetter::App.cache_timeout = 60 * 15 # 15 minutes
+#TableSetter::App.cache_timeout = 60 * 15 # 15 minutes
 #
-# Don't edit these lines
-TableSetter.configure(File.dirname(__FILE__))
 run TableSetter::App
