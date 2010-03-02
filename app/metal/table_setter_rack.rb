@@ -8,7 +8,7 @@ require 'rack/commonlogger'
 require 'rack/lint'
 
 TableSetterRack = Rack::Builder.app do
-  TableSetter::App.cache_timeout = 60 * 15 if Rails.env == 'development'
+  TableSetter::App.cache_timeout = 60 * 15 if Rails.env.production?
   use Rack::CommonLogger, STDERR
   use Rack::ShowExceptions if Rails.env.development?
   
