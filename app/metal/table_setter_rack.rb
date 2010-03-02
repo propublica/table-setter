@@ -10,12 +10,14 @@ require 'rack/lint'
 TableSetterRack = Rack::Builder.app do
   TableSetter::App.cache_timeout = 60 * 15 if Rails.env == 'development'
   use Rack::CommonLogger, STDERR
-  use Rack::ShowExceptions if Rails.env == 'development'
-  use Rack::Lint if Rails.env == 'development'
+  use Rack::ShowExceptions if Rails.env.development?
+  
+  use Rack::Lint if Rails.env.development?
+  
   use(Rack::Cache, 
     :verbose     => true,
     :metastore   => "file:#{RAILS_ROOT}/tmp/cache/rack/meta",
-    :entitystore => "file:#{RAILS_ROOT}/tmp/cache/rack/body") if Rails.env == 'production'
+    :entitystore => "file:#{RAILS_ROOT}/tmp/cache/rack/body") if Rails.env.production?
   map "/" do
     run TableSetter::App
   end
