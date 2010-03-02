@@ -56,7 +56,7 @@ options:
       app = build_rack
       request = Rack::MockRequest.new(app)
       build_index request
-      install_assets
+      build_assets
       build_tables request
     end
     
@@ -90,7 +90,7 @@ options:
                       File.join(@out_dir, "index.html"))
     end
     
-    def install_assets
+    def build_assets
       Dir[ROOT + "/template/public/**/*"].each do |path|
         copy_file path, File.join(path.gsub(ROOT + "/template/public/", "#{@out_dir}/"))
       end
