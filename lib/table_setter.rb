@@ -13,7 +13,7 @@ module TableSetter
   autoload :Command, 'table_setter/command'
   autoload :Table,   'table_setter/table'
   
-  ROOT = File.expand_path(File.dirname(__FILE__) + "/..")
+  ROOT = File.expand_path(File.dirname(__FILE__) + "/..") unless defined? ROOT
   
   class << self
     attr_reader :config_path

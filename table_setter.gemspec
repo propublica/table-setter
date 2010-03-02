@@ -5,26 +5,22 @@
 
 Gem::Specification.new do |s|
   s.name = %q{table_setter}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeff Larson"]
-  s.date = %q{2010-03-01}
+  s.date = %q{2010-03-02}
   s.description = %q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
   s.email = %q{thejefflarson@gmail.com}
   s.executables = ["table-setter", "table-setter"]
   s.extra_rdoc_files = [
-    "LICENSE",
-     "README",
-     "README.rdoc"
+    "TODO"
   ]
   s.files = [
     ".document",
      ".gitignore",
-     "LICENSE",
-     "README",
-     "README.rdoc",
      "Rakefile",
+     "TODO",
      "VERSION",
      "bin/table-setter",
      "lib/table_setter.rb",
@@ -35,11 +31,6 @@ Gem::Specification.new do |s|
      "spec/spec_helper.rb",
      "spec/table-setter-app_spec.rb",
      "spec/table-setter_spec.rb",
-     "spec/tables/example_local.csv",
-     "spec/tables/faceted_table.yml",
-     "spec/tables/table.yml",
-     "spec/tables/test.csv",
-     "spec/tables/test.yml",
      "table_setter.gemspec",
      "template/config.ru",
      "template/public/favicon.ico",
@@ -52,6 +43,8 @@ Gem::Specification.new do |s|
      "template/public/stylesheets/stylesheet.css",
      "template/tables/example.yml",
      "template/tables/example_faceted.yml",
+     "template/tables/example_formatted.csv",
+     "template/tables/example_formatted.yml",
      "template/tables/example_local.csv",
      "template/tables/example_local.yml",
      "template/views/404.erb",
