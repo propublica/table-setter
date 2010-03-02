@@ -1,1 +1,3 @@
-fix table.rb to load from a uri resource instaed ofe just a file
+TODO:
+  fix table.rb to load from a uri resource instead of just a file, or a google key
+
