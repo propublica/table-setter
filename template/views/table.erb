@@ -11,10 +11,10 @@
       <a href="<%= url_for "/#{table.slug}/#{table.next_page}/" if !table.next_page.nil? %>" class="next">next</a>
       <% if !table.hard_paginate? %>
         <select class="pagesize">
-          <option selected="selected"  value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
-          <option  value="40">40</option>
+          <% (1..4).each do |count|%>
+            <option value="<%= table.per_page * count%>">
+            <%= table.per_page * count%></option>
+          <% end %>
         </select>
       <% end %>
     </form>
