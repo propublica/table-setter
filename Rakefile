@@ -54,3 +54,11 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+desc "render documentation for gh-pages"
+task :gh do
+ require 'erb'
+ File.open("index.html", "w") do |f|
+   f.write ERB.new(File.open("documentation/index.html.erb").read).result
+ end
+end
