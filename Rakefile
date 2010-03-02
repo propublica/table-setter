@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "table_setter"
-    gem.summary = %Q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
+    gem.summary = %Q{A sinatra based app for rendering CSVs in custom HTML}
     gem.description = %Q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
     gem.email = "thejefflarson@gmail.com"
     gem.homepage = "http://github.com/thejefflarson/table-setter"

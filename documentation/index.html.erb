@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>TableSetter</title>
+    <link rel="stylesheet" type="text/css" href="documentation/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="documentation/css/dawn.css" />
+  </head>
+  
+  <body>
+    <a href="http://www.propublica.org" class="propublica">&nbsp;</a>
+    <h1>TableSetter <small>&ndash; Version: <%= 
+    config = YAML.load(File.read('VERSION.yml'))
+    "#{config[:major]}.#{config[:minor]}.#{config[:patch]}"
+    %></small></h1>
+    <h2><a name="license" href="#toc">License</a></h2>
+    <pre><%= File.open("LICENSE").read %></pre>
+  </body>
+</html>
