@@ -14,11 +14,13 @@ Gem::Specification.new do |s|
   s.email = %q{thejefflarson@gmail.com}
   s.executables = ["table-setter", "table-setter"]
   s.extra_rdoc_files = [
-    "TODO"
+    "README",
+     "TODO"
   ]
   s.files = [
     ".document",
      ".gitignore",
+     "README",
      "Rakefile",
      "TODO",
      "VERSION",
