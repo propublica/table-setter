@@ -19,6 +19,12 @@
   #table_fu div{
     margin-bottom: 14px;
   }
+  #table_fu #controls{
+    overflow:auto;
+    clear: both;
+    margin-bottom: 0px;
+    
+  }
   #table_fu div#pager{
     float:right;
     width: 15%;
@@ -55,6 +61,7 @@
         text-align:left;
         background-color: #99CA3C;
         color:#444;
+        float:left;
         padding:0.5em;
         margin-top: 0.7em;
         font-weight:bold;

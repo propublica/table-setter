@@ -17,6 +17,7 @@
     <h2><a name="toc">Table of Contents</a></h2>
     <ul>
       <li><a href="#installation">Installation</a></li>
+      <li><a href="#thefolder">The Configuration Folder</a></li>
       <li><a href="#usage">Usage</a></li>
       <li><a href="#deployment">Deployment</a></li>
       <li><a href="#rails">Rails</a></li>
@@ -25,7 +26,29 @@
       <li><a href="#license">License</a></li>
     </ul>
     <h2><a name="installation" href="#toc">Installation</a></h2>
-    <p></p>
+    <p>Install <strong>TableSetter</strong> through rubygems:</p>
+    <pre class="dawn">
+      gem install table_setter
+    </pre>
+    <p>or from the source files:</p>
+    <pre class="dawn">
+      git clone git://github.com/propublica/table-setter.git
+      cd table-setter
+      rake install
+    </pre>
+    <p>After you've installed the gem you'll have a new executable: <strong>table-setter</strong>. You an view the subcommands available by typing <strong>table-setter --help</strong> To set things up you'll need to run it with the <strong>install</strong> command to install the configuration files and erb templates into a directory. </p>
+    <pre>
+      table-setter install path/to/directory
+    </pre>
+    <p>
+      To start the development server run: 
+    </p>
+    <pre>
+      table-setter start path/to/directory
+    </pre>
+    <p>And go to development url, <a href="http://localhost:3000/">http://localhost:3000/</a> and you'll see a list of the example tables. Here's what a table looks like:</p>
+    <img src="documentation/images/screen.png">
+    <h2><a name="#thefolder" href="#toc">The Configuration Folder</a></h2>
     <h2><a name="deployment" href="#toc">Deployment</a></h2>
     <h3>Heroku</h3>
     <p></p>
