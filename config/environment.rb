@@ -6,4 +6,5 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
   config.gem "table_setter"
+  config.frameworks -= [:active_record, :action_controller, :action_view, :action_mailer, :active_resource]
 end
