@@ -61,4 +61,5 @@ task :gh do
  File.open("index.html", "w") do |f|
    f.write ERB.new(File.open("documentation/index.html.erb").read).result
  end
+ `open index.html`
 end

@@ -10,11 +10,12 @@
   <body>
     <a href="http://www.propublica.org" class="propublica">&nbsp;</a>
     <h1>TableSetter <small>&ndash; Version: 0.1.1</small></h1>
-    <p><strong>TableSetter</strong> is a sinatra app which provides an easy way to present CSVs hosted locally or remotely in custom HTML. For example given a simple configuration file, <strong>TableSetter</strong> can show <a href="tk">a list of all stimulus projects from last year</a>, <a href="tk">the stimulus spending progress</a>, or <a href="tk">a list of failed banks due to the last recession</a>.</p>
+    <p><strong>TableSetter</strong> is a sinatra app which provides an easy way to present CSVs hosted locally or remotely in custom HTML. For example given a simple configuration file, <strong>TableSetter</strong> can show <a href="documentation/tables/example_local/">a list of all stimulus projects from last year</a>, <a href="documentation/tables/example_formatted/">the stimulus spending progress</a>, or <a href="documentation/tables/example/">a list of failed banks due to the last recession</a>.</p>
     <p>Each table is filterable and sortable on multiple columns. Also each column can be formatted in multiple styles. In production mode, <strong>TableSetter</strong> provides valid expires headers and can be coupled with an upstream cache like <a href="http://rtomayko.github.com/rack-cache/">Rack::Cache</a> or varnish for speedy presentation.</p>
     <h2><a name="toc">Table of Contents</a></h2>
     <ul>
       <li><a href="#installation">Installation</a></li>
+      <li><a href="#tablesetter">The table-setter command</a></li>
       <li><a href="#thedirectory">The Configuration Directory</a></li>
       <li><a href="#thefile">A Table Setter File</a></li>
       <li><a href="#usage">Usage</a></li>
@@ -33,7 +34,7 @@ gem install table_setter</pre>
 git clone git://github.com/propublica/table-setter.git
 cd table-setter
 rake install</pre>
-    <p>After you've installed the gem you'll have a new executable: <strong>table-setter</strong>. You an view the subcommands available by typing <strong>table-setter --help</strong> To set things up you'll need to run it with the <strong>install</strong> command to install the configuration files and ERB templates into a directory. </p>
+    <p>After you've installed the gem you'll have a new executable: <strong>table-setter</strong>. You can view the subcommands available by typing <strong>table-setter --help</strong>. To set things up you'll need to run it with the <strong>install</strong> command to install the configuration files and ERB templates into a directory. </p>
     <pre>
 table-setter install path/to/directory</pre>
     <p>
@@ -43,6 +44,10 @@ table-setter install path/to/directory</pre>
 table-setter start path/to/directory</pre>
     <p>Go to development url, <a href="http://localhost:3000/">http://localhost:3000/</a> and you'll see a list of the example tables. Here's what a table looks like:</p>
     <img src="documentation/images/screen.png">
+    <h2><a name="tablesetter" href="#toc">The table-setter command</a></h2>
+    <p>
+      
+    </p>
     <h2><a name="thedirectory" href="#toc">The Configuration Directory</a></h2>
     <p>
       The configuration folder contains the javascripts, stylesheets, view templates (written in <a href="http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/">ERB</a>), rackup file, and most importantly the configuration files for each table.
@@ -64,7 +69,14 @@ table-setter start path/to/directory</pre>
           </ul>
         </li>
         <li class="dir">The <strong>stylesheets</strong> directory contains <strong>application.css</strong>, the <strong>TableSetter</strong> stylesheet. Each style is prefaced with <strong>#tablefu</strong> so you should be able to include your organization's css on the page without affecting the tables.</li>
-        <li class="dir"></li>
+        <li class="dir">The <strong>tables</strong> folder contains yml configuration files for each of the tables you want to deploy.
+          <ul>
+            <li class="file"><strong>example.yml</strong> contains the configuration for a simple table of ProPublica's coverage of failed banks in the latest recession.</li>
+            <li class="file"><strong>example_local.yml</strong> and <strong>example_local.csv</strong> shows how to build a table from a local file of 5800 approved stimulus projects from last year. It also is hard_paginated (see <a href="#thefile">A Table Setter File</a>).</li>
+            <li class="file"><strong>example_faceted.yml</strong> displays a table of stimulus appropriations faceted by state.</li>
+            <li class="file"><strong>example_formatted.yml</strong> and <strong>example_formatted.csv</strong> shows the bar formatter in a table of stimulus spending data.</li>
+          </ul>
+        </li>
       </ul>
     <h2><a name="thefile" href="#toc">A Table Setter File</a></h2>
     <h2><a name="deployment" href="#toc">Deployment</a></h2>
