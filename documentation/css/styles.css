@@ -15,6 +15,20 @@ a.propublica{
   width: 160px;
   height: 141px;
 }
+
+
+.dir, .file{
+  padding-left: 25px;
+  background: transparent url(../images/folder.png) no-repeat 3px 0px;
+  margin-top: .25em;
+  margin-bottom: .25em;
+  
+}
+
+.file{
+  background: transparent url(../images/text-x-generic.png) no-repeat 6px 3px;
+}
+
 pre {
   font-family: Monaco, Courier, monospace;
   font-size: 12px;
