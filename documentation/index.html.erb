@@ -45,8 +45,7 @@ table-setter install path/to/directory</pre>
     </p>
     <pre>
 table-setter start path/to/directory</pre>
-    <p>Go to development url, <a href="http://localhost:3000/">http://localhost:3000/</a> and you'll see a list of the example tables. Here's what a table looks like (you can also peruse examples <a href="http://propublica.github.com/table-setter/documentation/tables/">here</a>.):</p>
-    <img src="documentation/images/screen.png">
+    <p>Go to development url, <a href="http://localhost:3000/">http://localhost:3000/</a> and you'll see a list of the example tables. You can peruse the examples <a href="http://propublica.github.com/table-setter/documentation/tables/">here</a>.</p>
     <h2><a name="tablesetter" href="#toc">The table-setter command</a></h2>
     <p>
       The <strong>table-setter</strong> command responds to three subcommands:
@@ -60,10 +59,10 @@ table-setter start path/to/directory</pre>
     <p>
       The configuration folder contains the javascripts, stylesheets, view templates (written in <a href="http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/">ERB</a>), rackup file, and most importantly the configuration files for each table.
     </p>
-    <p>
-      The <strong>config.ru</strong> file instructs the webserver to start the <strong>TableSetter</strong> application and serve the assets contained in the configuration folder. In most cases you'll want to use apache and passenger (see <a href="#deployment">Deployment</a> for details).
+    <p class="file">
+      The <strong>config.ru</strong> file is a rackup file that instructs the webserver to start the <strong>TableSetter</strong> application and serve the assets contained in the configuration folder. In most cases you'll want to use apache and passenger (see <a href="#deployment">Deployment</a> for details).
     </p>
-    <p>
+    <p class="dir">
       In <strong>public</strong> you'll find the static assets required for the look and feel and functionality of the table:
     </p>
       <ul>
@@ -77,16 +76,16 @@ table-setter start path/to/directory</pre>
           </ul>
         </li>
         <li class="dir">The <strong>stylesheets</strong> directory contains <strong>application.css</strong>, the <strong>TableSetter</strong> stylesheet. Each style is prefaced with <strong>#tablefu</strong> so you should be able to include your organization's css on the page without affecting the tables.</li>
-        <li class="dir">The <strong>tables</strong> folder contains yml configuration files for each of the tables you want to deploy.
-          <ul>
-            <li class="file"><strong>example.yml</strong> contains the configuration for a simple table of ProPublica's coverage of failed banks in the latest recession.</li>
-            <li class="file"><strong>example_local.yml</strong> and <strong>example_local.csv</strong> shows how to build a table from a local file of 5800 approved stimulus projects from last year. It also is hard_paginated (see <a href="#thefile">A Table Setter File</a>).</li>
-            <li class="file"><strong>example_faceted.yml</strong> displays a table of stimulus appropriations faceted by state.</li>
-            <li class="file"><strong>example_formatted.yml</strong> and <strong>example_formatted.csv</strong> shows the bar formatter in a table of stimulus spending data.</li>
-          </ul>
-        </li>
-        <li class="dir"></li>
       </ul>
+       <p class="dir">The <strong>tables</strong> directory contains yml configuration files for each of the tables you want to deploy.</p>
+        <ul>
+          <li class="file"><strong>example.yml</strong> contains the configuration for a simple table of ProPublica's coverage of failed banks in the latest recession.</li>
+          <li class="file"><strong>example_local.yml</strong> and <strong>example_local.csv</strong> shows how to build a table from a local file of 5800 approved stimulus projects from last year. It also is hard_paginated (see <a href="#thefile">A Table Setter File</a>).</li>
+          <li class="file"><strong>example_faceted.yml</strong> displays a table of stimulus appropriations faceted by state.</li>
+          <li class="file"><strong>example_formatted.yml</strong> and <strong>example_formatted.csv</strong> shows the bar formatter in a table of stimulus spending data.</li>
+        </ul>
+    <p class="dir">The <strong>views</strong> directory</p>
+
     <h2><a name="thefile" href="#toc">A TableSetter File</a></h2>
     <h2><a name="deployment" href="#toc">Deployment</a></h2>
     <h3>Heroku</h3>
