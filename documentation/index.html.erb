@@ -14,14 +14,13 @@
     "#{config[:major]}.#{config[:minor]}.#{config[:patch]}"
     %></small></h1>
     <p><strong>TableSetter</strong> is a sinatra app which provides an easy way to present CSVs hosted locally or remotely in custom HTML. For example given a simple configuration file, <strong>TableSetter</strong> can show <a href="documentation/tables/example_local/">a list of all stimulus projects from last year</a>, <a href="documentation/tables/example_formatted/">the stimulus spending progress</a>, or <a href="documentation/tables/example/">a list of failed banks due to the last recession</a>.</p>
-    <p>Each table is filterable and sortable on multiple columns. Also each column can be formatted in multiple styles. In production mode, <strong>TableSetter</strong> provides valid expires headers and can be coupled with an upstream cache like <a href="http://rtomayko.github.com/rack-cache/">Rack::Cache</a> or varnish for speedy presentation.</p>
+    <p>Each table is filterable and sortable on multiple columns. Also each column can be formatted in one of many different styles. In production mode, <strong>TableSetter</strong> provides valid expires headers and can be coupled with an upstream cache like <a href="http://rtomayko.github.com/rack-cache/">Rack::Cache</a> or varnish for speedy presentation.</p>
     <h2><a name="toc">Table of Contents</a></h2>
     <ul>
       <li><a href="#installation">Installation</a></li>
       <li><a href="#tablesetter">The table-setter command</a></li>
       <li><a href="#thedirectory">The Configuration Directory</a></li>
       <li><a href="#thefile">A TableSetter File</a></li>
-      <li><a href="#usage">Usage</a></li>
       <li><a href="#deployment">Deployment</a></li>
       <li><a href="#rails">Rails</a></li>
       <li><a href="#links">Links</a></li>
@@ -50,9 +49,12 @@ table-setter start path/to/directory</pre>
     <p>
       The <strong>table-setter</strong> command responds to three subcommands:
       <ul>
-        <li><strong>install</strong></li>
-        <li><strong>start</strong></li>
-        <li><strong>build</strong></li>
+        <li><strong>install DIRECTORY</strong> installs the tablesetter files into the current directory or one you specify.</li>
+        <li><strong>start DIRECTORY</strong> starts the development server so you can preview your tables before deploying.</li>
+        <li><strong>build DIRECTORY -p PATH</strong> builds a static version of the tables, you'll  want to use <strong>-p</strong> if your putting the static versions inside a directory on your webserver that's not root. For example, if you want the tables to live in <strong>http://host/tables/</strong> you should run 
+<pre>
+table-setter build DIRECTORY -p tables</pre> 
+See <a href="#deployment">Deployment</a></li>
       </ul>
     </p>
     <h2><a name="thedirectory" href="#toc">The Configuration Directory</a></h2>
@@ -67,9 +69,9 @@ table-setter start path/to/directory</pre>
     </p>
       <ul>
         <li class="dir"> The <strong>images</strong> directory contains the small images  <img src="template/public/images/th_arrow_asc.gif" style="display:inline"> and  <img src="template/public/images/th_arrow_desc.gif" style="display:inline"> which show the user the sorting direction of a given column.</li>
-        <li class="dir"> The <strong>javascripts</strong>  directory which powers the dynamic functionality of a table. Each file depends on <a href="http://jquery.com/">jQuery</a>:
+        <li class="dir"> The <strong>javascripts</strong> directory which powers the dynamic functionality of a table. Each file depends on <a href="http://jquery.com/">jQuery</a>:
           <ul>
-            <li class="file"><strong>application.js</strong> dispatches to the other files to render the table at load time. It also defines the column highlighting function. </li>
+            <li class="file"><strong>application.js</strong> dispatches to the other javascript files to render the table at load time. It also defines the column highlighting function.</li>
             <li class="file"><strong>jquery.tablesorter.js</strong> the jQuery <a href="http://tablesorter.com/docs/">tablesorter plugin</a> that handles the dynamic sorting by column.</li>
             <li class="file"><strong>jquery.tablesorter.pager.js</strong> the jQuery <a href="http://tablesorter.com/docs/example-pager.html">pager plugin</a> to tablesorter that provides the paging functionality.</li>
             <li class="file"><strong>jquery.tablesorter.multipagefilter.js</strong> a custom plugin that allows for table searching across multiple pages</li>
@@ -77,7 +79,7 @@ table-setter start path/to/directory</pre>
         </li>
         <li class="dir">The <strong>stylesheets</strong> directory contains <strong>application.css</strong>, the <strong>TableSetter</strong> stylesheet. Each style is prefaced with <strong>#tablefu</strong> so you should be able to include your organization's css on the page without affecting the tables.</li>
       </ul>
-       <p class="dir">The <strong>tables</strong> directory contains yml configuration files for each of the tables you want to deploy.</p>
+       <p class="dir">The <strong>tables</strong> directory contains yml configuration files for each of the tables you want to deploy. By default it contains:</p>
         <ul>
           <li class="file"><strong>example.yml</strong> contains the configuration for a simple table of ProPublica's coverage of failed banks in the latest recession.</li>
           <li class="file"><strong>example_local.yml</strong> and <strong>example_local.csv</strong> shows how to build a table from a local file of 5800 approved stimulus projects from last year. It also is hard_paginated (see <a href="#thefile">A Table Setter File</a>).</li>
@@ -87,6 +89,8 @@ table-setter start path/to/directory</pre>
     <p class="dir">The <strong>views</strong> directory</p>
 
     <h2><a name="thefile" href="#toc">A TableSetter File</a></h2>
+    <p>Each TableSetter file outlines the the display options for a particular table. The name of the file dictates the path where it will appear (e.g. a config file named example.yml will appear at <strong>http://host/example</strong>). Initially TableSetter installs a few examples to get you started.</p>
+    <p></p>
     <h2><a name="deployment" href="#toc">Deployment</a></h2>
     <h3>Heroku</h3>
     <p></p>
