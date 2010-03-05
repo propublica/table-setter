@@ -3,9 +3,11 @@ $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__))
 require 'table_fu'
 require 'yaml'
 
-autoload :Sinatra,  'sinatra/base'
-autoload :Thin,     'thin'
-autoload :ERB,      'erb'
+autoload :Sinatra,   'sinatra/base'
+autoload :Thin,      'thin'
+autoload :ERB,       'erb'
+autoload :FasterCSV, 'FasterCSV'
+autoload :Curb,      'curb'
 
 module TableSetter
   # autoload internals

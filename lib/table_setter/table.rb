@@ -1,4 +1,4 @@
-require 'open-uri'
+require 'curb'
 require 'fastercsv'
 require 'table_fu'
 require 'net/http'
@@ -19,7 +19,7 @@ module TableSetter
     
   
     def load
-      csv_data = open(uri).read
+      csv = csv_data
       @data = TableFu.new(csv_data, @table_opts[:column_options] || {})
       if @table_opts[:faceting]
         @data.col_opts[:ignored] = [@table_opts[:faceting][:facet_by]]
@@ -27,10 +27,20 @@ module TableSetter
       end
       @data.delete_rows! @table_opts[:dead_rows] if @table_opts[:dead_rows]
     end
+    
+    
+    def csv_data
+      case
+      when google_key then Curl::Easy.perform(uri).body_str
+      when file then File.open(uri).read
+      end
+    end
   
     def uri
-      return "http://spreadsheets.google.com/pub?key=#{google_key}&output=csv" if !google_key.nil?
-      File.expand_path("#{TableSetter.table_path}#{file}")
+      case 
+      when google_key then "http://spreadsheets.google.com/pub?key=#{google_key}&output=csv"
+      when file then File.expand_path("#{TableSetter.table_path}#{file}")
+      end
     end
     
     def updated_at
@@ -81,14 +91,21 @@ module TableSetter
     end
     
   private
-    
+    # Returns the google modification time of the spreadsheet. The public urls don't set the
+    # last-modified header on anything, so we have to do a little dance to find out when exactly 
+    # the spreadsheet was last modified. The od[0-9] part of the feed url changes at whim, so we'll 
+    # need to keep an eye on it. Another propblem is that curb doesn't like to parse headers, so
+    # since this is a lightweight query from google we can get away with using Net:HTTP
+    # If for whatever reason the google modification time is busted we'll return the beginning of
+    # time, and rely on the yaml updated time.
     def google_modification_time
-      url = URI.parse "http://spreadsheets.google.com/feeds/list/#{google_key}/od6/public/basic"
+      url = URI.parse "http://spreadsheets.google.com/feeds/list/#{google_key}/od7/public/basic"
       resp = nil
       Net::HTTP.start(url.host, 80) do |http|
         resp = http.head(url.path)
+        #http.readbody = false
       end
-      Time.parse resp['Last-Modified']
+      resp['Last-Modified'].nil? ? Time.at(0) : Time.parse(resp['Last-Modified'])
     end
     
     def file_modification_time(path)

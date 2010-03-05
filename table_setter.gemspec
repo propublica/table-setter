@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeff Larson"]
-  s.date = %q{2010-03-02}
+  s.date = %q{2010-03-05}
   s.description = %q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
   s.email = %q{thejefflarson@gmail.com}
   s.executables = ["table-setter", "table-setter"]
@@ -29,8 +29,47 @@ Gem::Specification.new do |s|
      "bin/table-setter",
      "documentation/css/dawn.css",
      "documentation/css/styles.css",
+     "documentation/images/folder.png",
      "documentation/images/proplogo.png",
+     "documentation/images/text-x-generic.png",
      "documentation/index.html.erb",
+     "documentation/tables/example/index.html",
+     "documentation/tables/example_faceted/index.html",
+     "documentation/tables/example_formatted/index.html",
+     "documentation/tables/example_local/1/index.html",
+     "documentation/tables/example_local/10/index.html",
+     "documentation/tables/example_local/11/index.html",
+     "documentation/tables/example_local/12/index.html",
+     "documentation/tables/example_local/13/index.html",
+     "documentation/tables/example_local/14/index.html",
+     "documentation/tables/example_local/15/index.html",
+     "documentation/tables/example_local/16/index.html",
+     "documentation/tables/example_local/17/index.html",
+     "documentation/tables/example_local/18/index.html",
+     "documentation/tables/example_local/19/index.html",
+     "documentation/tables/example_local/2/index.html",
+     "documentation/tables/example_local/20/index.html",
+     "documentation/tables/example_local/21/index.html",
+     "documentation/tables/example_local/22/index.html",
+     "documentation/tables/example_local/23/index.html",
+     "documentation/tables/example_local/24/index.html",
+     "documentation/tables/example_local/3/index.html",
+     "documentation/tables/example_local/4/index.html",
+     "documentation/tables/example_local/5/index.html",
+     "documentation/tables/example_local/6/index.html",
+     "documentation/tables/example_local/7/index.html",
+     "documentation/tables/example_local/8/index.html",
+     "documentation/tables/example_local/9/index.html",
+     "documentation/tables/example_local/index.html",
+     "documentation/tables/favicon.ico",
+     "documentation/tables/images/th_arrow_asc.gif",
+     "documentation/tables/images/th_arrow_desc.gif",
+     "documentation/tables/index.html",
+     "documentation/tables/javascripts/application.js",
+     "documentation/tables/javascripts/jquery.tablesorter.js",
+     "documentation/tables/javascripts/jquery.tablesorter.multipagefilter.js",
+     "documentation/tables/javascripts/jquery.tablesorter.pager.js",
+     "documentation/tables/stylesheets/stylesheet.css",
      "index.html",
      "lib/table_setter.rb",
      "lib/table_setter/app.rb",
@@ -86,6 +125,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_runtime_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
       s.add_runtime_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
+      s.add_runtime_dependency(%q<curb>, [">= 0.6.6.0"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<rack>, [">= 1.1.0"])
@@ -94,6 +134,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
       s.add_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
+      s.add_dependency(%q<curb>, [">= 0.6.6.0"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
@@ -103,6 +144,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<sinatra>, [">= 0.9.4"])
     s.add_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
     s.add_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
+    s.add_dependency(%q<curb>, [">= 0.6.6.0"])
   end
 end
 

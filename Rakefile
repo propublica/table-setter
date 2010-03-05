@@ -18,6 +18,7 @@ begin
     gem.add_dependency "sinatra", ">= 0.9.4"
     gem.add_dependency "sinatra-static-assets", ">= 0.5.0"
     gem.add_dependency "emk-sinatra-url-for", ">= 0.2.1"
+    gem.add_dependency "curb", ">= 0.6.6.0"
     gem.executables << "table-setter"
   end
   
