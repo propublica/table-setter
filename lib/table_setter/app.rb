@@ -49,7 +49,7 @@ module TableSetter
       def cache_timeout
         @cache_timeout || 0
       end
-      
+
     end
   end
 end

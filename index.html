@@ -9,10 +9,10 @@
   
   <body>
     <a href="http://www.propublica.org" class="propublica">&nbsp;</a>
-    <h1>TableSetter <small>&ndash; Version: 0.1.1</small></h1>
+    <h1>TableSetter <small>&ndash; Version: 0.1.2</small></h1>
     <p><strong>TableSetter</strong> is a sinatra app which provides an easy way to present CSVs hosted locally or remotely in custom HTML. For example given a simple configuration file, <strong>TableSetter</strong> can show <a href="documentation/tables/example_local/">a list of all stimulus projects from last year</a>, <a href="documentation/tables/example_formatted/">the stimulus spending progress</a>, or <a href="documentation/tables/example/">a list of failed banks due to the last recession</a>.</p>
     <p>Each table is filterable and sortable on multiple columns. Also each column can be formatted in one of many different styles. In production mode, <strong>TableSetter</strong> provides valid expires headers and can be coupled with an upstream cache like <a href="http://rtomayko.github.com/rack-cache/">Rack::Cache</a> or varnish for speedy presentation.</p>
-    <h2><a name="toc">Table of Contents</a></h2>
+    <h2><a id="toc">Table of Contents</a></h2>
     <ul>
       <li><a href="#installation">Installation</a></li>
       <li><a href="#tablesetter">The table-setter command</a></li>
@@ -24,25 +24,25 @@
       <li><a href="#credits">Credits</a></li>
       <li><a href="#license">License</a></li>
     </ul>
-    <h2><a name="installation" href="#toc">Installation</a></h2>
+    <h2><a id="installation" href="#toc">Installation</a></h2>
     <p>Install <strong>TableSetter</strong> through rubygems:</p>
-    <pre class="dawn">
+<pre class="dawn">
 gem install table_setter</pre>
     <p>or from the source files:</p>
-    <pre class="dawn">
+<pre class="dawn">
 git clone git://github.com/propublica/table-setter.git
 cd table-setter
 rake install</pre>
     <p>After you've installed the gem you'll have a new executable: <strong>table-setter</strong>. You can view the subcommands available by typing <strong>table-setter --help</strong>. To set things up you'll need to run it with the <strong>install</strong> command to install the configuration files and ERB templates into a directory. </p>
-    <pre>
+<pre>
 table-setter install path/to/directory</pre>
     <p>
       To start the development server run: 
     </p>
-    <pre>
+<pre>
 table-setter start path/to/directory</pre>
     <p>Go to development url, <a href="http://localhost:3000/">http://localhost:3000/</a> and you'll see a list of the example tables. You can peruse the examples <a href="http://propublica.github.com/table-setter/documentation/tables/">here</a>.</p>
-    <h2><a name="tablesetter" href="#toc">The table-setter command</a></h2>
+    <h2><a id="tablesetter" href="#toc">The table-setter command</a></h2>
     <p>
       The <strong>table-setter</strong> command responds to three subcommands:
       <ul>
@@ -54,7 +54,7 @@ table-setter build DIRECTORY -p tables</pre>
 See <a href="#deployment">Deployment</a></li>
       </ul>
     </p>
-    <h2><a name="thedirectory" href="#toc">The Configuration Directory</a></h2>
+    <h2><a id="thedirectory" href="#toc">The Configuration Directory</a></h2>
     <p>
       The configuration folder contains the javascripts, stylesheets, view templates (written in <a href="http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/">ERB</a>), rackup file, and most importantly the configuration files for each table.
     </p>
@@ -85,21 +85,60 @@ See <a href="#deployment">Deployment</a></li>
         </ul>
     <p class="dir">The <strong>views</strong> directory contains the <a href="http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/">ERB</a> templates needed to render the table pages and index page.</p>
     <ul>
-      
+      <li class="file">
+        <strong>404.erb</strong> and <strong>500.erb</strong> render when a table is not found or  a server error occurs, respectively.
+      </li>
+      <li class="file"><strong>layout.erb</strong> contains the basic frame of the page. You should place most of your customizations here. If you'd like to add custom html, place it above or below the <strong>&lt;%=&nbsp;yield&nbsp;%&gt;</strong> tag.</li>
+      <li class="file"><strong>index.erb</strong> renders the table list for the root path of the app.</li>
+      <li class="file"><strong>table.erb</strong> renders an individual table. You shouldn't have to tweak this much, if at all.</li>
     </ul>
+    <h2><a id="thefile" href="#toc">A TableSetter File</a></h2>
+    <p>Each TableSetter file outlines the the display options for a particular table. The id of the file dictates the path where it will appear (e.g. a config file named example.yml will appear at <strong>http://host/example</strong>). Initially TableSetter installs a few examples to get you started.</p>
+    <p></p>
+    <h2><a id="deployment" href="#toc">Deployment</a></h2>
 
-    <h2><a name="thefile" href="#toc">A TableSetter File</a></h2>
-    <p>Each TableSetter file outlines the the display options for a particular table. The name of the file dictates the path where it will appear (e.g. a config file named example.yml will appear at <strong>http://host/example</strong>). Initially TableSetter installs a few examples to get you started.</p>
-    <p></p>
-    <h2><a name="deployment" href="#toc">Deployment</a></h2>
-    <h3>Heroku</h3>
-    <p></p>
     <h3>Passenger</h3>
-    <p></p>
+    <em>(Cribbed from the excellent <a href="http://www.modrails.com/documentation/Users%20guide.html#_deploying_a_rack_based_ruby_application">passenger documentation</a>.)</em>
+    <p>If you're familiar with deploying a Rails application under passenger, not much changes when deploying a rack basked application. <strong>TableSetter</strong> includes a <strong>config.ru</strong> file that should be sufficient under most situations. You'll need to create a <strong>tmp</strong> directory inside the <strong>TableSetter</strong> directory on the server. The following virtual host configuration will deploy <strong>TableSetter</strong> directory:
+    </p>
+<pre>
+&lt;VirtualHost *:80&gt;
+  ServerName www.yourdomain.com
+  DocumentRoot /path/to/table-setter/public
+&lt;/VirtualHost&gt;</pre>
+  <p>If you want to deploy <strong>TableSetter</strong> under a sub URI you should symlink the public folder to a directory in the document root:</p>
+<pre>
+ln -s /path/to/table-setter/public /docroot/tables</pre>
+  <p>
+  and change you're apache config to reflect the sub URI:
+  </p>
+<pre>
+&lt;VirtualHost *:80&gt;
+  ServerName www.yourdomain.com
+  DocumentRoot /docroot/tables
+  RackBaseURI /tables
+&lt;/VirtualHost&gt;</pre>
+<p>The <strong>config.ru</strong> file contains directives to enable <strong>Rack:Cache</strong> a simple reverse proxy cache. If your web server is not behind an upstream cache you'll want to enable it by uncommenting the required lines.<p>
+<p>You'll also want to enable the <strong>TableSetter:App</strong> expire time by uncommenting this line:</p>
+<pre>
+TableSetter::App.cache_timeout = 60 * 15 # 15 minutes</pre>
+<p>That line dictates the max age of a request and you'll want to tweak it depending on how frequently changed your tables will be and how many users you expect.</p>
+  
     <h3>Static</h3>
-    <p></p>
-    <h2><a name="rails" href="#toc">Rails</a></h2>
-    <h2><a name="links" href="#toc">Links</a></h2>
+    <p>By far the simplest way to deploy <strong>table-setter</strong> is by pre-building the tables as html and uploading the built files to a web server. You can build them using the <strong>table-setter</strong> command:</p>
+<pre>
+table-setter build path/to/table-setter/directory -p path</pre>
+<p>The build tables will be placed in the <strong>out</strong> directory inside the configuration directory.</p>
+<p>The <strong>-p</strong> flag dictates where on the server relative to root you'll install the files. If I want my tables to appear under the <strong>tables/</strong> directory on my site, I'd run:</p>
+<pre>
+table-setter build path/to/table-setter/directory -p tables</pre>
+<p>And upload the files in the <strong>out/tables</strong> directory.</p>
+    <h2><a id="rails" href="#toc">Rails</a></h2>
+    <p>In order to use table-setter under rails, you'll need to install the <a href="http://github.com/propublica/table-setter-generator">table-setter-generator </a> gem. Once you've done that you'll be able to run:</p>
+<pre>
+script/generate table-setter</pre>
+<p>In your rails app path and it will install <strong>table-setter</strong> as a rails metal layer.</p>
+    <h2><a id="links" href="#toc">Links</a></h2>
     <ul>
       <li><a href="http://github.com/propublica/table-fu">TableFu</a><br>
         A gem that provides the conceptual backend to <strong>TableSetter</strong>.</li>
@@ -110,9 +149,9 @@ See <a href="#deployment">Deployment</a></li>
       <li><a href="http://github.com/propublica/table-fu/issues">Issues</a><br>
         The github issue tracker. Post bug reports and feature requests here.</li>
     </ul>
-    <h2><a name="credits" href="#toc">Credits</a></h2>
+    <h2><a id="credits" href="#toc">Credits</a></h2>
     <p><a href="http://github.com/thejefflarson">Jeff Larson</a> (Maintainer), <a href="http://github.com/brianboyer/">Brian Boyer</a>, <a href="http://github.com/kleinmatic">Scott Klein</a>, <a href="http://github.com/markpercival">Mark Percival</a>, and <a href="http://github.com/seebq">Charles Brian Quinn</a>.</p>
-    <h2><a name="license" href="#toc">License</a></h2>
+    <h2><a id="license" href="#toc">License</a></h2>
     <pre>Copyright (c) 2010 ProPublica
 
 Permission is hereby granted, free of charge, to any person obtaining

@@ -19,6 +19,7 @@
       <% if !table.nil? %>
         var sortPlease = <%= table.sortable? %>;
         var sortOrder = <%= table.sort_array.inspect || "null"%>;
+        var perPage = <%= table.per_page %>;
       <% else %>
         var sortPlease = false;
       <% end %>

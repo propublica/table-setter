@@ -26,7 +26,7 @@ $(document).ready(function(){
     sortList: sortOrder//,
     //debug: true
   })
-  .tablesorterPager({container: $("#pager"), positionFixed: false})
+  .tablesorterPager({container: $("#pager"), positionFixed: false, size: perPage})
   .tablesorterMultiPageFilter({filterSelector: $("#filter input")});
 
 });
