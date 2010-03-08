@@ -97,7 +97,62 @@ See <a href="#deployment">Deployment</a></li>
     </ul>
     <h2><a id="thefile" href="#toc">A TableSetter File</a></h2>
     <p>Each TableSetter file outlines the the display options for a particular table. The id of the file dictates the path where it will appear (e.g. a config file named example.yml will appear at <strong>http://host/example</strong>). Initially TableSetter installs a few examples to get you started.</p>
-    <p></p>
+    <p>Each table setter file must begin with a <strong>table:</strong> declaration, and it's important to note that whitespace matters. For example consider this csv:</p>
+<pre>
+  #csv tk
+</pre>
+<p>these are the example options in a <strong>TableSetter</strong> config file:
+<pre>
+table:
+  title: The title of the table
+  
+  # google_key:, file:, or url: define how a table is loaded.
+  # only one is necessary
+  file: loads a csv from the tables directory. 
+  url: will load from a external webpage, and 
+  google_key: is a google key url from an external google doc.
+  
+  deck: A HTML string describing the table, appears above the table itself.
+  
+  footer: A HTML string for notes/caveats etc. Appears below the table.
+  
+  column_options: # Defines a hash of options that are passed onto TableFu
+  
+    columns: # A list of columns to include, for example:
+     - Bank # would only include the bank column in the table
+     
+    style: # A list of style declarations by column, for example:
+      Bank: 'text-align:left;' # would left-align the text in the "Bank" column.
+      
+    sorted_by: # Defines the sort order and column to sort by of the table.
+      Bank: ascending # would sort by the Bank column in ascending order
+    
+    total: # Declares which columns should have a totals row.
+      ['Funds', 'Spent']
+    
+    formatting: # Defines which of the TableFu formatters to apply to a column.
+      (%) Spent: bar # applies the bar formatter to the '(%) Spent' column.
+      Link: # Creates a meta column form two other columns 
+        method: link # describes the formatter to use
+        arguments: ['Bank', 'URL'] # Combines Bank and URL as arguments
+  
+  faceting: # Describes the faceting, or grouping, to apply to a table
+    facet_by: Bank # groups the records by bank name
+    
+  hard_paginate: true # Dictates that the table should be spread across multiple pages
+                      # can't be used with faceting, and disables the user filtering
+  
+  per_page: 250 # Instructs TableSetter to only page by 250 rows.
+  
+  live: true # Shows the table in the index page.
+  
+</pre>
+
+    <h3>NB: A Note About google_key</h3>
+    <p>At ProPublica, we mainly use TableSetter to format public google spreadsheets. You can find the <strong>google_key</strong> by publishing a spreadsheet as a webpage:</p>
+      <img src="documentation/images/publish.png">
+    <p>and in the dialog box, the google key is here:</p>
+      <img src="documentation/images/key.png">
     <h2><a id="deployment" href="#toc">Deployment</a></h2>
 
     <h3>Passenger</h3>
@@ -125,7 +180,7 @@ ln -s /path/to/table-setter/public /docroot/tables</pre>
 <p>You'll also want to enable the <strong>TableSetter:App</strong> expire time by uncommenting this line:</p>
 <pre>
 TableSetter::App.cache_timeout = 60 * 15 # 15 minutes</pre>
-<p>That line dictates the max age of a request and you'll want to tweak it depending on how frequently changed your tables will be and how many users you expect. If you want to define any <a href="https://github.com/propublica/table-fu">TableFu</a> formatters you should do so in <strong>config.ru</strong></p>
+<p>That line dictates the max age of a request and you'll want to tweak it depending on how frequently changed your tables will be and how many users you expect. If you want to define any <a href="https://github.com/propublica/table-fu">TableFu</a> formatters you should do so in <strong>config.ru</strong>.</p>
   
     <h3>Static</h3>
     <p>By far the simplest way to deploy <strong>table-setter</strong> is by pre-building the tables as html and uploading the built files to a web server. You can build them using the <strong>table-setter</strong> command:</p>
@@ -151,6 +206,9 @@ script/generate table-setter</pre>
         How to deploy a rack app in heroku.</li>
       <li><a href="http://github.com/propublica/table-fu/issues">Issues</a><br>
         The github issue tracker. Post bug reports and feature requests here.</li>
+      <li><a href="http://www.yaml.org/">YAML</a>
+        The YAML homepage. <strong>TableSetter</strong> config files are YAML files.
+      </li>
     </ul>
     <h2><a id="credits" href="#toc">Credits</a></h2>
     <p><a href="http://github.com/thejefflarson">Jeff Larson</a> (Maintainer), <a href="http://github.com/brianboyer/">Brian Boyer</a>, <a href="http://github.com/kleinmatic">Scott Klein</a>, <a href="http://github.com/markpercival">Mark Percival</a>, and <a href="http://github.com/seebq">Charles Brian Quinn</a>.</p>

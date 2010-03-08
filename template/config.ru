@@ -22,13 +22,12 @@ TableSetter.configure(File.dirname(__FILE__))
 #
 #require 'rack/cache'
 #use Rack::Cache,
-#  :verbose     => true,
-#  :metastore   => "file:#{::File.expand_path ::File.dirname(__FILE__)}/meta",
-#  :entitystore => "file:#{::File.expand_path ::File.dirname(__FILE__)}/body"
+#  :metastore   => "file:#{TableSetter.config_path}/tmp/meta",
+#  :entitystore => "file:#{TableSetter.config_path}/tmp/body"
 #
 # You can tweak the cache timeout for TableSetter by setting the timeout variable on
 # TableSetter::App: 
 #
-#TableSetter::App.cache_timeout = 60 * 15 # 15 minutes
+TableSetter::App.cache_timeout = 60 * 15 # 15 minutes
 #
 run TableSetter::App
