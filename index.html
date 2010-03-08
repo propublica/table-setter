@@ -6,11 +6,10 @@
     <link rel="stylesheet" type="text/css" href="documentation/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="documentation/css/dawn.css" />
   </head>
-  
   <body>
     <a href="http://www.propublica.org" class="propublica">&nbsp;</a>
     <h1>TableSetter <small>&ndash; Version: 0.1.2</small></h1>
-    <p><strong>TableSetter</strong> is a sinatra app which provides an easy way to present CSVs hosted locally or remotely in custom HTML. For example given a simple configuration file, <strong>TableSetter</strong> can show <a href="documentation/tables/example_local/">a list of all stimulus projects from last year</a>, <a href="documentation/tables/example_formatted/">the stimulus spending progress</a>, or <a href="documentation/tables/example/">a list of failed banks due to the last recession</a>.</p>
+    <p><a href="https://github.com/propublica/table-setter">TableSetter</a> is a Ruby app which provides an easy way to present CSVs hosted locally or remotely in custom HTML. For example given a simple configuration file, <strong>TableSetter</strong> can show <a href="documentation/tables/example_local/">a list of all stimulus projects from last year</a>, <a href="documentation/tables/example_formatted/">the stimulus spending progress</a>, or <a href="documentation/tables/example/">a list of failed banks due to the last recession</a>.</p>
     <p>Each table is filterable and sortable on multiple columns. Also each column can be formatted in one of many different styles. In production mode, <strong>TableSetter</strong> provides valid expires headers and can be coupled with an upstream cache like <a href="http://rtomayko.github.com/rack-cache/">Rack::Cache</a> or varnish for speedy presentation.</p>
     <h2><a id="toc">Table of Contents</a></h2>
     <ul>
