@@ -96,7 +96,9 @@ See <a href="#deployment">Deployment</a></li>
     <p>Each TableSetter file outlines the the display options for a particular table. The id of the file dictates the path where it will appear (e.g. a config file named example.yml will appear at <strong>http://host/example</strong>). Initially TableSetter installs a few examples to get you started.</p>
     <p>Each table setter file must begin with a <strong>table:</strong> declaration, and it's important to note that whitespace matters. For example consider this csv:</p>
 <pre>
-  #csv tk
+Bank,Spent,Funds,Link
+McDuck Bank,100000,10000000,http://diveintomoney.com
+Potter Savings and Loans,1100,1000000,http://angelsandwingsmrstewart.com
 </pre>
 <p>these are the example options in a <strong>TableSetter</strong> config file:
 <pre>
