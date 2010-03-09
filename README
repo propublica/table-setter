@@ -1,0 +1,10 @@
+=
+TableSetter
+
+TableSetter is a Ruby app which provides an easy way to present CSVs hosted locally or remotely in custom HTML.
+
+  documentation
+  http://propublica.github.com/table-setter/
+  
+  examples
+  http://propublica.github.com/table-setter/documentation/tables/example/

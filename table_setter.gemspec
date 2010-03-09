@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{table_setter}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeff Larson"]
-  s.date = %q{2010-03-05}
+  s.date = %q{2010-03-08}
   s.description = %q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
   s.email = %q{thejefflarson@gmail.com}
   s.executables = ["table-setter", "table-setter"]
@@ -30,7 +30,9 @@ Gem::Specification.new do |s|
      "documentation/css/dawn.css",
      "documentation/css/styles.css",
      "documentation/images/folder.png",
+     "documentation/images/key.png",
      "documentation/images/proplogo.png",
+     "documentation/images/publish.png",
      "documentation/images/text-x-generic.png",
      "documentation/index.html.erb",
      "documentation/tables/example/index.html",

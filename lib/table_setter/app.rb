@@ -8,7 +8,6 @@ module TableSetter
     set :root, TableSetter.config_path
     # serve static files from the public directory
     enable :static
-    # set :app_file, __FILE__
 
     not_found do
       show :"404"
