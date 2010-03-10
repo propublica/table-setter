@@ -122,7 +122,7 @@ Gem::Specification.new do |s|
      "template/views/layout.erb",
      "template/views/table.erb"
   ]
-  s.homepage = %q{http://github.com/thejefflarson/table-setter}
+  s.homepage = %q{http://propublica.github.com/table-setter/}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{table-setter}
