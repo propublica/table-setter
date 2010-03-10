@@ -8,7 +8,7 @@ begin
     gem.summary = %Q{A sinatra based app for rendering CSVs in custom HTML}
     gem.description = %Q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
     gem.email = "thejefflarson@gmail.com"
-    gem.homepage = "http://github.com/thejefflarson/table-setter"
+    gem.homepage = "http://propublica.github.com/table-setter/"
     gem.authors = ["Jeff Larson"]
     gem.rubyforge_project = "table-setter"
     gem.add_development_dependency "rspec", ">= 1.2.9"
