@@ -9,7 +9,7 @@
   <body>
     <a href="http://www.propublica.org" class="propublica">&nbsp;</a>
     <h1>TableSetter <small>&ndash; Version: 0.1.2</small></h1>
-    <p><a href="https://github.com/propublica/table-setter">TableSetter</a> is a Ruby app which provides an easy way to present CSVs hosted locally or remotely in custom HTML. For example given a simple configuration file, <strong>TableSetter</strong> can show <a href="documentation/tables/example_local/">a list of all stimulus projects from last year</a>, <a href="documentation/tables/example_formatted/">the stimulus spending progress</a>, or <a href="documentation/tables/example/">a list of failed banks due to the last recession</a>.</p>
+    <p><a href="https://github.com/propublica/table-setter">TableSetter</a> is a Ruby app that provides an easy way to present CSVs hosted locally or remotely (e.g. on google, etc) in custom HTML. TableSetter in the wild: <a href="http://projects.propublica.org/tables/failed-banks">a list of all stimulus projects from last year</a>, <a href="http://projects.propublica.org/tables/stimulus-spending-progress">the stimulus spending progress</a>, or <a href="http://projects.propublica.org/tables/failed-banks">a list of failed banks due to the last recession</a>.</p>
     <p>Each table is filterable and sortable on multiple columns. Also each column can be formatted in one of many different styles. In production mode, <strong>TableSetter</strong> provides valid expires headers and can be coupled with an upstream cache like <a href="http://rtomayko.github.com/rack-cache/">Rack::Cache</a> or varnish for speedy presentation.</p>
     <h2><a id="toc">Table of Contents</a></h2>
     <ul>
@@ -45,11 +45,9 @@ table-setter start path/to/directory</pre>
     <p>
       The <strong>table-setter</strong> command responds to three subcommands:
       <ul>
-        <li><strong>install DIRECTORY</strong> installs the tablesetter files into the current directory or one you specify.</li>
-        <li><strong>start DIRECTORY</strong> starts the development server so you can preview your tables before deploying.</li>
-        <li><strong>build DIRECTORY -p PATH</strong> builds a static version of the tables, you'll  want to use <strong>-p</strong> if your putting the static versions inside a directory on your webserver that's not root. For example, if you want the tables to live in <strong>http://host/tables/</strong> you should run 
-<pre>
-table-setter build DIRECTORY -p tables</pre> 
+        <li><strong>install &lt;DIRECTORY&gt;</strong> installs the tablesetter files into the current directory or one you specify.</li>
+        <li><strong>start &lt;DIRECTORY&gt;</strong> starts the development server so you can preview your tables before deploying.</li>
+        <li><strong>build &lt;DIRECTORY&gt; -p &lt;PATH&gt;</strong> builds a static version of the tables, <strong>&lt;PATH&gt;</strong> is the relative path where you want to place the tables on your webserver.
 See <a href="#deployment">Deployment</a></li>
       </ul>
     </p>
@@ -57,6 +55,7 @@ See <a href="#deployment">Deployment</a></li>
     <p>
       The configuration folder contains the javascripts, stylesheets, view templates (written in <a href="http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/">ERB</a>), rackup file, and most importantly the configuration files for each table.
     </p>
+    <p>You'll put table definition files in the <strong>table</strong> directory, your javascript in  <strong>public/javascripts</strong> and css in <strong>public/stylesheets</strong>. You can make most HTML customizations in <strong>views/layout.erb</strong>.
     <p class="file">
       The <strong>config.ru</strong> file is a rackup file that instructs the webserver to start the <strong>TableSetter</strong> application and serve the assets contained in the configuration folder. In most cases you'll want to use apache and passenger (see <a href="#deployment">Deployment</a> for details).
     </p>
@@ -65,22 +64,22 @@ See <a href="#deployment">Deployment</a></li>
     </p>
       <ul>
         <li class="dir"> The <strong>images</strong> directory contains the small images  <img src="template/public/images/th_arrow_asc.gif" style="display:inline"> and  <img src="template/public/images/th_arrow_desc.gif" style="display:inline"> which show the user the sorting direction of a given column.</li>
-        <li class="dir"> The <strong>javascripts</strong> directory which powers the dynamic functionality of a table. Each file depends on <a href="http://jquery.com/">jQuery</a>:
+        <li class="dir"> The <strong>javascripts</strong> directory contains scripts that power the dynamic functionality of a table. Each file depends on <a href="http://jquery.com/">jQuery</a>:
           <ul>
             <li class="file"><strong>application.js</strong> dispatches to the other javascript files to render the table at load time. It also defines the column highlighting function.</li>
             <li class="file"><strong>jquery.tablesorter.js</strong> the jQuery <a href="http://tablesorter.com/docs/">tablesorter plugin</a> that handles the dynamic sorting by column.</li>
-            <li class="file"><strong>jquery.tablesorter.pager.js</strong> the jQuery <a href="http://tablesorter.com/docs/example-pager.html">pager plugin</a> to tablesorter that provides the paging functionality.</li>
-            <li class="file"><strong>jquery.tablesorter.multipagefilter.js</strong> a custom plugin that allows for table searching across multiple pages</li>
+            <li class="file"><strong>jquery.tablesorter.pager.js</strong> the <a href="http://tablesorter.com/docs/example-pager.html">tablesorter pager plugin</a> to tablesorter that provides the paging functionality.</li>
+            <li class="file"><strong>jquery.tablesorter.multipagefilter.js</strong> a custom plugin that allows for searching across multiple pages</li>
           </ul>
         </li>
         <li class="dir">The <strong>stylesheets</strong> directory contains <strong>application.css</strong>, the <strong>TableSetter</strong> stylesheet. Each style is prefaced with <strong>#tablefu</strong> so you should be able to include your organization's css on the page without affecting the tables.</li>
       </ul>
        <p class="dir">The <strong>tables</strong> directory contains yml configuration files for each of the tables you want to deploy. By default it contains:</p>
         <ul>
-          <li class="file"><strong>example.yml</strong> contains the configuration for a simple table of ProPublica's coverage of failed banks in the latest recession.</li>
-          <li class="file"><strong>example_local.yml</strong> and <strong>example_local.csv</strong> shows how to build a table from a local file of 5800 approved stimulus projects from last year. It also is hard_paginated (see <a href="#thefile">A Table Setter File</a>).</li>
-          <li class="file"><strong>example_faceted.yml</strong> displays a table of stimulus appropriations faceted by state.</li>
-          <li class="file"><strong>example_formatted.yml</strong> and <strong>example_formatted.csv</strong> shows the bar formatter in a table of stimulus spending data.</li>
+          <li class="file"><strong>example.yml</strong> contains most of the simple options in a <strong>TableSetter</strong> file.</li>
+          <li class="file"><strong>example_local.yml</strong> and <strong>example_local.csv</strong> shows how to build a table from a local file. It also is hard_paginated (see <a href="#thefile">A Table Setter File</a>).</li>
+          <li class="file"><strong>example_faceted.yml</strong> is an example of faceting.</li>
+          <li class="file"><strong>example_formatted.yml</strong> and <strong>example_formatted.csv</strong> shows how to apply formatting to a column and a group of columns.</li>
         </ul>
     <p class="dir">The <strong>views</strong> directory contains the <a href="http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/">ERB</a> templates needed to render the table pages and index page.</p>
     <ul>
@@ -92,7 +91,7 @@ See <a href="#deployment">Deployment</a></li>
       <li class="file"><strong>table.erb</strong> renders an individual table. You shouldn't have to tweak this much, if at all.</li>
     </ul>
     <h2><a id="thefile" href="#toc">A TableSetter File</a></h2>
-    <p>Each TableSetter file outlines the the display options for a particular table. The id of the file dictates the path where it will appear (e.g. a config file named example.yml will appear at <strong>http://host/example</strong>). Initially TableSetter installs a few examples to get you started.</p>
+    <p>Each TableSetter file is written in <a href="http://www.yaml.org/">YAML</a> and outlines the the display options for a particular table. The filename dictates the path where it will appear (e.g. a config file named example.yml will appear at <strong>http://host/example</strong>). Initially TableSetter installs a few examples to get you started (see <a href="#thedirectory">above</a>).</p>
     <p>Each table setter file must begin with a <strong>table:</strong> declaration, and it's important to note that whitespace matters. For example consider this csv:</p>
 <pre>
 Bank,Spent,Funds,Link
@@ -106,9 +105,9 @@ table:
   
   # google_key:, file:, or url: define how a table is loaded.
   # only one is necessary
-  file: loads a csv from the tables directory. 
-  url: will load from a external webpage, and 
-  google_key: is a google key url from an external google doc.
+  file: loads a local CSV file from the /tables directory. 
+  url: will load a CSV file from an external server, and 
+  google_key: is a google key url from an external google doc (see note).
   
   deck: A HTML string describing the table, appears above the table itself.
   
@@ -142,7 +141,8 @@ table:
   
   per_page: 250 # Instructs TableSetter to only page by 250 rows.
   
-  live: true # Shows the table in the index page.
+  live: true # publishes the table in the index page. Note that even if live is 
+             # set to false the table is still accessible directly. 
   
 </pre>
 
@@ -174,14 +174,15 @@ ln -s /path/to/table-setter/public /docroot/tables</pre>
   DocumentRoot /docroot/tables
   RackBaseURI /tables
 &lt;/VirtualHost&gt;</pre>
-<p>The <strong>config.ru</strong> file contains directives to enable <strong>Rack:Cache</strong> a simple reverse proxy cache. If your web server is not behind an upstream cache you'll want to enable it by uncommenting the required lines.<p>
+<h3>Caching</h3>
+<p>You probably don't want to parse a remote CSV file on every request in production, so the <strong>config.ru</strong> file contains directives to enable <strong>Rack:Cache</strong> a simple reverse proxy cache. If your web server is not behind an upstream cache you'll want to enable it by uncommenting the required lines.<p>
 <p>You'll also want to enable the <strong>TableSetter:App</strong> expire time by uncommenting this line:</p>
 <pre>
 TableSetter::App.cache_timeout = 60 * 15 # 15 minutes</pre>
 <p>That line dictates the max age of a request and you'll want to tweak it depending on how frequently changed your tables will be and how many users you expect. If you want to define any <a href="https://github.com/propublica/table-fu">TableFu</a> formatters you should do so in <strong>config.ru</strong>.</p>
   
     <h3>Static</h3>
-    <p>By far the simplest way to deploy <strong>table-setter</strong> is by pre-building the tables as html and uploading the built files to a web server. You can build them using the <strong>table-setter</strong> command:</p>
+    <p>You can also use to pre-build <strong>table-setter</strong> your tables as html and upload the built files to your web server. You can build them using the <strong>table-setter</strong> command:</p>
 <pre>
 table-setter build path/to/table-setter/directory -p path</pre>
 <p>The build tables will be placed in the <strong>out</strong> directory inside the configuration directory.</p>
@@ -190,10 +191,10 @@ table-setter build path/to/table-setter/directory -p path</pre>
 table-setter build path/to/table-setter/directory -p tables</pre>
 <p>And upload the files in the <strong>out/tables</strong> directory.</p>
     <h2><a id="rails" href="#toc">Rails</a></h2>
-    <p>In order to use table-setter under rails, you'll need to install the <a href="http://github.com/propublica/table-setter-generator">table-setter-generator </a> gem. Once you've done that you'll be able to run:</p>
+    <p>In order to use table-setter as a Rails, you'll need to install the <a href="http://github.com/propublica/table-setter-generator">table-setter-generator </a> gem. Once you've done that you'll be able to run:</p>
 <pre>
 script/generate table-setter</pre>
-<p>In your rails app path and it will install <strong>table-setter</strong> as a rails metal layer.</p>
+<p>In your existing Rails app path and it will install the <strong>TableSetter</strong> routes, controller, views, and <strong>Table</strong> model.</p>
     <h2><a id="links" href="#toc">Links</a></h2>
     <ul>
       <li><a href="http://github.com/propublica/table-fu">TableFu</a><br>
