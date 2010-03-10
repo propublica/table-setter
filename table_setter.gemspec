@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeff Larson"]
-  s.date = %q{2010-03-08}
+  s.date = %q{2010-03-10}
   s.description = %q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
   s.email = %q{thejefflarson@gmail.com}
   s.executables = ["table-setter", "table-setter"]
@@ -27,6 +27,25 @@ Gem::Specification.new do |s|
      "TODO",
      "VERSION.yml",
      "bin/table-setter",
+     "doc/TableFu/Formatting.html",
+     "doc/TableSetter.html",
+     "doc/TableSetter/App.html",
+     "doc/TableSetter/Command.html",
+     "doc/TableSetter/Table.html",
+     "doc/_index.html",
+     "doc/class_list.html",
+     "doc/css/common.css",
+     "doc/css/full_list.css",
+     "doc/css/style.css",
+     "doc/file.README.html",
+     "doc/file_list.html",
+     "doc/frames.html",
+     "doc/index.html",
+     "doc/js/app.js",
+     "doc/js/full_list.js",
+     "doc/js/jquery.js",
+     "doc/method_list.html",
+     "doc/top-level-namespace.html",
      "documentation/css/dawn.css",
      "documentation/css/styles.css",
      "documentation/images/folder.png",
