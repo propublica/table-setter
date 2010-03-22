@@ -123,7 +123,7 @@ module TableSetter
     # If for whatever reason the google modification time is busted we'll return the epoch,
     # and rely on the yaml modified time.
     def google_modification_time
-      local_url = URI.parse "http://spreadsheets.google.com/feeds/list/#{google_key}/od7/public/basic"
+      local_url = URI.parse "http://spreadsheets.google.com/feeds/list/#{google_key}/od6/public/basic"
       web_modification_time local_url
     end
 

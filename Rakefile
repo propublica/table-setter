@@ -12,8 +12,8 @@ begin
     gem.authors = ["Jeff Larson"]
     gem.rubyforge_project = "table-setter"
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_development_dependency "rack", ">= 1.1.0"
-    gem.add_development_dependency "thin", ">= 1.2.5"
+    gem.add_dependency "rack", ">= 1.1.0"
+    gem.add_dependency "thin", ">= 1.2.5"
     gem.add_dependency "table_fu", ">= 0.1.1"
     gem.add_dependency "sinatra", ">= 0.9.4"
     gem.add_dependency "sinatra-static-assets", ">= 0.5.0"

@@ -19,6 +19,18 @@ $(document).ready(function(){
       });
     }
   }); 
+  $.tablesorter.addParser({
+    id: "newNumbers",
+    is: function(s,table) {
+      var c = table.config;
+      var obj = parseFloat(s, 10);
+      return (obj === +obj) || (toString.call(obj) === '[object Number]');
+    },
+    format: function(s){
+      return parseFloat(s, 10);
+    },
+    type: "numeric"
+  });
 
   //initialize the table
   var table = window.table = $('#data').tablesorter({
