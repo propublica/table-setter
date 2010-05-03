@@ -30,5 +30,6 @@ describe TableSetter::Command do
     Dir["#{template_dir}/**/*"].each do |template_file|
       File.exists?(template_file.gsub(template_dir, INSTALL_DIRECTORY)).should be_true
     end
+    
   end
 end
