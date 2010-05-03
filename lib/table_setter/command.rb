@@ -15,7 +15,7 @@ Usage:
 commands:
   start    run the development server, for deployment use config.ru
   install  copy the table-setter assets into the the directory
-  export   statically build tables in the ./out/
+  build    statically build tables in the ./out/
   
 options:
     EOB
@@ -92,7 +92,7 @@ options:
     
     def build_assets
       Dir[TableSetter.config_path + "/public/**/*"].each do |path|
-        copy_file path, File.join(path.gsub(ROOT + "/template/public/", "#{@out_dir}/"))
+        copy_file path, File.join(path.gsub(TableSetter.config_path + "/public/", "#{@out_dir}/"))
       end
     end
     
