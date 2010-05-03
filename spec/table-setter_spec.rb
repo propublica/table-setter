@@ -157,7 +157,7 @@ end
 
 describe TableSetter::Table, "group fetchers" do
   it "should return live tables" do
-    TableSetter::Table.all.length.should eql 4
+    TableSetter::Table.all.length.should eql 1
   end
 end
 

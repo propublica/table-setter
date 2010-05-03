@@ -15,7 +15,7 @@ Usage:
 commands:
   start    run the development server, for deployment use config.ru
   install  copy the table-setter assets into the the directory
-  build    statically build tables in the ./out/
+  build    statically build tables in the ./out/ directory
   
 options:
     EOB
@@ -98,6 +98,7 @@ options:
     
     def build_tables(request)
       TableSetter::Table.all.each do |table|
+        return if !table.live
         puts "Building #{table.slug}"
         install_file(request.request("GET", "/#{@prefix}/#{table.slug}/").body,
                     File.join(@out_dir, table.slug, "index.html"))

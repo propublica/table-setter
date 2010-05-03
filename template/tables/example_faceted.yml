@@ -23,5 +23,5 @@ table:
       Cong. District: descending
   faceting: 
     facet_by: State
-  live: true
+  live: false
   
