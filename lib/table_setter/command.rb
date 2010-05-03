@@ -91,7 +91,7 @@ options:
     end
     
     def build_assets
-      Dir[ROOT + "/template/public/**/*"].each do |path|
+      Dir[TableSetter.config_path + "/public/**/*"].each do |path|
         copy_file path, File.join(path.gsub(ROOT + "/template/public/", "#{@out_dir}/"))
       end
     end
