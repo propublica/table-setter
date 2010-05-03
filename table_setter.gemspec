@@ -122,7 +122,6 @@ Gem::Specification.new do |s|
      "template/views/layout.erb",
      "template/views/table.erb"
   ]
-  s.has_rdoc = true
   s.homepage = %q{http://propublica.github.com/table-setter/}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
@@ -148,23 +147,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
       s.add_runtime_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
       s.add_runtime_dependency(%q<curb>, [">= 0.6.6.0"])
-      s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
-      s.add_runtime_dependency(%q<rack>, [">= 1.1.0"])
-      s.add_runtime_dependency(%q<thin>, [">= 1.2.5"])
-      s.add_runtime_dependency(%q<table_fu>, [">= 0.1.1"])
-      s.add_runtime_dependency(%q<sinatra>, [">= 1.0.0"])
-      s.add_runtime_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
-      s.add_runtime_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
-      s.add_runtime_dependency(%q<curb>, [">= 0.6.6.0"])
     else
-      s.add_dependency(%q<rspec>, [">= 1.2.9"])
-      s.add_dependency(%q<rack>, [">= 1.1.0"])
-      s.add_dependency(%q<thin>, [">= 1.2.5"])
-      s.add_dependency(%q<table_fu>, [">= 0.1.1"])
-      s.add_dependency(%q<sinatra>, [">= 1.0.0"])
-      s.add_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
-      s.add_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
-      s.add_dependency(%q<curb>, [">= 0.6.6.0"])
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<rack>, [">= 1.1.0"])
       s.add_dependency(%q<thin>, [">= 1.2.5"])
@@ -175,14 +158,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<curb>, [">= 0.6.6.0"])
     end
   else
-    s.add_dependency(%q<rspec>, [">= 1.2.9"])
-    s.add_dependency(%q<rack>, [">= 1.1.0"])
-    s.add_dependency(%q<thin>, [">= 1.2.5"])
-    s.add_dependency(%q<table_fu>, [">= 0.1.1"])
-    s.add_dependency(%q<sinatra>, [">= 1.0.0"])
-    s.add_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
-    s.add_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
-    s.add_dependency(%q<curb>, [">= 0.6.6.0"])
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
     s.add_dependency(%q<rack>, [">= 1.1.0"])
     s.add_dependency(%q<thin>, [">= 1.2.5"])
