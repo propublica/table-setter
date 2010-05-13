@@ -222,5 +222,13 @@ class TableFu::Formatting
       end
       "<div class=\"bar\" style=\"width:#{percent}%\">#{percent}%</div>"
     end
+    
+    def link(linkname, href)
+      if !href.value.nil? && !href.value.empty?
+        "<a href=\"#{href}\" title=\"#{linkname}\">#{linkname}</a>"
+      else
+        "<a title=\"#{linkname}\">#{linkname}</a>"
+      end
+    end
   end
 end
