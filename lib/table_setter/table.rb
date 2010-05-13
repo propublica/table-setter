@@ -226,6 +226,15 @@ class TableFu::Formatting
     def markdown(cell)
       RDiscount.new(cell).to_html
     end
+    # format as a link, if the href is empty don't make the link active
+    def link(linkname, href)
+      title = linkname.gsub(/(["])/, "'")
+      if !href.value.nil? && !href.value.empty?
+        "<a href=\"#{href}\" title=\"#{title}\">#{linkname}</a>"
+      else
+        "<a title=\"#{title}\">#{linkname}</a>"
+      end
+    end
     
   end
 end
