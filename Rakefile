@@ -14,7 +14,7 @@ begin
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_dependency "rack", ">= 1.1.0"
     gem.add_dependency "thin", ">= 1.2.5"
-    gem.add_dependency "table_fu", ">= 0.2.0"
+    gem.add_dependency "table_fu", ">= 0.2.1"
     gem.add_dependency "sinatra", ">= 1.0.0"
     gem.add_dependency "sinatra-static-assets", ">= 0.5.0"
     gem.add_dependency "emk-sinatra-url-for", ">= 0.2.1"

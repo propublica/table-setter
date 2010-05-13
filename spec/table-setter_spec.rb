@@ -167,7 +167,7 @@ describe TableSetter::Table, "with urls and google bars" do
   end
   
   it "should have a link row" do
-    @table.data.rows[1].column_for('Agency Webpage').to_s.should eql "<a href='http://www.hhs.gov/recovery/' title='Health and Human Services'>Health and Human Services</a>"
+    @table.data.rows[1].column_for('Agency Webpage').to_s.should eql "<a href=\"http://www.hhs.gov/recovery/\" title=\"Health and Human Services\">Health and Human Services</a>"
   end
   
   it 'should show a bar' do

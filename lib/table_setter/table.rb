@@ -228,7 +228,7 @@ class TableFu::Formatting
     end
     # format as a link, if the href is empty don't make the link active
     def link(linkname, href)
-      title = linkname.gsub(/(["])/, "'")
+      title = linkname.to_s.gsub(/(["])/, "'")      
       if !href.value.nil? && !href.value.empty?
         "<a href=\"#{href}\" title=\"#{title}\">#{linkname}</a>"
       else
