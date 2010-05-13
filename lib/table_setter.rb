@@ -8,6 +8,7 @@ autoload :Thin,      'thin'
 autoload :ERB,       'erb'
 autoload :FasterCSV, 'FasterCSV'
 autoload :Curb,      'curb'
+autoload :RDiscount, 'rdiscount'
 
 module TableSetter
   # autoload internals

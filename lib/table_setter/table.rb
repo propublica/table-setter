@@ -222,5 +222,10 @@ class TableFu::Formatting
       end
       "<div class=\"bar\" style=\"width:#{percent}%\">#{percent}%</div>"
     end
+    # markdown formatting in tablefu cells
+    def markdown(cell)
+      RDiscount.new(cell).to_html
+    end
+    
   end
 end
