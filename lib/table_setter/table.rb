@@ -226,15 +226,39 @@ class TableFu::Formatting
     def markdown(cell)
       RDiscount.new(cell).to_html
     end
+    
     # format as a link, if the href is empty don't make the link active
     def link(linkname, href)
-      title = linkname.to_s.gsub(/(["])/, "'")      
-      if !href.value.nil? && !href.value.empty?
+      title = linkname.to_s.gsub(/(["])/, "'")
+      if !href.value.nil? && !href.value.to_s().empty?
         "<a href=\"#{href}\" title=\"#{title}\">#{linkname}</a>"
       else
         "<a title=\"#{title}\">#{linkname}</a>"
       end
     end
     
+    # make it strong
+    def strong(cell)
+      "<strong>#{cell}</strong>"
+    end
+    
+    # make it small
+    def small(cell)
+      "<small>#{cell}</small>"
+    end
+    
+    # join multiple columns, with optional delimiter
+    def join(*args)
+      args.join(" ")
+    end
+
+    def joinbr(*args)
+      args.join("<br>")
+    end
+
+    def joincomma(*args)
+      args.join(", ")
+    end
+
   end
 end
