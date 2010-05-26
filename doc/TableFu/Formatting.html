@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: TableFu::Formatting</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -43,7 +43,8 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><h1>Class: TableFu::Formatting 
+    <div id="content"><h1>Class: TableFu::Formatting
+  
   
   
 </h1>
@@ -71,6 +72,7 @@
     
   
   
+  
     <dt class="r2 last">Defined in:</dt>
     <dd class="r2 last">lib/table_setter/table.rb</dd>
   
@@ -80,11 +82,15 @@
 
 
 
-  <h2>Class Method Summary</h2>
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
 
-  <ul class="summary">
-    
-      <li class="public ">
+    <ul class="summary">
+      
+        <li class="public ">
   <span class="summary_signature">
     
       <a href="#bar-class_method" title="bar (class method)">+ (Object) <strong>bar</strong>(percent) </a>
@@ -97,18 +103,183 @@
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 In order to show a sideways bar chart, we&#8217;re extending the builtin
 TableFu formatters.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-  </ul>
+      <a href="#join-class_method" title="join (class method)">+ (Object) <strong>join</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+join multiple columns, with optional delimiter.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#joinbr-class_method" title="joinbr (class method)">+ (Object) <strong>joinbr</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#joincomma-class_method" title="joincomma (class method)">+ (Object) <strong>joincomma</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#link-class_method" title="link (class method)">+ (Object) <strong>link</strong>(linkname, href) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+format as a link, if the href is empty don&#8217;t make the link active.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#markdown-class_method" title="markdown (class method)">+ (Object) <strong>markdown</strong>(cell) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+markdown formatting in tablefu cells.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#small-class_method" title="small (class method)">+ (Object) <strong>small</strong>(cell) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+make it small.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#strong-class_method" title="strong (class method)">+ (Object) <strong>strong</strong>(cell) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+make it strong.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
 
 
   <div id="class_method_details" class="method_details_list">
@@ -164,14 +335,282 @@ TableFu formatters.
 </table>
 </div>
     
+      <div class="method_details ">
+  <p class="signature " id="join-class_method">
+  
+    + (<tt>Object</tt>) <strong>join</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+join multiple columns, with optional delimiter
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+251
+252
+253</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 251</span>
+
+<span class='def def kw'>def</span> <span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot; &quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="joinbr-class_method">
+  
+    + (<tt>Object</tt>) <strong>joinbr</strong>(*args) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+255
+256
+257</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 255</span>
+
+<span class='def def kw'>def</span> <span class='joinbr identifier id'>joinbr</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot;&lt;br&gt;&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="joincomma-class_method">
+  
+    + (<tt>Object</tt>) <strong>joincomma</strong>(*args) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+259
+260
+261</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 259</span>
+
+<span class='def def kw'>def</span> <span class='joincomma identifier id'>joincomma</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot;, &quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="link-class_method">
+  
+    + (<tt>Object</tt>) <strong>link</strong>(linkname, href) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+format as a link, if the href is empty don&#8217;t make the link active
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+231
+232
+233
+234
+235
+236
+237
+238</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 231</span>
+
+<span class='def def kw'>def</span> <span class='link identifier id'>link</span><span class='lparen token'>(</span><span class='linkname identifier id'>linkname</span><span class='comma token'>,</span> <span class='href identifier id'>href</span><span class='rparen token'>)</span>
+  <span class='title identifier id'>title</span> <span class='assign token'>=</span> <span class='linkname identifier id'>linkname</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/([&quot;])/</span><span class='comma token'>,</span> <span class='string val'>&quot;'&quot;</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='notop op'>!</span><span class='href identifier id'>href</span><span class='dot token'>.</span><span class='value identifier id'>value</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='href identifier id'>href</span><span class='dot token'>.</span><span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+    <span class='dstring node'>&quot;&lt;a href=\&quot;#{href}\&quot; title=\&quot;#{title}\&quot;&gt;#{linkname}&lt;/a&gt;&quot;</span>
+  <span class='else else kw'>else</span>
+    <span class='dstring node'>&quot;&lt;a title=\&quot;#{title}\&quot;&gt;#{linkname}&lt;/a&gt;&quot;</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="markdown-class_method">
+  
+    + (<tt>Object</tt>) <strong>markdown</strong>(cell) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+markdown formatting in tablefu cells
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+226
+227
+228</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 226</span>
+
+<span class='def def kw'>def</span> <span class='markdown identifier id'>markdown</span><span class='lparen token'>(</span><span class='cell identifier id'>cell</span><span class='rparen token'>)</span>
+  <span class='RDiscount constant id'>RDiscount</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='cell identifier id'>cell</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_html identifier id'>to_html</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="small-class_method">
+  
+    + (<tt>Object</tt>) <strong>small</strong>(cell) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+make it small
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+246
+247
+248</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 246</span>
+
+<span class='def def kw'>def</span> <span class='small identifier id'>small</span><span class='lparen token'>(</span><span class='cell identifier id'>cell</span><span class='rparen token'>)</span>
+  <span class='dstring node'>&quot;&lt;small&gt;#{cell}&lt;/small&gt;&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="strong-class_method">
+  
+    + (<tt>Object</tt>) <strong>strong</strong>(cell) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+make it strong
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+241
+242
+243</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 241</span>
+
+<span class='def def kw'>def</span> <span class='strong identifier id'>strong</span><span class='lparen token'>(</span><span class='cell identifier id'>cell</span><span class='rparen token'>)</span>
+  <span class='dstring node'>&quot;&lt;strong&gt;#{cell}&lt;/strong&gt;&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
     
     <div id="footer">
-  Generated on Tue Mar  9 17:18:07 2010 by 
+  Generated on Wed May 26 16:39:50 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.5.3 (ruby-1.8.7).
+  0.5.5 (ruby-1.8.7).
 </div>
 
   </body>

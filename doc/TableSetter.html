@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Module: TableSetter</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -43,7 +43,8 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><h1>Module: TableSetter 
+    <div id="content"><h1>Module: TableSetter
+  
   
   
 </h1>
@@ -54,6 +55,7 @@
     
   
     
+  
   
   
     <dt class="r1 last">Defined in:</dt>
@@ -80,7 +82,7 @@
     <dl class="constants">
       
         <dt id="ROOT-constant" class="">ROOT =
-            <span class="summary_desc"></span>
+          
         </dt>
         <dd><pre class="code"><span class='File constant id'>File</span><span class='dot token'>.</span><span class='expand_path identifier id'>expand_path</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='dirname identifier id'>dirname</span><span class='lparen token'>(</span><span class='__FILE__ __file__ kw'>__FILE__</span><span class='rparen token'>)</span> <span class='plus op'>+</span> <span class='string val'>&quot;/..&quot;</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='defined? defined kw'>defined?</span> <span class='ROOT constant id'>ROOT</span>
 </pre></dd>
@@ -89,7 +91,7 @@
   
 
 
-  <h2>Class Attribute Summary</h2>
+  <h2>Class Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
   <ul class="summary">
     
       <li class="public ">
@@ -108,12 +110,13 @@
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns the value of attribute config_path.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
@@ -121,11 +124,15 @@ Returns the value of attribute config_path.
   </ul>
 
 
-  <h2>Class Method Summary</h2>
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
 
-  <ul class="summary">
-    
-      <li class="public ">
+    <ul class="summary">
+      
+        <li class="public ">
   <span class="summary_signature">
     
       <a href="#configure-class_method" title="configure (class method)">+ (Object) <strong>configure</strong>(path) </a>
@@ -138,14 +145,15 @@ Returns the value of attribute config_path.
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
-    
-      <li class="public ">
+      
+        <li class="public ">
   <span class="summary_signature">
     
       <a href="#table_path-class_method" title="table_path (class method)">+ (Object) <strong>table_path</strong> </a>
@@ -158,14 +166,17 @@ Returns the value of attribute config_path.
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
-    
-  </ul>
+      
+    </ul>
+  
+
 
   <div id="class_attr_details" class="attr_details">
     <h2>Class Attribute Details</h2>
@@ -197,12 +208,12 @@ Returns the value of attribute config_path
       <pre class="lines">
 
 
-21
 22
-23</pre>
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter.rb', line 22</span>
 
 <span class='def def kw'>def</span> <span class='config_path identifier id'>config_path</span>
   <span class='@config_path ivar id'>@config_path</span>
@@ -233,12 +244,12 @@ Returns the value of attribute config_path
       <pre class="lines">
 
 
-23
 24
-25</pre>
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter.rb', line 24</span>
 
 <span class='def def kw'>def</span> <span class='configure identifier id'>configure</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
   <span class='@config_path ivar id'>@config_path</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='expand_path identifier id'>expand_path</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
@@ -262,12 +273,12 @@ Returns the value of attribute config_path
       <pre class="lines">
 
 
-27
 28
-29</pre>
+29
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter.rb', line 28</span>
 
 <span class='def def kw'>def</span> <span class='table_path identifier id'>table_path</span>
   <span class='@config_path ivar id'>@config_path</span> <span class='plus op'>+</span> <span class='string val'>&quot;/tables/&quot;</span>
@@ -283,9 +294,9 @@ Returns the value of attribute config_path
 </div>
     
     <div id="footer">
-  Generated on Tue Mar  9 17:18:08 2010 by 
+  Generated on Wed May 26 16:39:50 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.5.3 (ruby-1.8.7).
+  0.5.5 (ruby-1.8.7).
 </div>
 
   </body>

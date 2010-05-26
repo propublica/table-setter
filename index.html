@@ -8,7 +8,7 @@
   </head>
   <body>
     <a href="http://www.propublica.org" class="propublica">&nbsp;</a>
-    <h1>TableSetter <small>&ndash; Version: 0.1.8</small></h1>
+    <h1>TableSetter <small>&ndash; Version: 0.1.10</small></h1>
     <p><a href="https://github.com/propublica/table-setter">TableSetter</a> is a Ruby app that provides an easy way to present CSVs hosted locally or remotely (e.g. on google, etc) in custom HTML. TableSetter in the wild: <a href="http://projects.propublica.org/tables/failed-banks">a list of all stimulus projects from last year</a>, <a href="http://projects.propublica.org/tables/stimulus-spending-progress">the stimulus spending progress</a>, or <a href="http://projects.propublica.org/tables/failed-banks">a list of failed banks due to the last recession</a>.</p>
     <p>Each table is filterable and sortable on multiple columns. Also each column can be formatted in one of many different styles. In production mode, <strong>TableSetter</strong> provides valid expires headers and can be coupled with an upstream cache like <a href="http://rtomayko.github.com/rack-cache/">Rack::Cache</a> or varnish for speedy presentation.</p>
     <h2><a id="toc">Table of Contents</a></h2>
@@ -222,6 +222,10 @@ script/generate table-setter</pre>
     <h2><a id="credits" href="#toc">Credits</a></h2>
     <p><a href="http://github.com/thejefflarson">Jeff Larson</a> (Maintainer), <a href="http://github.com/brianboyer/">Brian Boyer</a>, <a href="http://github.com/kleinmatic">Scott Klein</a>, <a href="http://github.com/markpercival">Mark Percival</a>, <a href="http://github.com/seebq">Charles Brian Quinn</a>, <a href="http://github.com/bouvard">Christopher Groskopf</a>, and <a href="http://github.com/ryanmark">Ryan Mark</a>.</p>
     <h2><a id="changes" href="#toc">Change Log</a></h2>
+    <strong>1.10</strong>
+    <p>New formatters via <a href="http://github.com/ryanmark">Ryan Mark</a>.
+    <strong>1.9</strong>
+    <p>No Op.</p>
     <strong>1.8</strong>
     <p>Bunch of fixes from <a href="http://github.com/ryanmark">Ryan Mark</a>, and beta markdown functionality. Once Markdown is tested we'll release 0.2.0</p>
     <strong>1.7</strong>
