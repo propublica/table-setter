@@ -97,7 +97,7 @@
             renderTable(table);
             return false;
           }
-          $(filter).keyup(filterMe);
+          setInterval(filterMe, 250);
           $(filter).submit(filterMe);
         });
       }

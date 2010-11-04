@@ -18,20 +18,29 @@ $(document).ready(function(){
         $(this).addClass('sorted');
       });
     }
-  }); 
+  });
+  
+  // Number formatting parsing, always difficult in JavaScript
+  var NUM_CLEANER = /[$£€\,]/g;
   $.tablesorter.addParser({
     id: "newNumbers",
     is: function(s,table) {
-      var c = table.config;
-      var obj = parseFloat(s, 10);
-      return (obj === +obj) || (toString.call(obj) === '[object Number]');
+      var newNumber   = s.replace(NUM_CLEANER, "");
+      var maybeNumber = parseFloat(s, 10);
+      return maybeNumber.toString() === newNumber;
     },
     format: function(s){
       return parseFloat(s, 10);
     },
     type: "numeric"
   });
-
+  
+  // Overriding format float to actually test a bit better.
+  var oldFloat = $.tablesorter.formatFloat;
+  $.tablesorter.formatFloat = $.tablesorter.formatInt = function(obj){
+    return (obj === +obj) || (toString.call(obj) === '[object Number]') ? 0 : oldFloat(obj);
+  };
+  
   //initialize the table
   var table = window.table = $('#data').tablesorter({
     widgets: ['columnHighlight'],
