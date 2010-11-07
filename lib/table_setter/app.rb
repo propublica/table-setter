@@ -23,7 +23,7 @@ module TableSetter
       show :index, :tables => Table.all
     end
     
-    ["/:slug/:page/", "/:slug/"].each do |path|
+    ["/:slug/:page/?", "/:slug/?"].each do |path|
       get path do
         headers['Cache-Control'] = "public, max-age=#{TableSetter::App.cache_timeout}"
         not_found unless Table.exists? params[:slug]
