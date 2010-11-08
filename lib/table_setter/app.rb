@@ -12,18 +12,18 @@ module TableSetter
     not_found do
       show :"404"
     end
-    
+
     error do
       show :"500"
     end
-    
+
     get "/" do
       headers['Cache-Control'] = "public, max-age=#{TableSetter::App.cache_timeout}"
       last_modified Table.fresh_yaml_time
       show :index, :tables => Table.all
     end
-    
-    ["/:slug/:page/?", "/:slug/?"].each do |path|
+
+    ["/:slug/:page", "/:slug"].each do |path|
       get path do
         headers['Cache-Control'] = "public, max-age=#{TableSetter::App.cache_timeout}"
         not_found unless Table.exists? params[:slug]
@@ -35,13 +35,13 @@ module TableSetter
         show :table, :table => table, :page => page
       end
     end
-    
+
     private
-    
+
     def show(page, locals={})
       erb page, {:layout => true}, locals
     end
-    
+
     class << self
       attr_accessor :cache_timeout
 

@@ -7,5 +7,5 @@ require 'rack/test'
 require 'spec/autorun'
 TableSetter.configure(File.join(File.dirname(__FILE__), "..", "template"))
 Spec::Runner.configure do |config|
-  
+
 end
