@@ -8,7 +8,7 @@
   </head>
   <body>
     <a href="http://www.propublica.org" class="propublica">&nbsp;</a>
-    <h1>TableSetter <small>&ndash; Version: 0.1.10</small></h1>
+    <h1>TableSetter <small>&ndash; Version: 0.2.0</small></h1>
     <p><a href="https://github.com/propublica/table-setter">TableSetter</a> is a Ruby app that provides an easy way to present CSVs hosted locally or remotely (e.g. on google, etc) in custom HTML. TableSetter in the wild: <a href="http://projects.propublica.org/tables/failed-banks">a list of all stimulus projects from last year</a>, <a href="http://projects.propublica.org/tables/stimulus-spending-progress">the stimulus spending progress</a>, or <a href="http://projects.propublica.org/tables/failed-banks">a list of failed banks due to the last recession</a>.</p>
     <p>Each table is filterable and sortable on multiple columns. Also each column can be formatted in one of many different styles. In production mode, <strong>TableSetter</strong> provides valid expires headers and can be coupled with an upstream cache like <a href="http://rtomayko.github.com/rack-cache/">Rack::Cache</a> or varnish for speedy presentation.</p>
     <h2><a id="toc">Table of Contents</a></h2>
@@ -37,7 +37,7 @@ rake install</pre>
 <pre>
 table-setter install path/to/directory</pre>
     <p>
-      To start the development server run: 
+      To start the development server run:
     </p>
 <pre>
 table-setter start path/to/directory</pre>
@@ -103,48 +103,48 @@ Potter Savings and Loans,1100,1000000,http://angelsandwingsmrstewart.com
 <pre>
 table:
   title: The title of the table
-  
+
   # google_key:, file:, or url: define how a table is loaded.
   # only one is necessary
-  file: loads a local CSV file from the /tables directory. 
-  url: will load a CSV file from an external server, and 
+  file: loads a local CSV file from the /tables directory.
+  url: will load a CSV file from an external server, and
   google_key: is a google key url from an external google doc (see note).
-  
+
   deck: A HTML string describing the table, appears above the table itself.
-  
+
   footer: A HTML string for notes/caveats etc. Appears below the table.
-  
+
   column_options: # Defines a hash of options that are passed onto TableFu
-  
+
     columns: # A list of columns to include, for example:
      - Bank # would only include the bank column in the table
-     
+
     style: # A list of style declarations by column, for example:
       Bank: 'text-align:left;' # would left-align the text in the "Bank" column.
-      
+
     sorted_by: # Defines the sort order and column to sort by of the table.
       Bank: ascending # would sort by the Bank column in ascending order
-    
+
     total: # Declares which columns should have a totals row.
       ['Funds', 'Spent']
-    
+
     formatting: # Defines which of the TableFu formatters to apply to a column.
       (%) Spent: bar # applies the bar formatter to the '(%) Spent' column.
-      Link: # Creates a meta column form two other columns 
+      Link: # Creates a meta column form two other columns
         method: link # describes the formatter to use
         arguments: ['Bank', 'URL'] # Combines Bank and URL as arguments
-  
+
   faceting: # Describes the faceting, or grouping, to apply to a table
     facet_by: Bank # groups the records by bank name
-    
+
   hard_paginate: true # Dictates that the table should be spread across multiple pages
                       # can't be used with faceting, and disables the user filtering
-  
+
   per_page: 250 # Instructs TableSetter to only page by 250 rows.
-  
-  live: true # publishes the table in the index page. Note that even if live is 
-             # set to false the table is still accessible directly. 
-  
+
+  live: true # publishes the table in the index page. Note that even if live is
+             # set to false the table is still accessible directly.
+
 </pre>
 
     <h3>NB: A Note About google_key</h3>
@@ -181,7 +181,7 @@ ln -s /path/to/table-setter/public /docroot/tables</pre>
 <pre>
 TableSetter::App.cache_timeout = 60 * 15 # 15 minutes</pre>
 <p>That line dictates the max age of a request and you'll want to tweak it depending on how frequently changed your tables will be and how many users you expect. If you want to define any <a href="https://github.com/propublica/table-fu">TableFu</a> formatters you should do so in <strong>config.ru</strong>.</p>
-  
+
     <h3>Static</h3>
     <p>You can also use to pre-build <strong>table-setter</strong> your tables as html and upload the built files to your web server. You can build them using the <strong>table-setter</strong> command:</p>
 <pre>
@@ -216,27 +216,31 @@ script/generate table-setter</pre>
       <li>
         <a href="http://media.apps.chicagotribune.com/tables/speed.html">In the Wild: Chicago Tribune</a><br>
         A table showing leniency rates of Chicago area judges in speeding cases.
-        
+
       </li>
     </ul>
     <h2><a id="credits" href="#toc">Credits</a></h2>
     <p><a href="http://github.com/thejefflarson">Jeff Larson</a> (Maintainer), <a href="http://github.com/brianboyer/">Brian Boyer</a>, <a href="http://github.com/kleinmatic">Scott Klein</a>, <a href="http://github.com/markpercival">Mark Percival</a>, <a href="http://github.com/seebq">Charles Brian Quinn</a>, <a href="http://github.com/bouvard">Christopher Groskopf</a>, and <a href="http://github.com/ryanmark">Ryan Mark</a>.</p>
     <h2><a id="changes" href="#toc">Change Log</a></h2>
-    <strong>1.10</strong>
+    <strong>0.2.0</strong>
+    <p><b>Backwards incompatible change:</b> Table urls no longer end in a  trailing slash. Please the <strong>url_for</strong> calls in your templates to reflect the change.</p>
+    <strong>0.1.11</strong>
+    <p>Javascript Fixes. <b>Note:</b> You'll need to delete the javascript's folder in the config directory and run <strong>table-setter install</strong> to grab the changes.</p>
+    <strong>0.1.10</strong>
     <p>New formatters via <a href="http://github.com/ryanmark">Ryan Mark</a>.
-    <strong>1.9</strong>
+    <strong>0.1.9</strong>
     <p>No Op.</p>
-    <strong>1.8</strong>
+    <strong>0.1.8</strong>
     <p>Bunch of fixes from <a href="http://github.com/ryanmark">Ryan Mark</a>, and beta markdown functionality. Once Markdown is tested we'll release 0.2.0</p>
-    <strong>1.7</strong>
+    <strong>0.1.7</strong>
     <p>Bugfix to the build command to place assets in the right place</p>
-    <strong>1.6</strong>
+    <strong>0.1.6</strong>
     <p>Fix in <strong>build_assets</strong> in command.rb, via <a href="http://github.com/propublica/table-setter/commit/2dd207d57eda4d78520b8a5fa99e6e085952206a">Christopher Groskopf</a></p>
-    <strong>1.5</strong>
+    <strong>0.1.5</strong>
     <p>Bugfixes.</p>
-    <strong>1.4</strong>
+    <strong>0.1.4</strong>
     <p>Javascript fixes and thin added as a dependency.</p>
-    <strong>1.3</strong>
+    <strong>0.1.3</strong>
     <p>Initial release.</p>
     <h2><a id="license" href="#toc">License</a></h2>
     <pre>Copyright (c) 2010 ProPublica
