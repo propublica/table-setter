@@ -7,9 +7,9 @@
     <% end %>
     <div id="pager" class="pager">
       <form>
-        <a href="<%= url_for "/#{table.slug}/#{table.prev_page}" if !table.prev_page.nil? %>" class="prev">prev</a>
+        <a href="<%= url_for "/#{table.slug}/#{table.prev_page}/" if !table.prev_page.nil? %>" class="prev">prev</a>
         <span class="pagedisplay"/><%= "#{table.page} / #{table.total_pages}" if table.hard_paginate? %></span>
-        <a href="<%= url_for "/#{table.slug}/#{table.next_page}" if !table.next_page.nil? %>" class="next">next</a>
+        <a href="<%= url_for "/#{table.slug}/#{table.next_page}/" if !table.next_page.nil? %>" class="next">next</a>
         <% if !table.hard_paginate? %>
           <select class="pagesize">
             <% (1..4).each do |count|%>
