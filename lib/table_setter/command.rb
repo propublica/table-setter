@@ -24,7 +24,7 @@ options:
     def initialize
       @prefix = ""
       parse_options
-      @prefix = "/#{@prefix}/".gsub(/^\/\//, "")
+      @prefix = "/#{@prefix}/".gsub(/^\/\//, "/")
       command = ARGV.shift
       @directory = ARGV.shift || '.'
       TableSetter.configure @directory
@@ -73,8 +73,9 @@ options:
     end
 
     def build_rack
+      prefix = @prefix
       Rack::Builder.app do
-        map "/#{@prefix}" do
+        map prefix do
           use Rack::CommonLogger, STDERR
           use Rack::ShowExceptions
           use Rack::Lint
