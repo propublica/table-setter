@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{table_setter}
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeff Larson"]
-  s.date = %q{2010-11-09}
+  s.date = %q{2010-11-12}
   s.description = %q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
   s.email = %q{thejefflarson@gmail.com}
   s.executables = ["table-setter", "table-setter"]
