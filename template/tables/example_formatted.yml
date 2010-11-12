@@ -3,7 +3,7 @@ table:
   file:  example_formatted.csv
   deck:
     <p>The success of the federal stimulus program may hinge on the speed with which the government is able to distribute the billions authorized by Congress. Unlike some other estimates of the cost of the stimulus, which are based on spending projections, we took our numbers from the actual budget authority issued by Congress — $792 billion and change. We'll be tracking the progress of stimulus payments made by federal agencies weekly.</p>
-    
+
   footer:
     <p>This chart and other stories are part of Eye on the Stimulus, our blog dedicated to tracking the stimulus from bill to building.</p>
   column_options:

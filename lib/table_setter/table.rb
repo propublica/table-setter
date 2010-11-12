@@ -8,7 +8,7 @@ module TableSetter
     # The +Table+ class handles processing the yaml processing and csv loading,
     # through table fu
     attr_reader :data, :table_opts, :facets, :prev_page, :next_page, :page
-    
+
     # A new Table should accept a slug, mapped to a yaml in the tables directory,
     # optionally you can defer loading of the table until you're ready to render it.
     def initialize(slug, opts={:defer => false})
@@ -20,7 +20,7 @@ module TableSetter
         self.load
       end
     end
-    
+
     # The load method handles the actual request either to the file system or remote url.
     # It performs the requested data manipulations form the yml file after the data has been loaded.
     # We're keeping this explicit to control against unnecessary http requests.
@@ -33,7 +33,7 @@ module TableSetter
       end
       @data.delete_rows! @table_opts[:dead_rows] if @table_opts[:dead_rows]
     end
-    
+
     # The csv_data for the table fu instance is loaded either from the remote source or from a local
     # file, depending on the keys present in the yaml file.
     def csv_data
@@ -42,71 +42,71 @@ module TableSetter
       when file then File.open(uri).read
       end
     end
-    
+
     # Returns a usable uri based on what sort of input we have.
     def uri
-      case 
+      case
       when google_key then "http://spreadsheets.google.com/pub?key=#{google_key}&output=csv"
       when url then url
       when file then File.expand_path("#{TableSetter.table_path}#{file}")
       end
     end
-    
+
     # The real +updated_at+ of a Table instance is the newer modification time of the csv file or
     # the yaml file. Updates to either resource should break the cache.
     def updated_at
       csv_time = google_key.nil? ? modification_time(uri) : google_modification_time
       (csv_time > yaml_time ? csv_time : yaml_time).to_s
     end
-  
+
     def faceted?
       !@facets.nil?
     end
-    
+
     # A table isn't sortable by tablesorter if it's either faceted or multi-page paginated.
     def sortable?
       !faceted? && !hard_paginate?
     end
-    
+
     # hard_paginate instructs the app to render batches of a table.
     def hard_paginate?
       @table_opts[:hard_paginate] == true
     end
-    
-    # The number of rows per page. Defaults to 20 
+
+    # The number of rows per page. Defaults to 20
     def per_page
       @table_opts[:per_page] || 20
     end
-    
+
     # paginate uses TableFu's only! method to batch the table. It also computes the page attributes
     # which are nil and meaningless otherwise.
     def paginate!(curr_page)
       return if !hard_paginate?
       @page = curr_page.to_i
       raise ArgumentError if @page < 1 || @page > total_pages
-      adj_page = @page - 1 > 0 ? @page - 1 : 0 
+      adj_page = @page - 1 > 0 ? @page - 1 : 0
       @prev_page = adj_page > 0 ? adj_page : nil
       @next_page = page < total_pages ? (@page + 1) : nil
       @data.only!(adj_page * per_page..(@page * per_page - 1))
     end
-    
-    
+
+
     # The total pages we'll have. We need to calculate it before paginate, so that we still have the
     # full @data.rows.length
     def total_pages
       @total_pages ||= (@data.rows.length / per_page.to_f).ceil
     end
-    
+
     # A convienence method to return the sort array for table setter.
     def sort_array
       @data.sorted_by.inject([]) do |memo, (key, value)|
         memo << [@data.columns.index(key), value == 'descending' ? 1 : 0]
       end
     end
-    
+
     # We magically need access to the top level keys like google_key, or uri for the other methods.
     # It's a bit dangerous because everything returns nil otherwise. At some point we should eval
-    # and create methods at boot time.  
+    # and create methods at boot time.
     def method_missing(method)
       if @table_opts[method]
         @table_opts[method]
@@ -117,11 +117,10 @@ module TableSetter
 
     # Returns the google modification time of the spreadsheet. The public urls don't set the
     # last-modified header on anything, so we have to do a little dance to find out when exactly
-    # the spreadsheet was last modified. The od[0-9] part of the feed url changes at whim, so we'll 
-    # need to keep an eye on it. Another propblem is that curb doesn't feel like parsing headers, so
+    # the spreadsheet was last modified. The od[0-9] part of the feed url changes at whim, so we'll
+    # need to keep an eye on it. Another problem is that curb doesn't feel like parsing headers, so
     # since a head request from google is pretty lightweight we can get away with using Net:HTTP.
-    # If for whatever reason the google modification time is busted we'll return the epoch,
-    # and rely on the yaml modified time.
+    # If for whatever reason the google modification time is busted we'll the yaml modified time.
     def google_modification_time
       local_url = URI.parse "http://spreadsheets.google.com/feeds/list/#{google_key}/od6/public/basic"
       web_modification_time local_url
@@ -136,7 +135,7 @@ module TableSetter
       end
       resp['Last-Modified'].nil? ? Time.at(0) : Time.parse(resp['Last-Modified'])
     end
-    
+
     # Dispatches to web_modification_time if we're dealing with a url, otherwise just stats the
     # local file.
     def modification_time(path)
@@ -170,11 +169,11 @@ module TableSetter
   public
 
     class << self
-      
+
       # Returns all the tables in the table directory. Each table is deferred so accessing the @data
       # attribute will throw and error.
       def all
-        tables=[] 
+        tables=[]
         Dir.glob("#{TableSetter.table_path}/*.yml").each do |file|
           table = new(File.basename(file, ".yml"), :defer => true)
           tables << table if table.live
@@ -191,7 +190,7 @@ module TableSetter
           obj_time = File.new(File.expand_path obj).mtime
           if memo_time > obj_time
             memo
-          else 
+          else
             obj
           end
         end
@@ -226,7 +225,7 @@ class TableFu::Formatting
     def markdown(cell)
       RDiscount.new(cell).to_html
     end
-    
+
     # format as a link, if the href is empty don't make the link active
     def link(linkname, href)
       title = linkname.to_s.gsub(/(["])/, "'")
@@ -236,17 +235,17 @@ class TableFu::Formatting
         "<a title=\"#{title}\">#{linkname}</a>"
       end
     end
-    
+
     # make it strong
     def strong(cell)
       "<strong>#{cell}</strong>"
     end
-    
+
     # make it small
     def small(cell)
       "<small>#{cell}</small>"
     end
-    
+
     # join multiple columns, with optional delimiter
     def join(*args)
       args.join(" ")

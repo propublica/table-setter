@@ -35,10 +35,12 @@ $(document).ready(function(){
     type: "numeric"
   });
   
-  // Overriding format float to actually test a bit better.
+  // Overriding format float to actually test a bit better. If it is a number 
+  // already we'll return the number's value, if not we'll call the old parse
+  // float from table sorter. 
   var oldFloat = $.tablesorter.formatFloat;
   $.tablesorter.formatFloat = $.tablesorter.formatInt = function(obj){
-    return (obj === +obj) || (toString.call(obj) === '[object Number]') ? 0 : oldFloat(obj);
+    return (obj === +obj) || (Object.prototype.toString.call(obj) === '[object Number]') ? obj : oldFloat(obj);
   };
   
   //initialize the table
