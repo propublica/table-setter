@@ -1,3 +1,4 @@
+<%# encoding: UTF-8 %>
 <% table ||= nil %>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@
     <%= javascript_script_tag "/javascripts/jquery.tablesorter.multipagefilter.js" %>
     <%= javascript_script_tag "/javascripts/application.js" %>
     <%= stylesheet_link_tag "/stylesheets/stylesheet.css", :media=>"screen" %>
-    
+
     <script>
       <% if !table.nil? %>
         var sortPlease = <%= table.sortable? %>;
@@ -24,7 +25,7 @@
         var sortPlease = false;
       <% end %>
     </script>
-    
+
   </head>
   <body>
     <div id="table_fu">

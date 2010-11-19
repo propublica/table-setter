@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby -rrubygems
- 
-require File.dirname(__FILE__ ) + "/../lib/table_setter"
+
+require "#{File.expand_path(File.dirname(__FILE__ ))}/../lib/table_setter.rb"
 
 TableSetter::Command.new

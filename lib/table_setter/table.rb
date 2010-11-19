@@ -1,5 +1,5 @@
+# encoding: utf-8
 require 'curb'
-require 'fastercsv'
 require 'table_fu'
 require 'net/http'
 

@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+require 'spec_helper'
 
 
 describe TableSetter::App, "in the application" do
@@ -16,7 +16,7 @@ describe TableSetter::App, "in the application" do
 
 
   it "should render a table" do
-    get '/example'
+    get '/example/'
     last_response.ok?.should be_true
     last_response.body.include?("Failed Banks List").should be_true
   end

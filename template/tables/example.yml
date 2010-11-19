@@ -9,13 +9,12 @@ table:
     columns:
     -  Bank
     -  State
-    -  Closing Date 
-    -  Our Coverage  
+    -  Closing Date
+    -  Our Coverage
     -  Federal Regulators
     -  Public Enforcement Documents
     style:
       Bank: 'text-align:left;'
-    sorted_by: 
+    sorted_by:
       Closing Date: 'ascending'
   live: true
-  

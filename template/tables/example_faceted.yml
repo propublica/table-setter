@@ -6,7 +6,7 @@ table:
   footer:
     <p>This chart and other stories are part of <a href="http://www.propublica.org/ion/stimulus/">Eye on the Stimulus</a>, our blog dedicated to tracking the stimulus from bill to building.</p>
   column_options:
-    columns: 
+    columns:
       - State
       - Cong. District
       - Representative
@@ -21,7 +21,7 @@ table:
     total: ['Total Appropriation', 'Projects']
     sorted_by:
       Cong. District: descending
-  faceting: 
+  faceting:
     facet_by: State
   live: false
-  
+

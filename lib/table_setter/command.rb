@@ -130,6 +130,7 @@ options:
 
     def install_file(body, dest)
       ensure_directory dest
+      body.force_encoding("UTF-8") if RUBY_VERSION > "1.9"
       File.open(dest, "w") do |file|
         file.write(body)
       end
