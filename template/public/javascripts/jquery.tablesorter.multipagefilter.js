@@ -6,19 +6,27 @@
         // clear the table body
         $.tablesorter.clearTableBody(table);
         var tableBody = $(table.tBodies[0]);
-        
-        for(var i = 0; i < table.config.collection.length; i++) {          
+        var collection_length = table.config.collection.length
+        if (table.config.reset) {
+            collection_length = table.config.size
+        }
+        for(var i = 0; i < collection_length; i++) {
           var o = table.config.collection[i];
           var l = o.length;
           for(var j=0; j < l; j++) {
             tableBody[0].appendChild(o[j]);
           }
         }
+        if (table.config.reset && table.config.page > 0) {
+            var c = table.config;
+            $(c.cssPageDisplay).text(1 + c.seperator + c.totalPages)
+            table.config.page = 0;
+        }
         $(table).trigger("applyWidgets");
       }
-      
-      
+        
       function renderTable(table){
+        table.config.reset = false;
         var newString = table.config.filterSelector[0].value;
         if(newString.length > 1){
           if(table.config.container){
@@ -27,12 +35,15 @@
           
           var toShow = [];
           newString = $.trim(newString);
-          var words = newString.toLowerCase().split(" ");          
-          
+          var words = newString.toLowerCase().split(" ");
           // no change, don't do anything
-          if (newString === table.config.string) return false;
+          if (newString === table.config.string) {
+            return false;
+          }
           // press was just a string
-          if (newString[-1] === " ") { table.config.string = newString; return false; }
+          if (newString[-1] === " ") {
+            table.config.string = newString; return false; 
+          }
           // most of the string is old
           if (newString.indexOf(table.config.string) > -1){
             // don't change the search array but we only need the last word
@@ -56,16 +67,22 @@
           };
           table.config.collection = toShow.slice(0);
           replaceRows(table);
-          table.config.string     = newString;
+          table.config.string = newString;
         } else {
-          table.config.string     = "";
+          table.config.string = "";
           table.config.collection = table.config.rowsCopy.slice(0);
           if(table.config.container){
+            // Revert to default table
             table.config.container.show();
+            if (newString.length === 0 && table.config.oldString.length > 0) {
+                table.config.reset = true;
+                replaceRows(table);
+            }
           } else {
             replaceRows(table);
           }
         }
+        table.config.oldString = newString;
       }
       
       this.defaults = {
@@ -90,9 +107,9 @@
             $(this).trigger("appendCache");
           }
           table.config.string = "";
+          table.config.oldString = "";
           table.config.collection = [];
           table.config.collection = table.config.rowsCopy.slice(0)
-            
           function filterMe(){
             renderTable(table);
             return false;
@@ -103,8 +120,6 @@
       }
     }
   });
-  
-  
   $.fn.extend({
     tablesorterMultiPageFilter: $.tablesorterMultiPageFilter.init
   });
