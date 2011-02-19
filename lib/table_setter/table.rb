@@ -26,6 +26,9 @@ module TableSetter
     # We're keeping this explicit to control against unnecessary http requests.
     def load
       csv = csv_data
+      if @table_opts[:column_options]
+        @table_opts[:column_options]['style'] ||= {}
+      end
       @data = TableFu.new(csv_data, @table_opts[:column_options] || {})
       if @table_opts[:faceting]
         @data.col_opts[:ignored] = [@table_opts[:faceting][:facet_by]]
