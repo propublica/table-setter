@@ -96,8 +96,8 @@ describe TableSetter::Table, "with hard pagination" do
   end
 
   it 'should not paginate when given a bad value' do
-    lambda {@data.paginate!(-1)}.should raise_exception(ArgumentError)
-    lambda {@data.paginate!(10000000)}.should raise_exception(ArgumentError)
+    lambda {@data.paginate!(-1)}.should raise_error(ArgumentError)
+    lambda {@data.paginate!(10000000)}.should raise_error(ArgumentError)
   end
 
   it 'should handle first page' do
