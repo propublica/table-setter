@@ -99,8 +99,10 @@ module TableSetter
 
     # A convienence method to return the sort array for table setter.
     def sort_array
-      @data.sorted_by.inject([]) do |memo, (key, value)|
-        memo << [@data.columns.index(key), value == 'descending' ? 1 : 0]
+      if @data.sorted_by
+        @data.sorted_by.inject([]) do |memo, (key, value)|
+          memo << [@data.columns.index(key), value == 'descending' ? 1 : 0]
+        end
       end
     end
 
