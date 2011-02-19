@@ -48,8 +48,11 @@ $(document).ready(function(){
     widgets: ['columnHighlight'],
     sortList: sortOrder//,
     //debug: true
-  })
-  .tablesorterPager({container: $("#pager"), positionFixed: false, size: perPage})
-  .tablesorterMultiPageFilter({filterSelector: $("#filter input")});
+  });
+  if (perPage > 0) {
+    table
+    .tablesorterPager({container: $("#pager"), positionFixed: false, size: perPage})
+    .tablesorterMultiPageFilter({filterSelector: $("#filter input")});
+  }
 
 });
