@@ -26,57 +26,56 @@
     <% end %>
   <% end %>
 </div>
-  <table id="data" class="tabular">
-    <thead>
-      <tr>
-      <% if table.faceted? %>
-        <th></th>
+<table id="data" class="tabular">
+  <thead>
+    <tr>
+    <% if table.faceted? %>
+      <th></th>
+    <% end %>
+    <% table.data.headers.each do |header| %>
+      <% unless header.ignored? %>
+        <th<%= " style=\"#{header.style}\"" %>><%= header %></th>
       <% end %>
-      <% table.data.headers.each do |header| %>
-        <% unless header.ignored? %>
-          <th<%= " style=\"#{header.style}\"" %>><%= header %></th>
-        <% end %>
-      <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <% if table.faceted? %>
-        <% table.facets.each do |facet| %>
-          <tr>
-            <th style="text-align:left;"><%= facet.faceted_on %></th>
-            <% facet.headers.each_with_index do |header, i| %>
-              <% unless i == 0 %>
-                <th style="<%= header.style %>">
-                  <%= facet.total_for(header.to_s).to_s if header.total? %>
-                </th>
-              <% end %>
+    <% end %>
+    </tr>
+  </thead>
+  <tfoot>
+  </tfoot>
+  <tbody>
+    <% if table.faceted? %>
+      <% table.facets.each do |facet| %>
+        <tr>
+          <th style="text-align:left;"><%= facet.faceted_on %></th>
+          <% facet.headers.each_with_index do |header, i| %>
+            <% unless i == 0 %>
+              <th style="<%= header.style %>">
+                <%= facet.total_for(header.to_s).to_s if header.total? %>
+              </th>
             <% end %>
-          </tr>
-          <% facet.rows.each do |row| %>
-            <tr>
-              <td></td>
-              <% row.columns.each do |column| %>
-                <% unless column.ignored? %>
-                  <td <%= "style=\"#{column.style}\"" %>><%= column %></td>
-                <% end %>
-              <% end %>
-            </tr>
           <% end %>
-        <% end %>
-      <% else %>
-        <% table.data.rows.each do |row| %>
+        </tr>
+        <% facet.rows.each do |row| %>
           <tr>
+            <td></td>
             <% row.columns.each do |column| %>
               <% unless column.ignored? %>
-                <td<%= " style=\"#{column.style}\"" %>><%= column %></td>
+                <td <%= "style=\"#{column.style}\"" %>><%= column %></td>
               <% end %>
             <% end %>
           </tr>
         <% end %>
       <% end %>
-    </tbody>
-     <tfoot>
-     </tfoot>
-  </table>
-  <div><%= table.footer %></div>
-</div>
+    <% else %>
+      <% table.data.rows.each do |row| %>
+        <tr>
+          <% row.columns.each do |column| %>
+            <% unless column.ignored? %>
+              <td<%= " style=\"#{column.style}\"" %>><%= column %></td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<div><%= table.footer %></div>
