@@ -48,11 +48,9 @@ $(document).ready(function(){
     widgets: ['columnHighlight'],
     sortList: sortOrder//,
     //debug: true
-  });
+  }).tablesorterMultiPageFilter({filterSelector: $("#filter input")});
   if (perPage > 0) {
-    table
-    .tablesorterPager({container: $("#pager"), positionFixed: false, size: perPage})
-    .tablesorterMultiPageFilter({filterSelector: $("#filter input")});
+    table.tablesorterPager({container: $("#pager"), positionFixed: false, size: perPage});
   }
 
 });
