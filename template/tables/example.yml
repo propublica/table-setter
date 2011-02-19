@@ -15,6 +15,4 @@ table:
     -  Public Enforcement Documents
     style:
       Bank: 'text-align:left;'
-    sorted_by:
-      Closing Date: 'ascending'
   live: true
