@@ -74,6 +74,10 @@ options:
 
     def build_rack
       prefix = @prefix
+      config = File.join(@directory, "config.ru")
+      if(File.exists? config)
+        return Rack::Builder.parse_file(config).first
+      end
       Rack::Builder.app do
         map prefix do
           use Rack::CommonLogger, STDERR
