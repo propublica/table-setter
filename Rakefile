@@ -13,13 +13,13 @@ begin
     gem.rubyforge_project = "table-setter"
     gem.add_development_dependency "rspec"
     gem.add_dependency "rack", ">= 1.1.0"
-    gem.add_dependency "thin", ">= 1.2.5"
-    gem.add_dependency "table_fu", ">= 0.3.2"
-    gem.add_dependency "sinatra", ">= 1.0.0"
+    gem.add_dependency "thin", ">= 1.2.4"
+    gem.add_dependency "table_fu", ">= 0.3.4"
+    gem.add_dependency "sinatra", ">= 1.2.1"
     gem.add_dependency "sinatra-static-assets", ">= 0.5.0"
     gem.add_dependency "emk-sinatra-url-for", ">= 0.2.1"
-    gem.add_dependency "curb", ">= 0.6.6.0"
-    gem.add_dependency "rdiscount", ">= 1.6.3.1"
+    gem.add_dependency "curb", ">= 0.7.15"
+    gem.add_dependency "rdiscount", ">= 1.6.8"
     gem.executables << "table-setter"
   end
 
