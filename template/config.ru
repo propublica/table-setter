@@ -16,7 +16,7 @@ require 'rubygems'
 require 'table_setter'
 TableSetter.configure(File.dirname(__FILE__))
 
-# Include custom formatters
+# You should put and custom formatters in lib/formatters.rb.
 require "#{File.expand_path(File.dirname(__FILE__))}/lib/formatters.rb"
 
 # You should probably enable Rack::Cache if you're not behind a caching proxy, by uncommenting the
