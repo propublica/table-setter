@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{table_setter}
-  s.version = "0.2.5"
+  s.version = "0.2.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeff Larson"]
-  s.date = %q{2011-02-19}
+  s.date = %q{2011-04-03}
   s.description = %q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
   s.email = %q{thejefflarson@gmail.com}
   s.executables = ["table-setter", "table-setter"]
@@ -102,6 +102,7 @@ Gem::Specification.new do |s|
     "spec/table-setter_spec.rb",
     "table_setter.gemspec",
     "template/config.ru",
+    "template/lib/formatters.rb",
     "template/public/favicon.ico",
     "template/public/images/th_arrow_asc.gif",
     "template/public/images/th_arrow_desc.gif",
@@ -141,34 +142,34 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_runtime_dependency(%q<rack>, [">= 1.1.0"])
-      s.add_runtime_dependency(%q<thin>, [">= 1.2.5"])
-      s.add_runtime_dependency(%q<table_fu>, [">= 0.3.2"])
-      s.add_runtime_dependency(%q<sinatra>, [">= 1.0.0"])
+      s.add_runtime_dependency(%q<thin>, [">= 1.2.4"])
+      s.add_runtime_dependency(%q<table_fu>, [">= 0.3.4"])
+      s.add_runtime_dependency(%q<sinatra>, [">= 1.2.1"])
       s.add_runtime_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
       s.add_runtime_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
-      s.add_runtime_dependency(%q<curb>, [">= 0.6.6.0"])
-      s.add_runtime_dependency(%q<rdiscount>, [">= 1.6.3.1"])
+      s.add_runtime_dependency(%q<curb>, [">= 0.7.15"])
+      s.add_runtime_dependency(%q<rdiscount>, [">= 1.6.8"])
     else
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<rack>, [">= 1.1.0"])
-      s.add_dependency(%q<thin>, [">= 1.2.5"])
-      s.add_dependency(%q<table_fu>, [">= 0.3.2"])
-      s.add_dependency(%q<sinatra>, [">= 1.0.0"])
+      s.add_dependency(%q<thin>, [">= 1.2.4"])
+      s.add_dependency(%q<table_fu>, [">= 0.3.4"])
+      s.add_dependency(%q<sinatra>, [">= 1.2.1"])
       s.add_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
       s.add_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
-      s.add_dependency(%q<curb>, [">= 0.6.6.0"])
-      s.add_dependency(%q<rdiscount>, [">= 1.6.3.1"])
+      s.add_dependency(%q<curb>, [">= 0.7.15"])
+      s.add_dependency(%q<rdiscount>, [">= 1.6.8"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<rack>, [">= 1.1.0"])
-    s.add_dependency(%q<thin>, [">= 1.2.5"])
-    s.add_dependency(%q<table_fu>, [">= 0.3.2"])
-    s.add_dependency(%q<sinatra>, [">= 1.0.0"])
+    s.add_dependency(%q<thin>, [">= 1.2.4"])
+    s.add_dependency(%q<table_fu>, [">= 0.3.4"])
+    s.add_dependency(%q<sinatra>, [">= 1.2.1"])
     s.add_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
     s.add_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
-    s.add_dependency(%q<curb>, [">= 0.6.6.0"])
-    s.add_dependency(%q<rdiscount>, [">= 1.6.3.1"])
+    s.add_dependency(%q<curb>, [">= 0.7.15"])
+    s.add_dependency(%q<rdiscount>, [">= 1.6.8"])
   end
 end
 
