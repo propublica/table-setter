@@ -74,7 +74,7 @@ options:
 
     def build_rack
       prefix = @prefix
-      config = File.join(@directory, "config.ru")
+      config = File.join(TableSetter.config_path, "config.ru")
 
       Rack::Builder.app do
         map prefix do
