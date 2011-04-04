@@ -75,22 +75,23 @@ options:
     def build_rack
       prefix = @prefix
       config = File.join(@directory, "config.ru")
-      if(File.exists? config)
-        return Rack::Builder.parse_file(config).first
-      end
+
       Rack::Builder.app do
         map prefix do
-          use Rack::CommonLogger, STDERR
-          use Rack::ShowExceptions
-          use Rack::Lint
-          run TableSetter::App
+          if(File.exists? config)
+            run Rack::Builder.parse_file(config).first
+          else
+            use Rack::CommonLogger, STDERR
+            use Rack::ShowExceptions
+            use Rack::Lint
+            run TableSetter::App
+          end
         end
       end
     end
 
     def build_index
-      install_file(@request.request("GET", "#{@prefix}").body,
-                      File.join(@out_dir, "index.html"))
+      build_file("#{@prefix}", "index.html")
     end
 
     def build_assets
@@ -99,18 +100,26 @@ options:
       end
     end
 
+    def build_file(url, out)
+      response = @request.get(url)
+      if response.errors.length > 0
+        puts "ERROR on #{url}:\n#{response.errors}" and exit 1
+      end
+      install_file(response.body, File.join(@out_dir, out))
+    end
+
     def build_tables
       TableSetter::Table.all.each do |table|
-        return if !table.live
+        next if !table.live
         puts "Building #{table.slug}"
-        install_file(@request.request("GET", "#{@prefix}#{table.slug}/").body,
-                    File.join(@out_dir, table.slug, "index.html"))
+        build_file("#{@prefix}#{table.slug}/", File.join(table.slug, "index.html"))
+
         if table.hard_paginate?
           table.load
           (1..table.total_pages).each do |page|
             puts "Building #{table.slug} #{page} of #{table.total_pages}"
-            install_file(@request.request("GET", "#{@prefix}#{table.slug}/#{page}/").body,
-                File.join(@out_dir, table.slug, page.to_s, "index.html"))
+            build_file("#{@prefix}#{table.slug}/#{page}/",
+                File.join(table.slug, page.to_s, "index.html"))
           end
         end
       end
