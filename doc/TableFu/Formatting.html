@@ -311,16 +311,16 @@ TableFu formatters.
       <pre class="lines">
 
 
-218
-219
-220
-221
 222
 223
-224</pre>
+224
+225
+226
+227
+228</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 218</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 222</span>
 
 <span class='def def kw'>def</span> <span class='bar identifier id'>bar</span><span class='lparen token'>(</span><span class='percent identifier id'>percent</span><span class='rparen token'>)</span>
   <span class='percent identifier id'>percent</span> <span class='assign token'>=</span> <span class='percent identifier id'>percent</span><span class='dot token'>.</span><span class='to_f identifier id'>to_f</span>
@@ -359,12 +359,12 @@ join multiple columns, with optional delimiter
       <pre class="lines">
 
 
-251
-252
-253</pre>
+255
+256
+257</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 251</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 255</span>
 
 <span class='def def kw'>def</span> <span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
   <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot; &quot;</span><span class='rparen token'>)</span>
@@ -388,12 +388,12 @@ join multiple columns, with optional delimiter
       <pre class="lines">
 
 
-255
-256
-257</pre>
+259
+260
+261</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 255</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 259</span>
 
 <span class='def def kw'>def</span> <span class='joinbr identifier id'>joinbr</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
   <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot;&lt;br&gt;&quot;</span><span class='rparen token'>)</span>
@@ -417,12 +417,12 @@ join multiple columns, with optional delimiter
       <pre class="lines">
 
 
-259
-260
-261</pre>
+263
+264
+265</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 259</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 263</span>
 
 <span class='def def kw'>def</span> <span class='joincomma identifier id'>joincomma</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
   <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot;, &quot;</span><span class='rparen token'>)</span>
@@ -457,17 +457,17 @@ format as a link, if the href is empty don&#8217;t make the link active
       <pre class="lines">
 
 
-231
-232
-233
-234
 235
 236
 237
-238</pre>
+238
+239
+240
+241
+242</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 231</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 235</span>
 
 <span class='def def kw'>def</span> <span class='link identifier id'>link</span><span class='lparen token'>(</span><span class='linkname identifier id'>linkname</span><span class='comma token'>,</span> <span class='href identifier id'>href</span><span class='rparen token'>)</span>
   <span class='title identifier id'>title</span> <span class='assign token'>=</span> <span class='linkname identifier id'>linkname</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/([&quot;])/</span><span class='comma token'>,</span> <span class='string val'>&quot;'&quot;</span><span class='rparen token'>)</span>
@@ -507,12 +507,12 @@ markdown formatting in tablefu cells
       <pre class="lines">
 
 
-226
-227
-228</pre>
+230
+231
+232</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 226</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 230</span>
 
 <span class='def def kw'>def</span> <span class='markdown identifier id'>markdown</span><span class='lparen token'>(</span><span class='cell identifier id'>cell</span><span class='rparen token'>)</span>
   <span class='RDiscount constant id'>RDiscount</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='cell identifier id'>cell</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_html identifier id'>to_html</span>
@@ -547,12 +547,12 @@ make it small
       <pre class="lines">
 
 
-246
-247
-248</pre>
+250
+251
+252</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 246</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 250</span>
 
 <span class='def def kw'>def</span> <span class='small identifier id'>small</span><span class='lparen token'>(</span><span class='cell identifier id'>cell</span><span class='rparen token'>)</span>
   <span class='dstring node'>&quot;&lt;small&gt;#{cell}&lt;/small&gt;&quot;</span>
@@ -587,12 +587,12 @@ make it strong
       <pre class="lines">
 
 
-241
-242
-243</pre>
+245
+246
+247</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 241</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 245</span>
 
 <span class='def def kw'>def</span> <span class='strong identifier id'>strong</span><span class='lparen token'>(</span><span class='cell identifier id'>cell</span><span class='rparen token'>)</span>
   <span class='dstring node'>&quot;&lt;strong&gt;#{cell}&lt;/strong&gt;&quot;</span>
@@ -608,7 +608,7 @@ make it strong
 </div>
     
     <div id="footer">
-  Generated on Thu Nov  4 18:34:17 2010 by 
+  Generated on Thu Apr 14 16:57:06 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.1 (ruby-1.8.7).
 </div>

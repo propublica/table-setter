@@ -784,14 +784,14 @@ time.
       <pre class="lines">
 
 
-110
-111
-112
-113
-114</pre>
+115
+116
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 115</span>
 
 <span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='@table_opts ivar id'>@table_opts</span><span class='lbrack token'>[</span><span class='method identifier id'>method</span><span class='rbrack token'>]</span>
@@ -1105,20 +1105,20 @@ accessing the @data attribute will throw and error.
       <pre class="lines">
 
 
-176
-177
-178
-179
 180
 181
 182
-183</pre>
+183
+184
+185
+186
+187</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 176</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 180</span>
 
 <span class='def def kw'>def</span> <span class='all identifier id'>all</span>
-  <span class='tables identifier id'>tables</span><span class='assign token'>=</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span> 
+  <span class='tables identifier id'>tables</span><span class='assign token'>=</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span>
   <span class='Dir constant id'>Dir</span><span class='dot token'>.</span><span class='glob identifier id'>glob</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{TableSetter.table_path}/*.yml&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='file identifier id'>file</span><span class='bitor op'>|</span>
     <span class='table identifier id'>table</span> <span class='assign token'>=</span> <span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='basename identifier id'>basename</span><span class='lparen token'>(</span><span class='file identifier id'>file</span><span class='comma token'>,</span> <span class='string val'>&quot;.yml&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:defer</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
     <span class='tables identifier id'>tables</span> <span class='lshft op'>&lt;&lt;</span> <span class='table identifier id'>table</span> <span class='if if_mod kw'>if</span> <span class='table identifier id'>table</span><span class='dot token'>.</span><span class='live identifier id'>live</span>
@@ -1168,12 +1168,12 @@ Does a table with this slug exist?
       <pre class="lines">
 
 
-207
-208
-209</pre>
+211
+212
+213</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 207</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 211</span>
 
 <span class='def def kw'>def</span> <span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='slug identifier id'>slug</span><span class='rparen token'>)</span>
   <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span> <span class='table_path identifier id'>table_path</span><span class='lparen token'>(</span><span class='slug identifier id'>slug</span><span class='rparen token'>)</span>
@@ -1210,10 +1210,6 @@ probably a more unix-y way to do this but for now this is plenty speedy.
       <pre class="lines">
 
 
-188
-189
-190
-191
 192
 193
 194
@@ -1221,10 +1217,14 @@ probably a more unix-y way to do this but for now this is plenty speedy.
 196
 197
 198
-199</pre>
+199
+200
+201
+202
+203</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 188</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 192</span>
 
 <span class='def def kw'>def</span> <span class='fresh_yaml_time identifier id'>fresh_yaml_time</span>
   <span class='newest_file identifier id'>newest_file</span> <span class='assign token'>=</span> <span class='Dir constant id'>Dir</span><span class='lbrack token'>[</span><span class='dstring node'>&quot;#{TableSetter.table_path}/*.yml&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='inject identifier id'>inject</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='memo identifier id'>memo</span><span class='comma token'>,</span> <span class='obj identifier id'>obj</span><span class='bitor op'>|</span>
@@ -1232,7 +1232,7 @@ probably a more unix-y way to do this but for now this is plenty speedy.
     <span class='obj_time identifier id'>obj_time</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='expand_path identifier id'>expand_path</span> <span class='obj identifier id'>obj</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='mtime identifier id'>mtime</span>
     <span class='if if kw'>if</span> <span class='memo_time identifier id'>memo_time</span> <span class='gt op'>&gt;</span> <span class='obj_time identifier id'>obj_time</span>
       <span class='memo identifier id'>memo</span>
-    <span class='else else kw'>else</span> 
+    <span class='else else kw'>else</span>
       <span class='obj identifier id'>obj</span>
     <span class='end end kw'>end</span>
   <span class='end end kw'>end</span>
@@ -1268,12 +1268,12 @@ Convenience method for looking up by slug.
       <pre class="lines">
 
 
-202
-203
-204</pre>
+206
+207
+208</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 202</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 206</span>
 
 <span class='def def kw'>def</span> <span class='table_path identifier id'>table_path</span><span class='lparen token'>(</span><span class='slug identifier id'>slug</span><span class='rparen token'>)</span>
   <span class='dstring node'>&quot;#{TableSetter.table_path}#{slug}.yml&quot;</span>
@@ -1316,15 +1316,15 @@ file.
       <pre class="lines">
 
 
-39
-40
-41
 42
 43
-44</pre>
+44
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 42</span>
 
 <span class='def def kw'>def</span> <span class='csv_data identifier id'>csv_data</span>
   <span class='case case kw'>case</span>
@@ -1372,12 +1372,12 @@ file.
       <pre class="lines">
 
 
-62
-63
-64</pre>
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 65</span>
 
 <span class='def def kw'>def</span> <span class='faceted? fid id'>faceted?</span>
   <span class='notop op'>!</span><span class='@facets ivar id'>@facets</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
@@ -1425,12 +1425,12 @@ hard_paginate instructs the app to render batches of a table.
       <pre class="lines">
 
 
-72
-73
-74</pre>
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 75</span>
 
 <span class='def def kw'>def</span> <span class='hard_paginate? fid id'>hard_paginate?</span>
   <span class='@table_opts ivar id'>@table_opts</span><span class='lbrack token'>[</span><span class='symbol val'>:hard_paginate</span><span class='rbrack token'>]</span> <span class='eq op'>==</span> <span class='true true kw'>true</span>
@@ -1476,13 +1476,19 @@ control against unnecessary http requests.
 32
 33
 34
-35</pre>
+35
+36
+37
+38</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 27</span>
 
 <span class='def def kw'>def</span> <span class='load identifier id'>load</span>
   <span class='csv identifier id'>csv</span> <span class='assign token'>=</span> <span class='csv_data identifier id'>csv_data</span>
+  <span class='if if kw'>if</span> <span class='@table_opts ivar id'>@table_opts</span><span class='lbrack token'>[</span><span class='symbol val'>:column_options</span><span class='rbrack token'>]</span>
+    <span class='@table_opts ivar id'>@table_opts</span><span class='lbrack token'>[</span><span class='symbol val'>:column_options</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>'style'</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='end end kw'>end</span>
   <span class='@data ivar id'>@data</span> <span class='assign token'>=</span> <span class='TableFu constant id'>TableFu</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='csv_data identifier id'>csv_data</span><span class='comma token'>,</span> <span class='@table_opts ivar id'>@table_opts</span><span class='lbrack token'>[</span><span class='symbol val'>:column_options</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='@table_opts ivar id'>@table_opts</span><span class='lbrack token'>[</span><span class='symbol val'>:faceting</span><span class='rbrack token'>]</span>
     <span class='@data ivar id'>@data</span><span class='dot token'>.</span><span class='col_opts identifier id'>col_opts</span><span class='lbrack token'>[</span><span class='symbol val'>:ignored</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='@table_opts ivar id'>@table_opts</span><span class='lbrack token'>[</span><span class='symbol val'>:faceting</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='symbol val'>:facet_by</span><span class='rbrack token'>]</span><span class='rbrack token'>]</span>
@@ -1534,24 +1540,24 @@ computes the page attributes which are nil and meaningless otherwise.
       <pre class="lines">
 
 
-83
-84
-85
 86
 87
 88
 89
 90
-91</pre>
+91
+92
+93
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 86</span>
 
 <span class='def def kw'>def</span> <span class='paginate! fid id'>paginate!</span><span class='lparen token'>(</span><span class='curr_page identifier id'>curr_page</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='if if_mod kw'>if</span> <span class='notop op'>!</span><span class='hard_paginate? fid id'>hard_paginate?</span>
   <span class='@page ivar id'>@page</span> <span class='assign token'>=</span> <span class='curr_page identifier id'>curr_page</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
   <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span> <span class='if if_mod kw'>if</span> <span class='@page ivar id'>@page</span> <span class='lt op'>&lt;</span> <span class='integer val'>1</span> <span class='orop op'>||</span> <span class='@page ivar id'>@page</span> <span class='gt op'>&gt;</span> <span class='total_pages identifier id'>total_pages</span>
-  <span class='adj_page identifier id'>adj_page</span> <span class='assign token'>=</span> <span class='@page ivar id'>@page</span> <span class='minus op'>-</span> <span class='integer val'>1</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span> <span class='question op'>?</span> <span class='@page ivar id'>@page</span> <span class='minus op'>-</span> <span class='integer val'>1</span> <span class='colon op'>:</span> <span class='integer val'>0</span> 
+  <span class='adj_page identifier id'>adj_page</span> <span class='assign token'>=</span> <span class='@page ivar id'>@page</span> <span class='minus op'>-</span> <span class='integer val'>1</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span> <span class='question op'>?</span> <span class='@page ivar id'>@page</span> <span class='minus op'>-</span> <span class='integer val'>1</span> <span class='colon op'>:</span> <span class='integer val'>0</span>
   <span class='@prev_page ivar id'>@prev_page</span> <span class='assign token'>=</span> <span class='adj_page identifier id'>adj_page</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span> <span class='question op'>?</span> <span class='adj_page identifier id'>adj_page</span> <span class='colon op'>:</span> <span class='nil nil kw'>nil</span>
   <span class='@next_page ivar id'>@next_page</span> <span class='assign token'>=</span> <span class='page identifier id'>page</span> <span class='lt op'>&lt;</span> <span class='total_pages identifier id'>total_pages</span> <span class='integer val'>? </span><span class='lparen token'>(</span><span class='@page ivar id'>@page</span> <span class='plus op'>+</span> <span class='integer val'>1</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='nil nil kw'>nil</span>
   <span class='@data ivar id'>@data</span><span class='dot token'>.</span><span class='only! fid id'>only!</span><span class='lparen token'>(</span><span class='adj_page identifier id'>adj_page</span> <span class='mult op'>*</span> <span class='per_page identifier id'>per_page</span><span class='dot2 op'>..</span><span class='lparen token'>(</span><span class='@page ivar id'>@page</span> <span class='mult op'>*</span> <span class='per_page identifier id'>per_page</span> <span class='minus op'>-</span> <span class='integer val'>1</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
@@ -1586,12 +1592,12 @@ The number of rows per page. Defaults to 20
       <pre class="lines">
 
 
-77
-78
-79</pre>
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 80</span>
 
 <span class='def def kw'>def</span> <span class='per_page identifier id'>per_page</span>
   <span class='@table_opts ivar id'>@table_opts</span><span class='lbrack token'>[</span><span class='symbol val'>:per_page</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='integer val'>20</span>
@@ -1626,18 +1632,22 @@ A convienence method to return the sort array for table setter.
       <pre class="lines">
 
 
-101
-102
-103
 104
-105</pre>
+105
+106
+107
+108
+109
+110</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 104</span>
 
 <span class='def def kw'>def</span> <span class='sort_array identifier id'>sort_array</span>
-  <span class='@data ivar id'>@data</span><span class='dot token'>.</span><span class='sorted_by identifier id'>sorted_by</span><span class='dot token'>.</span><span class='inject identifier id'>inject</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='memo identifier id'>memo</span><span class='comma token'>,</span> <span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='bitor op'>|</span>
-    <span class='memo identifier id'>memo</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='@data ivar id'>@data</span><span class='dot token'>.</span><span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='index identifier id'>index</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='value identifier id'>value</span> <span class='eq op'>==</span> <span class='string val'>'descending'</span> <span class='question op'>?</span> <span class='integer val'>1</span> <span class='colon op'>:</span> <span class='integer val'>0</span><span class='rbrack token'>]</span>
+  <span class='if if kw'>if</span> <span class='@data ivar id'>@data</span><span class='dot token'>.</span><span class='sorted_by identifier id'>sorted_by</span>
+    <span class='@data ivar id'>@data</span><span class='dot token'>.</span><span class='sorted_by identifier id'>sorted_by</span><span class='dot token'>.</span><span class='inject identifier id'>inject</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='memo identifier id'>memo</span><span class='comma token'>,</span> <span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='bitor op'>|</span>
+      <span class='memo identifier id'>memo</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='@data ivar id'>@data</span><span class='dot token'>.</span><span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='index identifier id'>index</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='value identifier id'>value</span> <span class='eq op'>==</span> <span class='string val'>'descending'</span> <span class='question op'>?</span> <span class='integer val'>1</span> <span class='colon op'>:</span> <span class='integer val'>0</span><span class='rbrack token'>]</span>
+    <span class='end end kw'>end</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -1684,12 +1694,12 @@ multi-page paginated.
       <pre class="lines">
 
 
-67
-68
-69</pre>
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 70</span>
 
 <span class='def def kw'>def</span> <span class='sortable? fid id'>sortable?</span>
   <span class='notop op'>!</span><span class='faceted? fid id'>faceted?</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='hard_paginate? fid id'>hard_paginate?</span>
@@ -1725,12 +1735,12 @@ so that we still have the full @data.rows.length
       <pre class="lines">
 
 
-96
-97
-98</pre>
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 96</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 99</span>
 
 <span class='def def kw'>def</span> <span class='total_pages identifier id'>total_pages</span>
   <span class='@total_pages ivar id'>@total_pages</span> <span class='opasgn op'>||=</span> <span class='lparen token'>(</span><span class='@data ivar id'>@data</span><span class='dot token'>.</span><span class='rows identifier id'>rows</span><span class='dot token'>.</span><span class='length identifier id'>length</span> <span class='div op'>/</span> <span class='per_page identifier id'>per_page</span><span class='dot token'>.</span><span class='to_f identifier id'>to_f</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='ceil identifier id'>ceil</span>
@@ -1767,13 +1777,13 @@ break the cache.
       <pre class="lines">
 
 
-57
-58
-59
-60</pre>
+60
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 60</span>
 
 <span class='def def kw'>def</span> <span class='updated_at identifier id'>updated_at</span>
   <span class='csv_time identifier id'>csv_time</span> <span class='assign token'>=</span> <span class='google_key identifier id'>google_key</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='integer val'>? </span><span class='modification_time identifier id'>modification_time</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='google_modification_time identifier id'>google_modification_time</span>
@@ -1809,19 +1819,19 @@ Returns a usable uri based on what sort of input we have.
       <pre class="lines">
 
 
-47
-48
-49
 50
 51
 52
-53</pre>
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/table_setter/table.rb', line 50</span>
 
 <span class='def def kw'>def</span> <span class='uri identifier id'>uri</span>
-  <span class='case case kw'>case</span> 
+  <span class='case case kw'>case</span>
   <span class='when when kw'>when</span> <span class='google_key identifier id'>google_key</span> <span class='then then kw'>then</span> <span class='dstring node'>&quot;http://spreadsheets.google.com/pub?key=#{google_key}&amp;output=csv&quot;</span>
   <span class='when when kw'>when</span> <span class='url identifier id'>url</span> <span class='then then kw'>then</span> <span class='url identifier id'>url</span>
   <span class='when when kw'>when</span> <span class='file identifier id'>file</span> <span class='then then kw'>then</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='expand_path identifier id'>expand_path</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{TableSetter.table_path}#{file}&quot;</span><span class='rparen token'>)</span>
@@ -1838,7 +1848,7 @@ Returns a usable uri based on what sort of input we have.
 </div>
     
     <div id="footer">
-  Generated on Thu Nov  4 18:34:17 2010 by 
+  Generated on Thu Apr 14 16:57:06 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.1 (ruby-1.8.7).
 </div>
