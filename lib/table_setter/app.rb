@@ -10,11 +10,11 @@ module TableSetter
     enable :static
 
     not_found do
-      show :"404"
+      erb :"404", {:layout => false}
     end
 
     error do
-      show :"500"
+      erb :"500", {:layout => false}
     end
 
     get "/" do
