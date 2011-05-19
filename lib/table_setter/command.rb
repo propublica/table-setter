@@ -78,7 +78,7 @@ options:
 
       Rack::Builder.app do
         map prefix do
-          if(File.exists? config)
+          if(::File.exists? config)
             run Rack::Builder.parse_file(config).first
           else
             use Rack::CommonLogger, STDERR
