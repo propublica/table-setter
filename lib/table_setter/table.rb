@@ -49,7 +49,7 @@ module TableSetter
     # Returns a usable uri based on what sort of input we have.
     def uri
       case
-      when google_key then "http://spreadsheets.google.com/pub?key=#{google_key}&output=csv"
+      when google_key then "https://spreadsheets.google.com/pub?key=#{google_key}&output=csv"
       when url then url
       when file then File.expand_path("#{TableSetter.table_path}#{file}")
       end
