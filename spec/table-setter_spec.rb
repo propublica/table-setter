@@ -73,7 +73,6 @@ end
 
 
 describe TableSetter::Table, "with hard pagination" do
-
   before :each do
     @data = TableSetter::Table.new("example_local")
   end
@@ -111,12 +110,10 @@ describe TableSetter::Table, "with hard pagination" do
     @data.page.should eql @data.total_pages
     @data.next_page.should eql nil
   end
-
 end
 
 
 describe TableSetter::Table, "with faceting and macros" do
-
   before :all do
     @data = TableSetter::Table.new("example_faceted")
     @tables = @data.facets
@@ -150,9 +147,6 @@ describe TableSetter::Table, "with faceting and macros" do
   it "should have $416,075,044 for North Carolina with dead row" do
     @tables[35].total_for('Total Appropriation').to_s.should eql '$423,318,645'
   end
-
-
-
 end
 
 describe TableSetter::Table, "group fetchers" do
