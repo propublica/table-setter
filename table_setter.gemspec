@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{table_setter}
-  s.version = "0.2.10"
+  s.version = "0.2.11"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Jeff Larson}]
-  s.date = %q{2011-05-20}
+  s.authors = ["Jeff Larson"]
+  s.date = %q{2012-03-09}
   s.description = %q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
   s.email = %q{thejefflarson@gmail.com}
-  s.executables = [%q{table-setter}, %q{table-setter}]
+  s.executables = ["table-setter", "table-setter"]
   s.extra_rdoc_files = [
     "LICENSE",
     "README",
@@ -124,9 +124,9 @@ Gem::Specification.new do |s|
     "template/views/table.erb"
   ]
   s.homepage = %q{http://propublica.github.com/table-setter/}
-  s.require_paths = [%q{lib}]
+  s.require_paths = ["lib"]
   s.rubyforge_project = %q{table-setter}
-  s.rubygems_version = %q{1.8.2}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{A sinatra based app for rendering CSVs in custom HTML}
 
   if s.respond_to? :specification_version then
@@ -138,7 +138,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<thin>, [">= 1.2.4"])
       s.add_runtime_dependency(%q<table_fu>, [">= 0.3.4"])
       s.add_runtime_dependency(%q<sinatra>, [">= 1.2.1"])
-      s.add_runtime_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
+      s.add_runtime_dependency(%q<sinatra-static-assets>, [">= 1.0.3"])
       s.add_runtime_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
       s.add_runtime_dependency(%q<curb>, [">= 0.7.15"])
       s.add_runtime_dependency(%q<rdiscount>, [">= 1.6.8"])
@@ -148,7 +148,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<thin>, [">= 1.2.4"])
       s.add_dependency(%q<table_fu>, [">= 0.3.4"])
       s.add_dependency(%q<sinatra>, [">= 1.2.1"])
-      s.add_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
+      s.add_dependency(%q<sinatra-static-assets>, [">= 1.0.3"])
       s.add_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
       s.add_dependency(%q<curb>, [">= 0.7.15"])
       s.add_dependency(%q<rdiscount>, [">= 1.6.8"])
@@ -159,7 +159,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<thin>, [">= 1.2.4"])
     s.add_dependency(%q<table_fu>, [">= 0.3.4"])
     s.add_dependency(%q<sinatra>, [">= 1.2.1"])
-    s.add_dependency(%q<sinatra-static-assets>, [">= 0.5.0"])
+    s.add_dependency(%q<sinatra-static-assets>, [">= 1.0.3"])
     s.add_dependency(%q<emk-sinatra-url-for>, [">= 0.2.1"])
     s.add_dependency(%q<curb>, [">= 0.7.15"])
     s.add_dependency(%q<rdiscount>, [">= 1.6.8"])
