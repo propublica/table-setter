@@ -16,7 +16,7 @@ begin
     gem.add_dependency "thin", ">= 1.2.4"
     gem.add_dependency "table_fu", ">= 0.3.4"
     gem.add_dependency "sinatra", ">= 1.2.1"
-    gem.add_dependency "sinatra-static-assets", ">= 0.5.0"
+    gem.add_dependency "sinatra-static-assets", ">= 1.0.3"
     gem.add_dependency "emk-sinatra-url-for", ">= 0.2.1"
     gem.add_dependency "curb", ">= 0.7.15"
     gem.add_dependency "rdiscount", ">= 1.6.8"
@@ -44,7 +44,7 @@ task :spec => :check_dependencies
 
 task :default => :spec
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 

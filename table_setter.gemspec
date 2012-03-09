@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{table_setter}
-  s.version = "0.2.8"
+  s.version = "0.2.10"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Jeff Larson"]
-  s.date = %q{2011-05-19}
+  s.authors = [%q{Jeff Larson}]
+  s.date = %q{2011-05-20}
   s.description = %q{A sinatra based app for rendering CSVs hosted on google docs or locally in custom HTML}
   s.email = %q{thejefflarson@gmail.com}
-  s.executables = ["table-setter", "table-setter"]
+  s.executables = [%q{table-setter}, %q{table-setter}]
   s.extra_rdoc_files = [
     "LICENSE",
     "README",
@@ -124,19 +124,12 @@ Gem::Specification.new do |s|
     "template/views/table.erb"
   ]
   s.homepage = %q{http://propublica.github.com/table-setter/}
-  s.require_paths = ["lib"]
+  s.require_paths = [%q{lib}]
   s.rubyforge_project = %q{table-setter}
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.8.2}
   s.summary = %q{A sinatra based app for rendering CSVs in custom HTML}
-  s.test_files = [
-    "spec/spec_helper.rb",
-    "spec/table-setter-app_spec.rb",
-    "spec/table-setter-command_spec.rb",
-    "spec/table-setter_spec.rb"
-  ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
