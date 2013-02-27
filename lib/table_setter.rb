@@ -34,8 +34,7 @@ module TableSetter
     end
 
     def table_path
-      @config_path + "/tables/"
+      "#{@config_path}/tables/"
     end
-
   end
 end

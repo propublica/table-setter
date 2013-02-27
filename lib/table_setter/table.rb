@@ -25,7 +25,6 @@ module TableSetter
     # It performs the requested data manipulations form the yml file after the data has been loaded.
     # We're keeping this explicit to control against unnecessary http requests.
     def load
-      csv = csv_data
       if @table_opts[:column_options]
         @table_opts[:column_options]['style'] ||= {}
       end

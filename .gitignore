@@ -18,3 +18,5 @@ template/out/
 
 ## PROJECT::SPECIFIC
 log
+
+Gemfile.lock
