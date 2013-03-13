@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
 
   gem.files         = `git ls-files`.split($\).reject {|f| f =~ /^(index)/}
   gem.test_files    = gem.files.grep(%r{^(spec)/})
-  gem.name          = "daybreak"
+  gem.name          = "table-setter"
   gem.require_paths = ["lib"]
   gem.licenses      = ["MIT"]
   gem.homepage = %q{http://propublica.github.com/table-setter/}
