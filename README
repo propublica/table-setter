@@ -8,3 +8,15 @@ TableSetter is a Ruby app which provides an easy way to present CSVs hosted loca
   
   examples
   http://propublica.github.com/table-setter/documentation/tables/example/
+
+=
+Installation Note
+
+- Rack 2.x has not `rack/showexceptions` but `rack/show_exceptions`.
+    - cf. [Incorrect rack requirement for showexceptions file · Issue \#1055 · sinatra/sinatra](https://github.com/sinatra/sinatra/issues/1055)
+- so you must specify rack version '< 2.0.0' such as below (Gemfile)
+
+```Gemfile
+gem 'table_setter'
+gem 'rack', '< 2.0.0'
+```
