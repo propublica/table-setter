@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
   gem.summary = %q{A sinatra based app for rendering CSVs in custom HTML}
 
   gem.add_development_dependency %q<minitest>
-  gem.add_dependency %q<rack>
+  gem.add_dependency %q<rack>, '< 2.0.0'
   gem.add_dependency %q<thin>
   gem.add_dependency %q<table_fu>
   gem.add_dependency %q<sinatra>
@@ -30,4 +30,3 @@ Gem::Specification.new do |gem|
   gem.add_dependency %q<curb>
   gem.add_dependency %q<rdiscount>
 end
-
